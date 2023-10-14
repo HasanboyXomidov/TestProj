@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Background Colors -->
+    <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#ffff"/>
+
+    <SolidColorBrush x:Key="SecundaryBackgroundColor" Color="#0F172A"/>
+
+    <SolidColorBrush x:Key="MenuButtonMouseOverTrueBackground" Color="#b2d0d8"/>
+    <SolidColorBrush x:Key="ThirdBackgroundColor" Color="#e3ffe6"/>
+    <SolidColorBrush x:Key="ButtonHoverGreyColor" Color="#f3f4f6"/>
+    <SolidColorBrush x:Key="NetItemsBackgroundColor" Color="#cbd5e1"/>
+    <SolidColorBrush x:Key="RegisterBackgroudnColor" Color="#F5E8B7"/>
+    <SolidColorBrush x:Key="RegisterDarkGreenBackgroudnColor" Color="#69726d"/>
+    <SolidColorBrush x:Key="NewItemsBackgroundSomeGrey" Color="#f7f7f9"/>
+    <!-- Primary Colors -->
+    <SolidColorBrush x:Key="PrimaryBlueColor" Color="#0eA5e9"/>
+    <SolidColorBrush x:Key="SecondaryBlueColor" Color="#f0f9ff"/>
+    
+
+    <!-- Typograhy Colors -->
+    <SolidColorBrush x:Key="PrimaryTextColor" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TextSecundaryColor" Color="#0F172A"/>
+    <SolidColorBrush x:Key="TextTertiaryColor" Color="#CD5C08"/>
+    <SolidColorBrush x:Key="TextFourthColor" Color="#4B5D78"/>
+
+
+    <!-- Icon Colors -->
+    <SolidColorBrush x:Key="PrimaryIconColor" Color="#B0B7C3"/>
+    <SolidColorBrush x:Key="SecundaryIconColor" Color="#8A94A6"/>
+    <SolidColorBrush x:Key="TertiarIconyColor" Color="#4B5D78"/>
+    <SolidColorBrush x:Key="FourthIconColor" Color="#6A9C89"/>
+
+    <SolidColorBrush x:Key="btnClose" Color="#F72626"/>
+
+    <!-- Main Banner Colors -->
+    <SolidColorBrush x:Key="MainBannerYellow" Color="#fefce8"/>
+    <SolidColorBrush x:Key="MainBannerBlue" Color="#e6ecf5"/>
+    <SolidColorBrush x:Key="MainBannerRed" Color="#fef2f2"/>
+    <SolidColorBrush x:Key="MainBannerGreen" Color="#e7f3ea"/>
+    <SolidColorBrush x:Key="PriceBorderForeColor" Color="#22c55e"/>
+    <!-- Main Banner Colors -->
+</ResourceDictionary>
