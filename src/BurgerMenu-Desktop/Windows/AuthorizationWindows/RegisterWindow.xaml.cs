@@ -27,6 +27,8 @@ namespace BurgerMenu_Desktop.Windows
 
         private readonly IUserRepository _userRepository;
         private string passwordShower { get; set; }
+        private string passwordShower2 { get; set; }
+
 
         public RegisterWindow()
         {
@@ -43,6 +45,12 @@ namespace BurgerMenu_Desktop.Windows
                 textboxParolText.Text = textboxParol.Password;
                 textboxParol.Visibility = Visibility.Collapsed;
                 textboxParolText.Visibility = Visibility.Visible;
+
+                //Second Passwordbox
+                showPassword.Style = (Style)FindResource("showPasswordCrosButton");
+                textboxParolText2.Text = textboxParol2.Password;
+                textboxParol2.Visibility = Visibility.Collapsed;
+                textboxParolText2.Visibility = Visibility.Visible;
             }
             else
             {
@@ -50,6 +58,12 @@ namespace BurgerMenu_Desktop.Windows
                 textboxParol.Password = textboxParolText.Text;
                 textboxParolText.Visibility = Visibility.Collapsed;
                 textboxParol.Visibility = Visibility.Visible;
+
+                //Second Passwordbox
+                showPassword.Style = (Style)FindResource("showPasswordButton");
+                textboxParol2.Password = textboxParolText2.Text;
+                textboxParolText2.Visibility = Visibility.Collapsed;
+                textboxParol2.Visibility = Visibility.Visible;
             }
         }
 
@@ -104,59 +118,70 @@ namespace BurgerMenu_Desktop.Windows
 
         private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var dbResultCheckUserName = await _userRepository.GetUserByUserName(tbUsername.Text);
             if (textboxParol.Visibility == Visibility.Visible) passwordShower = textboxParol.Password;
             else passwordShower = textboxParolText.Text;
-            int count = 0;
-            if (ContainsNonLatinCharacters(passwordShower) == true && ContainsNonLatinCharacters(tbUsername.Text) == true) count++;
-            else MessageBox.Show("Only latin alphabit !!");
-            if ( dbResultCheckUserName.Count == 0 ) count++;
-            else MessageBox.Show("User is already Exists");
-            if ( tbUsername.Text.Length > 8 ) count++;
-            else MessageBox.Show("Username is invalid , please check " );
-            if ( textboxParol.Password.Length > 8) count++;
-            else MessageBox.Show("Password is invalid , please check ");
-            if ( textboxParol2.Password == textboxParol.Password ) count++;
-            else MessageBox.Show("Password is not matching to the old password , please check ");            
-            if (count  == 5 )
+            if (textboxParol2.Visibility == Visibility.Visible) passwordShower2 = textboxParol2.Password;
+            else passwordShower2 = textboxParolText2.Text;
+            if (tbUsername.Text.Length > 0 && passwordShower.Length > 0 && passwordShower2.Length > 0)
             {
-                string UserName = tbUsername.Text;
-                
-                string UserPassword;
+                var dbResultCheckUserName = await _userRepository.GetUserByUserName(tbUsername.Text);
 
-                UserPassword = passwordShower;
-                Properties.Settings.Default.RememberMe = false;
-                Properties.Settings.Default.Save();
-                var hashResult = Hasher.Hash(UserPassword);
-
-                User user = new User();
-                user.UserName = UserName;
-                user.PasswordHash = hashResult.PasswordHash;
-                user.Salt = hashResult.Salt;
-
-                try
+                int count = 0;
+                if (ContainsNonLatinCharacters(passwordShower) == true && ContainsNonLatinCharacters(tbUsername.Text) == true) count++;
+                else MessageBox.Show("Только латинский алфавит!!");
+                if (dbResultCheckUserName.Count == 0) count++;
+                else MessageBox.Show("Пользователь уже существует");
+                if (tbUsername.Text.Length >= 8) count++;
+                else MessageBox.Show("Имя пользователя недействительно, пожалуйста, проверьте");
+                if (passwordShower.Length >= 8) count++;
+                else MessageBox.Show("Пароль недействителен, пожалуйста, проверьте");
+                if (passwordShower==passwordShower2) count++;
+                else MessageBox.Show("Пароль не соответствует старому паролю, проверьте");
+                if (count  == 5)
                 {
-                    var dbResult = await _userRepository.CreateAsync(user);
-                    if(dbResult > 0 )
+                    string UserName = tbUsername.Text;
+
+                    string UserPassword;
+
+                    UserPassword = passwordShower;
+                    Properties.Settings.Default.RememberMe = false;
+                    Properties.Settings.Default.Save();
+                    var hashResult = Hasher.Hash(UserPassword);
+
+                    User user = new User();
+                    user.UserName = UserName;
+                    user.PasswordHash = hashResult.PasswordHash;
+                    user.Salt = hashResult.Salt;
+
+                    try
                     {
-                        MessageBox.Show("Successfully Registred");
+                        var dbResult = await _userRepository.CreateAsync(user);
+                        if (dbResult > 0)
+                        {
+                            MessageBox.Show("Успешная регистрация");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не зарегистрирован");
+                        }
                     }
-                    else
+                    catch
                     {
-                        MessageBox.Show("Not Registred");
+                        MessageBox.Show("Ошибка Что-то не так");
                     }
+
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.setData(UserName, UserPassword);
+                    loginWindow.Show();
+                    this.Close();
+
                 }
-                catch 
-                {
-                    MessageBox.Show("Error Something wrong");
-                }      
-                
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.setData(UserName, UserPassword);
-                loginWindow.Show();
-                this.Close();
-
             }
+            else
+            {
+                MessageBox.Show("Пожалуйста, заполните пробелы");
+            }
+            
             
         }
 
@@ -164,5 +189,11 @@ namespace BurgerMenu_Desktop.Windows
         {
             
         }
+
+        private void scrollWindow(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+      
     }
 }

@@ -3,6 +3,7 @@ using BurgerMenu_Desktop.Interfaces.Shops;
 using BurgerMenu_Desktop.Repositories.Shops;
 using Microsoft.Win32;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -32,10 +33,11 @@ public partial class CreateShopWindow : Window
     private void ImgCourseImage_MouseDown(object sender, MouseButtonEventArgs e)
     {
         var openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
         if (openFileDialog.ShowDialog() == true )
         {
-            string ImagePath = openFileDialog.FileName;
-            ImgBImage.ImageSource = new BitmapImage(new Uri(ImagePath,UriKind.Relative));
+            string selectedFilePath = openFileDialog.FileName;
+            ImgBImage.ImageSource = new BitmapImage(new Uri(selectedFilePath, UriKind.Relative));
         }
     }
 
@@ -43,41 +45,79 @@ public partial class CreateShopWindow : Window
     {
 
     }
+    public bool ContainsNonLatinCharacters(string input)
+    {
+
+        string latinAlphaNumericPattern = @"^[a-zA-Z0-9]+$";
+        // Check if the input contains any Latin alphabets
+        return Regex.IsMatch(input, latinAlphaNumericPattern);
+    }
 
     private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
+        // Define the regular expression pattern to allow only alphanumeric characters and spaces
+        string pattern = @"^[a-zA-Z0-9\u0020\u0400-\u04FF]+$";
+        Regex regex = new Regex(pattern);
 
+        // Check if the entered text does not match the pattern
+        if (!regex.IsMatch(e.Text))
+        {
+            e.Handled = true; // Prevent the input by setting Handled to true
+        }
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
 
     }
-    
+    private bool ContainsPunctuation(string text)
+    {
+        // Define the regular expression pattern to match punctuation characters
+        string pattern = @"[\p{P}]";
+        Regex regex = new Regex(pattern);
+
+        // Check if the text contains any punctuation characters
+        return regex.IsMatch(text);
+    }
+
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
         int count = 0;
-        string imagePath = ImgBImage.ImageSource.ToString();
-        if (string.IsNullOrEmpty(imagePath) == false) count++;
-        else MessageBox.Show("Check Image");
-        if (tbShopName.Text.Length >= 4 ) count++;
-        else MessageBox.Show("Check ShopName Must be minimum 4 letters !");
-        if(count == 2) 
+        if (ImgBImage.ImageSource==null )
         {
-
-            Shop shop = new Shop();
-            shop.Name = tbShopName.Text;
-            shop.ImagePath = imagePath;
-            var dbResult = await _shopRepository.CreateAsync(shop);
-            if (dbResult > 0)
-            {
-                MessageBox.Show("Created Shop");
-                await Refresh();
-                this.Close();
-            }
-            else MessageBox.Show("Shop not Created Something wrong !");
-
+            MessageBox.Show("Требуется изображение");
         }
+        else if (tbShopName.Text.Length == 0)
+        {
+            MessageBox.Show("требуется название магазина");
+        }
+        else
+        {
+            string imagePath = ImgBImage.ImageSource.ToString();
+            if (ContainsPunctuation(tbShopName.Text) == false) count++;
+            else MessageBox.Show("без знаков препинания");
+            if (string.IsNullOrEmpty(imagePath) == false) count++;
+            else MessageBox.Show("Проверить изображение");
+            if (tbShopName.Text.Length >= 4) count++;
+            else MessageBox.Show("Проверьте имя магазина. Должно быть минимум 4 буквы!");
+            if (count == 3)
+            {
+
+                Shop shop = new Shop();
+                shop.Name = tbShopName.Text;
+                shop.ImagePath = imagePath;
+                var dbResult = await _shopRepository.CreateAsync(shop);
+                if (dbResult > 0)
+                {
+                    MessageBox.Show("Created Shop");
+                    await Refresh();
+                    this.Close();
+                }
+                else MessageBox.Show("Shop not Created Something wrong !");
+
+            }
+        }
+        
     }
 
 }

@@ -26,6 +26,9 @@ namespace BurgerMenu_Desktop.UserControls
     /// </summary>
     public partial class ShopsUserControl : UserControl
     {
+
+        public delegate void RefreshDelegate();
+        public RefreshDelegate RefreshPage { get; set; }
         ShopsViewModel shopsViewModel { get; set; }
         private readonly IShopRepository _shopRepository;
         public ShopsUserControl()
@@ -42,16 +45,20 @@ namespace BurgerMenu_Desktop.UserControls
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Do you want to Delete ?",
-                   "Delete Shop",
+            if (MessageBox.Show("Вы хотите удалить?",
+                   "Удалить магазин",
             MessageBoxButton.YesNo,
                    MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                var dll = await _shopRepository.DeleteAsync(shopsViewModel.Id);
-                if (dll > 0) MessageBox.Show("Deleted!!");
-                else MessageBox.Show("Not Deleted !!");
+                var dll = await _shopRepository.DeleteAsync(shopsViewModel.Id);            
+                if (dll > 0) 
+                {
+                    MessageBox.Show("Удален!!");
+                    RefreshPage?.Invoke();
+                }
+                else MessageBox.Show("Не удалено!!");
             }
-            else MessageBox.Show("Something wrong ");
+            else MessageBox.Show("Что-то не так");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -68,8 +75,13 @@ namespace BurgerMenu_Desktop.UserControls
 
             UpdateShopWindow updateShopWindow = new UpdateShopWindow();
             updateShopWindow.setData(shop);
+            updateShopWindow.RefreshPage = RefreshPageHandler;
             updateShopWindow.ShowDialog();
             
+        }
+        private void RefreshPageHandler()
+        {
+            RefreshPage?.Invoke();
         }
     }
 }

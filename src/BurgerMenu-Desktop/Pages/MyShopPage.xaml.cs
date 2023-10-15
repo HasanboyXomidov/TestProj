@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static BurgerMenu_Desktop.UserControls.ShopsUserControl;
 
 namespace BurgerMenu_Desktop.Pages
 {
@@ -33,11 +34,8 @@ namespace BurgerMenu_Desktop.Pages
         }
 
         private  async void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-            
-            await refreshAsync();
-           
+        {                        
+            await refreshAsync();           
         }
                 
         public async Task refreshAsync()
@@ -49,14 +47,19 @@ namespace BurgerMenu_Desktop.Pages
                 foreach (var shop in dbResult)
                 {
 
-                    ShopsUserControl shopsUserControl = new  ShopsUserControl();                    
+                    ShopsUserControl shopsUserControl = new  ShopsUserControl();
                     shopsUserControl.setData(shop);
+                    shopsUserControl.RefreshPage = RefreshPageHandler;
                     WpShops.Children.Add(shopsUserControl);
 
                 }
             }
             else MessageBox.Show("Shops Not Found");
 
+        }
+        private async void RefreshPageHandler()
+        {
+            await refreshAsync();
         }
 
         private void btnCreateShop(object sender, RoutedEventArgs e)

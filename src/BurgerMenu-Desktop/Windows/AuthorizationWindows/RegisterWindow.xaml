@@ -34,6 +34,9 @@
                 <!--end:: Split Grid2-->
 
                 <!--begin:: StackPanel 1-->
+                <Border Cursor="ScrollAll"
+                         Background="Transparent"
+                MouseDown="scrollWindow">
                 <StackPanel Grid.Row="0" 
                             HorizontalAlignment="Right" 
                             VerticalAlignment="Top" 
@@ -60,6 +63,7 @@
                     <!--end:: Minimize Button-->
 
                 </StackPanel>
+                </Border>
                 <!--end:: StackPanel 1-->
 
                 <!--begin:: Grid 3-->
@@ -82,7 +86,7 @@
                             <!--begin:: Phone Label-->
                             <Label HorizontalAlignment="Left"
                                    Margin="30 110 0 0"                           
-                                   Content="Username"
+                                   Content="Имя пользователя"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource RegisterBackgroudnColor}"/>
                             <!--end:: Phone Label-->
@@ -115,7 +119,7 @@
                             <!--begin:: Password Label-->
                             <Label HorizontalAlignment="Left"
                                    Margin="30 5 0 0"                           
-                                   Content="Password"
+                                   Content="Пароль"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource RegisterBackgroudnColor}"/>
                             <!--begin:: Password Label-->
@@ -153,6 +157,8 @@
                                     Grid.Column="0"
                                     MaxLength="32"
                                     Visibility="Collapsed"
+                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    PreviewKeyDown="TextBox_PreviewKeyDown"
                                     Margin="10 0"
                                     FontSize="18"
                                     BorderThickness="0"
@@ -175,7 +181,7 @@
                             <!--begin:: Password Label-->
                             <Label HorizontalAlignment="Left"
                                    Margin="30 5 0 0"                           
-                                   Content="Confirm Password"
+                                   Content="Подтвердите пароль"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource RegisterBackgroudnColor}"/>
                             <!--begin:: Password Label-->
@@ -208,9 +214,24 @@
                                     Foreground="{DynamicResource PrimaryBackgroundColor}"
                                     Background="Transparent">
                                     </PasswordBox>
+                                    <TextBox 
+                                    x:Name="textboxParolText2"
+                                    Grid.Column="0"
+                                    MaxLength="32"
+                                        PreviewTextInput="TextBox_PreviewTextInput"
+                                    PreviewKeyDown="TextBox_PreviewKeyDown"
+                                    Visibility="Collapsed"
+                                    Margin="10 0"
+                                    FontSize="18"
+                                    BorderThickness="0"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Foreground="{DynamicResource PrimaryBackgroundColor}"
+                                    Background="Transparent">
+                                    </TextBox>
                                     <!--end:: PasswordBox-->
+                                    
 
-                                  
 
                                 </Grid>
                             </Border>
@@ -228,7 +249,7 @@
 
                                 <!--begin:: Login Button-->
                                 <Button Style="{DynamicResource SaveBtn}"
-                                        Content="Register"   
+                                        Content="Регистрация"   
                                         Margin="25 5 0 0"
                                         Height="50"
                                         Click="btnSave_Click"
@@ -260,8 +281,9 @@
                             <!--begin:: StacPanel 4-->
                             <StackPanel>
                                 <!--begin:: Label Login-->
-                                <Label Content="Register"
-                                   Margin="50 50 50 25"
+                                <Label Content="Регистрация"
+                                   Margin="50 50 45 25"
+                                       Padding="0"
                                    FontSize="35"
                                    HorizontalAlignment="Center"                                   
                                    FontWeight="SemiBold"
@@ -270,14 +292,15 @@
                                 <!--end:: Label Login-->
 
                                 <Label HorizontalAlignment="Center"
-                                   Margin="0 130 0 0"                           
-                                   Content="If you already have an account"
+                                   Margin="0 130 0 0"
+                                       FontSize="16"
+                                   Content="Если у вас уже есть учетная запись"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource FourthIconColor}"/>
 
                                 <!--begin:: Registration Button-->
                                 <Button Style="{DynamicResource SaveBtn}"
-                                        Content="Login"   
+                                        Content="Авторизоваться"   
                                         Margin="0 10 0 0"
                                         Height="50"
                                         Width="200" 

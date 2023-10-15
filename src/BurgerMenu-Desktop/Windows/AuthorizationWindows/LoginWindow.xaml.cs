@@ -50,6 +50,7 @@ namespace BurgerMenu_Desktop.Windows
             
             
         }
+   
 
 
 
@@ -99,49 +100,62 @@ namespace BurgerMenu_Desktop.Windows
         {
             if (textboxParol.Visibility == Visibility.Visible) passwordShower = textboxParol.Password;
             else passwordShower = textboxParolText.Text;
-            // For validation 
-            int count = 0;
-            string name = tbUsername.Text;
-            var dbResult = await _userRepository.GetUserByUserName(name);
-            if (dbResult.Count == 1)
+
+            if(passwordShower.Length > 0 && tbUsername.Text.Length > 0) 
             {
-                string passWordHash = dbResult[0].PasswordHash;
-                string salt = dbResult[0].Salt;
-                var checkPassword = Hasher.Verify(passwordShower, passWordHash, salt);
-                if (checkPassword == true) count++;
+                // For validation 
+                int count = 0;
+                string name = tbUsername.Text;
+                var dbResult = await _userRepository.GetUserByUserName(name);
+                if (dbResult.Count == 1)
+                {
+                    string passWordHash = dbResult[0].PasswordHash;
+                    string salt = dbResult[0].Salt;
+                    var checkPassword = Hasher.Verify(passwordShower, passWordHash, salt);
+                    if (checkPassword == true) count++;
+                    else
+                    {
+                        MessageBox.Show("Неверный пароль");
+                    }
+                }
+                else MessageBox.Show("Пользователь не найден");
+                if (ContainsNonLatinCharacters(tbUsername.Text) == true && ContainsNonLatinCharacters(passwordShower) == true) count++;
+                else MessageBox.Show("Только латинский алфавит!!");
+                if (passwordShower.Length >= 8) count++;
+                else MessageBox.Show("Имя пользователя недействительно, пожалуйста, проверьте");
+                if (passwordShower.Length >= 8) count++;
+                else MessageBox.Show("Пароль недействителен, пожалуйста, проверьте");
+                if (count  == 4)
+                {
+                    if (rememberMeCheckBox.IsChecked == true)
+                    {
+                        // Store the user's preference in application settings
+                        Properties.Settings.Default.RememberMe = true;
+                        Properties.Settings.Default.Password = passwordShower;
+                        Properties.Settings.Default.Username = tbUsername.Text;
+                        Properties.Settings.Default.Save();
+                        MessageBox.Show("Успех");
+                        MainWindow mainWindow = new MainWindow();
+                        this.Close();
+                        mainWindow.ShowDialog();
+                    }
+                    else
+                    {
+                        // Clear the user's preference in application settings
+                        Properties.Settings.Default.RememberMe = false;
+                        Properties.Settings.Default.Save();
+                        MessageBox.Show("Успех");
+                        MainWindow mainWindow = new MainWindow();
+                        this.Close();
+                        mainWindow.ShowDialog();
+                    }
+                }
             }
-            else MessageBox.Show("User not found");
-            if (ContainsNonLatinCharacters(tbUsername.Text) == true && ContainsNonLatinCharacters(passwordShower) == true ) count++;            
-            else MessageBox.Show("Only latin alphabit !!");
-            if ( tbUsername.Text.Length > 8 ) count++;
-            else MessageBox.Show("Username is invalid  ,  please check ");
-            if (passwordShower.Length > 8) count++;
-            else MessageBox.Show("Password is invalid , please check ");
-            if ( count  == 4 )
+            else
             {
-                if (rememberMeCheckBox.IsChecked == true)
-                {
-                    // Store the user's preference in application settings
-                    Properties.Settings.Default.RememberMe = true;
-                    Properties.Settings.Default.Password = passwordShower;
-                    Properties.Settings.Default.Username = tbUsername.Text;
-                    Properties.Settings.Default.Save();
-                    MessageBox.Show("Success");
-                    MainWindow mainWindow = new MainWindow();
-                    this.Close();
-                    mainWindow.ShowDialog();
-                }
-                else
-                {
-                    // Clear the user's preference in application settings
-                    Properties.Settings.Default.RememberMe = false;
-                    Properties.Settings.Default.Save();
-                    MessageBox.Show("Success");
-                    MainWindow mainWindow = new MainWindow();
-                    this.Close();
-                    mainWindow.ShowDialog();
-                }
+                MessageBox.Show("Заполните пробелы");
             }
+           
         }
         public void setData(string userName,string userPassword)
         {
@@ -171,6 +185,7 @@ namespace BurgerMenu_Desktop.Windows
                     break;
                 }
             }
+
             
         }
 
@@ -189,6 +204,11 @@ namespace BurgerMenu_Desktop.Windows
                 tbUsername.Text = registeredUsername;
                 textboxParol.Password = registeredPassword;
             }
+        }
+
+        private void scrollWindow(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();    
         }
     }
 }

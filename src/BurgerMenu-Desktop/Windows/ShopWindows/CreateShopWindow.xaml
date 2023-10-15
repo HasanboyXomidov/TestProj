@@ -87,6 +87,7 @@
                     <TextBox x:Name="tbShopName"                                                
                                     BorderThickness="0"
                                     Margin="10"
+                             
                                     FontSize="16"
                                     PreviewTextInput="TextBox_PreviewTextInput"
                                     PreviewKeyDown="TextBox_PreviewKeyDown"

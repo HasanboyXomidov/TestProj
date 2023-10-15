@@ -71,6 +71,9 @@ namespace BurgerMenu_Desktop
             PageNavigator.Content = myShopPage;            
         }
 
-        
+        private void scrollWindow(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }
