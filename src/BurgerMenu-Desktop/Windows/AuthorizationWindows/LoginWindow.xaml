@@ -202,7 +202,7 @@
 
                                 <!--begin:: Login Button-->
                                 <Button Style="{DynamicResource SaveBtn}"
-                                        Content="Авторизоваться"   
+                                        Content="Войти"   
                                         Margin="25 5 0 0"
                                         Height="50"
                                         Width="300"    
@@ -234,7 +234,7 @@
                             <!--begin:: StacPanel 4-->
                             <StackPanel>
                                 <!--begin:: Label Login-->
-                                <Label Content="Авторизоваться"
+                                <Label Content="Войти"
                                    Margin="10 50 0 25"
                                    FontSize="35"
                                    HorizontalAlignment="Center"                                   

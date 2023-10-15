@@ -19,6 +19,7 @@ using BurgerMenu_Desktop.Repositories.Users;
 using BurgerMenu_Desktop.Security;
 using System.Text.RegularExpressions;
 using System.Diagnostics.Eventing.Reader;
+using BurgerMenu_Desktop.Entities.Users;
 
 namespace BurgerMenu_Desktop.Windows
 {
@@ -30,6 +31,7 @@ namespace BurgerMenu_Desktop.Windows
         private string registeredUsername { get; set; }
         private string registeredPassword { get; set; }
         private string passwordShower { get; set; }
+        private long UserId{ get; set; }
         private readonly IUserRepository _userRepository;
         public LoginWindow()
         {            
@@ -111,6 +113,7 @@ namespace BurgerMenu_Desktop.Windows
                 {
                     string passWordHash = dbResult[0].PasswordHash;
                     string salt = dbResult[0].Salt;
+                    UserId = dbResult[0].Id;
                     var checkPassword = Hasher.Verify(passwordShower, passWordHash, salt);
                     if (checkPassword == true) count++;
                     else
@@ -133,8 +136,8 @@ namespace BurgerMenu_Desktop.Windows
                         Properties.Settings.Default.RememberMe = true;
                         Properties.Settings.Default.Password = passwordShower;
                         Properties.Settings.Default.Username = tbUsername.Text;
+                        Properties.Settings.Default.UserId = UserId;
                         Properties.Settings.Default.Save();
-                        MessageBox.Show("Успех");
                         MainWindow mainWindow = new MainWindow();
                         this.Close();
                         mainWindow.ShowDialog();
@@ -143,8 +146,8 @@ namespace BurgerMenu_Desktop.Windows
                     {
                         // Clear the user's preference in application settings
                         Properties.Settings.Default.RememberMe = false;
+                        Properties.Settings.Default.UserId = UserId;
                         Properties.Settings.Default.Save();
-                        MessageBox.Show("Успех");
                         MainWindow mainWindow = new MainWindow();
                         this.Close();
                         mainWindow.ShowDialog();
@@ -153,7 +156,7 @@ namespace BurgerMenu_Desktop.Windows
             }
             else
             {
-                MessageBox.Show("Заполните пробелы");
+                MessageBox.Show("пожалуйста, заполните поле");
             }
            
         }

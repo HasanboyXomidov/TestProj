@@ -58,5 +58,17 @@ namespace BurgerMenu_Desktop.Properties {
                 this["Password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long UserId {
+            get {
+                return ((long)(this["UserId"]));
+            }
+            set {
+                this["UserId"] = value;
+            }
+        }
     }
 }

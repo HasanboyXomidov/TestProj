@@ -13,4 +13,5 @@ public interface IRepository<TEntity , TViewModel>
     public Task<int> DeleteAsync(long id);
     public Task<IList<TViewModel>> GetAllAsync();
 
+
 }

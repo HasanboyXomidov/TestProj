@@ -9,6 +9,7 @@ namespace BurgerMenu_Desktop.ViewModels.Shops;
 public class ShopsViewModel
 {
     public long Id { get; set; }
+    public int UserId { get; set; }
     public string Name { get; set; } = string.Empty;
     public string ImagePath { get; set; } = string.Empty;
 

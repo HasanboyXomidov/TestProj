@@ -12,6 +12,8 @@ public class Shop : Auditable
     [Required]
     public string Name { get; set; } = string.Empty;
     [Required]
+    public int UserId { get; set; } 
+    [Required]
     public string ImagePath { get; set; } = string.Empty;
 
 }

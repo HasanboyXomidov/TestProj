@@ -230,7 +230,12 @@
                                     Background="Transparent">
                                     </TextBox>
                                     <!--end:: PasswordBox-->
-                                    
+                                    <Button x:Name="showPassword2"
+                                                Grid.Column="1"
+                                            Click="showPassword_Click2"
+                                            Style="{DynamicResource showPasswordButton}">
+
+                                    </Button>
 
 
                                 </Grid>
@@ -300,7 +305,7 @@
 
                                 <!--begin:: Registration Button-->
                                 <Button Style="{DynamicResource SaveBtn}"
-                                        Content="Авторизоваться"   
+                                        Content="Войти"   
                                         Margin="0 10 0 0"
                                         Height="50"
                                         Width="200" 

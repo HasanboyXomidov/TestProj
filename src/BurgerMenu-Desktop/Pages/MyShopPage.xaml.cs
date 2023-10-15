@@ -41,7 +41,8 @@ namespace BurgerMenu_Desktop.Pages
         public async Task refreshAsync()
         {
             WpShops.Children.Clear();
-            var dbResult = await _shopRepository.GetAllAsync();
+            int userId = Convert.ToInt32(Properties.Settings.Default.UserId);
+            var dbResult = await _shopRepository.GetAllAsyncById(userId);
             if (dbResult.Count > 0)
             {
                 foreach (var shop in dbResult)

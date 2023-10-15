@@ -19,7 +19,7 @@ public class ShopRepository : BaseRepository, IShopRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "INSERT INTO shops (name, image_path) VALUES( @Name , @ImagePath );";
+            string query = "INSERT INTO shops (name,user_id,image_path) VALUES( @Name , @UserId, @ImagePath );";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
         }
@@ -68,6 +68,22 @@ public class ShopRepository : BaseRepository, IShopRepository
         {
             await _connection.CloseAsync();
         }
+    }
+
+    public async Task<IList<ShopsViewModel>> GetAllAsyncById(int userId)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"select * from shops where user_id = {userId} order by id desc;";
+            var result = (await _connection.QueryAsync<ShopsViewModel>(query)).ToList();
+            return result;
+        }
+        catch 
+        {
+            return new List<ShopsViewModel>();
+        }
+        finally { await _connection.CloseAsync(); }
     }
 
     public async Task<int> UpdateAsync(long id, Shop entity)

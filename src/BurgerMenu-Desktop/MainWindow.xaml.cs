@@ -75,5 +75,11 @@ namespace BurgerMenu_Desktop
         {
             this.DragMove();
         }
+
+        private void rbAllShops(object sender, RoutedEventArgs e)
+        {
+            AllShopsPage allShopsPage = new AllShopsPage();
+            PageNavigator.Content = allShopsPage;
+        }
     }
 }

@@ -29,6 +29,13 @@
                                      Style="{DynamicResource MenuButton}">
                             
                         </RadioButton>
+                        <RadioButton Content="Все магазины"
+                                     Width="250"
+                                     Margin="0 5 0 0"
+                                     Click="rbAllShops"
+                                     Style="{DynamicResource MenuButton}">
+
+                        </RadioButton>
                     </StackPanel>
                 </Border>
                 <Grid Grid.Column="1">

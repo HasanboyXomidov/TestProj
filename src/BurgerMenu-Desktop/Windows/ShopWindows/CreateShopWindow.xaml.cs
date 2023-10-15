@@ -105,11 +105,12 @@ public partial class CreateShopWindow : Window
 
                 Shop shop = new Shop();
                 shop.Name = tbShopName.Text;
+                shop.UserId = Convert.ToInt32(Properties.Settings.Default.UserId);
                 shop.ImagePath = imagePath;
                 var dbResult = await _shopRepository.CreateAsync(shop);
                 if (dbResult > 0)
                 {
-                    MessageBox.Show("Created Shop");
+                    MessageBox.Show("Создан Магазин");
                     await Refresh();
                     this.Close();
                 }

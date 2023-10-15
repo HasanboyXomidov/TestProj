@@ -44,13 +44,7 @@ namespace BurgerMenu_Desktop.Windows
                 showPassword.Style = (Style)FindResource("showPasswordCrosButton");
                 textboxParolText.Text = textboxParol.Password;
                 textboxParol.Visibility = Visibility.Collapsed;
-                textboxParolText.Visibility = Visibility.Visible;
-
-                //Second Passwordbox
-                showPassword.Style = (Style)FindResource("showPasswordCrosButton");
-                textboxParolText2.Text = textboxParol2.Password;
-                textboxParol2.Visibility = Visibility.Collapsed;
-                textboxParolText2.Visibility = Visibility.Visible;
+                textboxParolText.Visibility = Visibility.Visible;  
             }
             else
             {
@@ -58,12 +52,6 @@ namespace BurgerMenu_Desktop.Windows
                 textboxParol.Password = textboxParolText.Text;
                 textboxParolText.Visibility = Visibility.Collapsed;
                 textboxParol.Visibility = Visibility.Visible;
-
-                //Second Passwordbox
-                showPassword.Style = (Style)FindResource("showPasswordButton");
-                textboxParol2.Password = textboxParolText2.Text;
-                textboxParolText2.Visibility = Visibility.Collapsed;
-                textboxParol2.Visibility = Visibility.Visible;
             }
         }
 
@@ -108,6 +96,15 @@ namespace BurgerMenu_Desktop.Windows
                 }
             }
         }
+        private bool ContainsBigCharactersAndDigits(string text)
+        {
+            // Define the regular expression pattern to match uppercase letters and digits
+            string pattern = @"[A-Z0-9]";
+            Regex regex = new Regex(pattern);
+
+            // Check if the text contains any uppercase letters or digits
+            return regex.IsMatch(text);
+        }
         public bool ContainsNonLatinCharacters(string input)
         {
             
@@ -122,22 +119,25 @@ namespace BurgerMenu_Desktop.Windows
             else passwordShower = textboxParolText.Text;
             if (textboxParol2.Visibility == Visibility.Visible) passwordShower2 = textboxParol2.Password;
             else passwordShower2 = textboxParolText2.Text;
+
             if (tbUsername.Text.Length > 0 && passwordShower.Length > 0 && passwordShower2.Length > 0)
             {
                 var dbResultCheckUserName = await _userRepository.GetUserByUserName(tbUsername.Text);
 
                 int count = 0;
+                if (ContainsBigCharactersAndDigits(passwordShower) == true ) count++;
+                else MessageBox.Show("Пожалуйста, сделайте свой пароль надежным\r\nПример: Qqww1122");                
                 if (ContainsNonLatinCharacters(passwordShower) == true && ContainsNonLatinCharacters(tbUsername.Text) == true) count++;
                 else MessageBox.Show("Только латинский алфавит!!");
                 if (dbResultCheckUserName.Count == 0) count++;
                 else MessageBox.Show("Пользователь уже существует");
                 if (tbUsername.Text.Length >= 8) count++;
-                else MessageBox.Show("Имя пользователя недействительно, пожалуйста, проверьте");
+                else MessageBox.Show("Имя пользователя недействительно, пожалуйста, проверьте минимум : 8 символов");
                 if (passwordShower.Length >= 8) count++;
-                else MessageBox.Show("Пароль недействителен, пожалуйста, проверьте");
+                else MessageBox.Show("Пароль недействителен, пожалуйста, проверьте : минимум 8 символов");
                 if (passwordShower==passwordShower2) count++;
                 else MessageBox.Show("Пароль не соответствует старому паролю, проверьте");
-                if (count  == 5)
+                if (count  == 6)
                 {
                     string UserName = tbUsername.Text;
 
@@ -159,6 +159,10 @@ namespace BurgerMenu_Desktop.Windows
                         if (dbResult > 0)
                         {
                             MessageBox.Show("Успешная регистрация");
+                            LoginWindow loginWindow = new LoginWindow();
+                            loginWindow.setData(UserName, UserPassword);
+                            loginWindow.Show();
+                            this.Close();
                         }
                         else
                         {
@@ -168,18 +172,12 @@ namespace BurgerMenu_Desktop.Windows
                     catch
                     {
                         MessageBox.Show("Ошибка Что-то не так");
-                    }
-
-                    LoginWindow loginWindow = new LoginWindow();
-                    loginWindow.setData(UserName, UserPassword);
-                    loginWindow.Show();
-                    this.Close();
-
+                    }                   
                 }
             }
             else
             {
-                MessageBox.Show("Пожалуйста, заполните пробелы");
+                MessageBox.Show("пожалуйста, заполните поле");
             }
             
             
@@ -194,6 +192,25 @@ namespace BurgerMenu_Desktop.Windows
         {
             this.DragMove();
         }
-      
+
+        private void showPassword_Click2(object sender, RoutedEventArgs e)
+        {
+            if (textboxParolText2.Visibility == Visibility.Collapsed)
+            {   
+                //Second Passwordbox
+                showPassword2.Style = (Style)FindResource("showPasswordCrosButton2");
+                textboxParolText2.Text = textboxParol2.Password;
+                textboxParol2.Visibility = Visibility.Collapsed;
+                textboxParolText2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //Second Passwordbox
+                showPassword2.Style = (Style)FindResource("showPasswordButton2");
+                textboxParol2.Password = textboxParolText2.Text;
+                textboxParolText2.Visibility = Visibility.Collapsed;
+                textboxParol2.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

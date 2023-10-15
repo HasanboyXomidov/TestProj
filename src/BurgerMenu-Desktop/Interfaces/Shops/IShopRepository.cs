@@ -11,4 +11,5 @@ namespace BurgerMenu_Desktop.Interfaces.Shops;
 
 public interface IShopRepository : IRepository<Shop, ShopsViewModel>
 {
+    public Task<IList<ShopsViewModel>> GetAllAsyncById(int userId);
 }
