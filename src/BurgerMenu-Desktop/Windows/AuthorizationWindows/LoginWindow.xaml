@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows"
         mc:Ignorable="d"
         Height="700" Width="1200"
-        Loaded="Window_Loaded"        
+        Loaded="Window_Loaded"  
+        xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"        
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize">
@@ -216,7 +217,8 @@
                             </StackPanel>
                             <!--end:: StackPanel 3-->
 
-                            
+                            <notifications:NotificationArea x:Name="WindowArea" Position="TopLeft" MaxItems="1"/>
+
                         </StackPanel>
                         <!--end:: StackPanel 2-->
 

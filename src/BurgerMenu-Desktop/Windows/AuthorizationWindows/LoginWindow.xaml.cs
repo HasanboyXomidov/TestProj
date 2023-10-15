@@ -20,6 +20,7 @@ using BurgerMenu_Desktop.Security;
 using System.Text.RegularExpressions;
 using System.Diagnostics.Eventing.Reader;
 using BurgerMenu_Desktop.Entities.Users;
+using Notification.Wpf;
 
 namespace BurgerMenu_Desktop.Windows
 {
@@ -48,14 +49,8 @@ namespace BurgerMenu_Desktop.Windows
                 rememberMeCheckBox.IsChecked = true;
             }
             else { rememberMeCheckBox.IsChecked = false; }
-
-            
-            
+                        
         }
-   
-
-
-
         private void showPassword_Click(object sender, RoutedEventArgs e)
         {
             if (textboxParolText.Visibility == Visibility.Collapsed)
@@ -118,16 +113,29 @@ namespace BurgerMenu_Desktop.Windows
                     if (checkPassword == true) count++;
                     else
                     {
-                        MessageBox.Show("Неверный пароль");
+                        var notificationManager = new NotificationManager();
+                        notificationManager.Show("Предупреждение!", "Неверный пароль", NotificationType.Warning, "WindowArea");
                     }
                 }
-                else MessageBox.Show("Пользователь не найден");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("внимание!", "Пользователь не найден", NotificationType.Warning, "WindowArea");
+                } 
                 if (ContainsNonLatinCharacters(tbUsername.Text) == true && ContainsNonLatinCharacters(passwordShower) == true) count++;
-                else MessageBox.Show("Только латинский алфавит!!");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Предупреждение!", "Только латинский алфавит!!", NotificationType.Warning, "WindowArea");
+                }  
                 if (passwordShower.Length >= 8) count++;
-                else MessageBox.Show("Имя пользователя недействительно, пожалуйста, проверьте");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Предупреждение!", "Имя пользователя недействительно, пожалуйста, проверьте", NotificationType.Warning, "WindowArea");
+                }
                 if (passwordShower.Length >= 8) count++;
-                else MessageBox.Show("Пароль недействителен, пожалуйста, проверьте");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Предупреждение!", "Пароль недействителен, пожалуйста, проверьте", NotificationType.Warning, "WindowArea");
+                }                
                 if (count  == 4)
                 {
                     if (rememberMeCheckBox.IsChecked == true)
@@ -156,7 +164,9 @@ namespace BurgerMenu_Desktop.Windows
             }
             else
             {
-                MessageBox.Show("пожалуйста, заполните поле");
+                //MessageBox.Show("пожалуйста, заполните поле");
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Предупреждение!", "пожалуйста, заполните поле", NotificationType.Notification, "WindowArea");
             }
            
         }

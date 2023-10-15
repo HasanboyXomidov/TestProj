@@ -2,6 +2,7 @@
 using BurgerMenu_Desktop.Interfaces.Users;
 using BurgerMenu_Desktop.Repositories.Users;
 using BurgerMenu_Desktop.Security;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,15 +96,25 @@ namespace BurgerMenu_Desktop.Windows
                     break;
                 }
             }
-        }
-        private bool ContainsBigCharactersAndDigits(string text)
+        }   
+        public static bool ContainsBigCharactersAndDigits(string s)
         {
-            // Define the regular expression pattern to match uppercase letters and digits
-            string pattern = @"[A-Z0-9]";
-            Regex regex = new Regex(pattern);
+            bool hasUppercase = false;
+            bool hasDigit = false;
 
-            // Check if the text contains any uppercase letters or digits
-            return regex.IsMatch(text);
+            foreach (char c in s)
+            {
+                if (char.IsUpper(c))
+                    hasUppercase = true;
+
+                if (char.IsDigit(c))
+                    hasDigit = true;
+
+                if (hasUppercase && hasDigit)
+                    return true;
+            }
+
+            return false;
         }
         public bool ContainsNonLatinCharacters(string input)
         {
@@ -125,18 +136,36 @@ namespace BurgerMenu_Desktop.Windows
                 var dbResultCheckUserName = await _userRepository.GetUserByUserName(tbUsername.Text);
 
                 int count = 0;
-                if (ContainsBigCharactersAndDigits(passwordShower) == true ) count++;
-                else MessageBox.Show("Пожалуйста, сделайте свой пароль надежным\r\nПример: Qqww1122");                
+                if (ContainsBigCharactersAndDigits(passwordShower) == true) count++;
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Предупреждение!", "Пожалуйста, сделайте свой пароль надежным\r\nПример: Qqww1122", NotificationType.Notification, "WindowArea");
+                }
                 if (ContainsNonLatinCharacters(passwordShower) == true && ContainsNonLatinCharacters(tbUsername.Text) == true) count++;
-                else MessageBox.Show("Только латинский алфавит!!");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Предупреждение!", "Только латинский алфавит!!", NotificationType.Warning, "WindowArea");
+                }
                 if (dbResultCheckUserName.Count == 0) count++;
-                else MessageBox.Show("Пользователь уже существует");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Предупреждение!", "Пользователь уже существует", NotificationType.Warning, "WindowArea");
+                }
                 if (tbUsername.Text.Length >= 8) count++;
-                else MessageBox.Show("Имя пользователя недействительно, пожалуйста, проверьте минимум : 8 символов");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Совет!", "Имя пользователя недействительно, пожалуйста, проверьте минимум : 8 символов", NotificationType.Notification, "WindowArea");
+                }
                 if (passwordShower.Length >= 8) count++;
-                else MessageBox.Show("Пароль недействителен, пожалуйста, проверьте : минимум 8 символов");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Совет!", "Пароль недействителен, пожалуйста, проверьте : минимум 8 символов", NotificationType.Notification, "WindowArea");
+                }
                 if (passwordShower==passwordShower2) count++;
-                else MessageBox.Show("Пароль не соответствует старому паролю, проверьте");
+                else {
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Предупреждение!", "Пароль не соответствует старому паролю, проверьте", NotificationType.Notification, "WindowArea");
+                } 
                 if (count  == 6)
                 {
                     string UserName = tbUsername.Text;
@@ -158,7 +187,9 @@ namespace BurgerMenu_Desktop.Windows
                         var dbResult = await _userRepository.CreateAsync(user);
                         if (dbResult > 0)
                         {
-                            MessageBox.Show("Успешная регистрация");
+                            //MessageBox.Show("Успешная регистрация");
+                            var notificationManager = new NotificationManager();
+                            notificationManager.Show("Успешная!", "Успешная регистрация", NotificationType.Success, "WindowArea");
                             LoginWindow loginWindow = new LoginWindow();
                             loginWindow.setData(UserName, UserPassword);
                             loginWindow.Show();
@@ -166,18 +197,21 @@ namespace BurgerMenu_Desktop.Windows
                         }
                         else
                         {
-                            MessageBox.Show("Не зарегистрирован");
+                            var notificationManager = new NotificationManager();
+                            notificationManager.Show("Предупреждение!", "Не зарегистрирован", NotificationType.Warning, "WindowArea");
                         }
                     }
                     catch
-                    {
-                        MessageBox.Show("Ошибка Что-то не так");
+                    {                        
+                        var notificationManager = new NotificationManager();
+                        notificationManager.Show("Ошибка!", "Ошибка Что-то не так", NotificationType.Error, "WindowArea");
                     }                   
                 }
             }
             else
             {
-                MessageBox.Show("пожалуйста, заполните поле");
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Предупреждение!", "пожалуйста, заполните поле", NotificationType.Notification, "WindowArea");
             }
             
             

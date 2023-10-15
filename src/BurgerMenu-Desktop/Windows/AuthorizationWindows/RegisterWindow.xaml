@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows"
         mc:Ignorable="d"
-   Height="700" Width="1200"
+        Height="700" Width="1200"
+        xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"        
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize"
@@ -78,7 +79,7 @@
 
                     <!--begin:: Border 1-->
                     <Border Grid.Column="1"
-                            Margin="40 60 210 90">
+                            Margin="40 60 210 0">
 
                         <!--begin:: StackPanel 2-->
                         <StackPanel>
@@ -268,6 +269,7 @@
                             </StackPanel>
                             <!--end:: StackPanel 3-->
 
+                            <notifications:NotificationArea x:Name="WindowArea" Position="TopLeft" MaxItems="1"/>
 
                         </StackPanel>
                         <!--end:: StackPanel 2-->
