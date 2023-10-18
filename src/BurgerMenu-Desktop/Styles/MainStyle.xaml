@@ -1008,25 +1008,39 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
                     <Grid>
-                        <Border Width="220">
+                        <Border Background="Transparent"
+                Cursor="Hand"
+                Width="250"
+                Height="55"
+                x:Name="myBorder"
+                >
                             <StackPanel Orientation="Horizontal">
-                                <Border Width="45"  
-                                           Margin="10 0"
-                                        >
-                                    
-                                    <Path x:Name="icon"
-                                           Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
-                                           Height="20" Width="20"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Fill="{DynamicResource FourthIconColor}"                                  
-                                           Stretch="Uniform"/>  
+                                <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>-->
+                                <Border Grid.Column="0"
+                        Width="45"
+                        Height="45"
+                        Margin="10 0"
+                        CornerRadius="50"
+                        Background="White">
                                 </Border>
-                                <TextBlock VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       FontSize="16"
-                                            Text="{TemplateBinding Content}"
-                                       Foreground="White"></TextBlock>
+                                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Margin="10 5 5 5">
+                                    <Label VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           MaxWidth="120"
+                           Foreground="{DynamicResource PrimaryBackgroundColor}"
+                           Padding="0"
+                           x:Name="lblUserName"
+                          
+                           >
+                                        Hasanboy Xomidov Dilmurod o'gli
+                                    </Label>
+                                </StackPanel>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -1057,7 +1071,6 @@
 
         <Setter Property="Height" Value="45"/>
         <Setter Property="Width" Value="200"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontFamily" Value="Cascadia Mono"/>
@@ -1076,7 +1089,7 @@
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Border x:Name="Indicator"
+                            <!--<Border x:Name="Indicator"
                                     Grid.Column="0"
                                     Padding="0"    
                                         
@@ -1085,9 +1098,16 @@
                                     Background="{DynamicResource TextTertiaryColor}"
                                     Height="15"                                    
                                     Width="15"
-                                    CornerRadius="8"/>
+                                    CornerRadius="8"/>-->
+                            <Path Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
+                                  Fill="{DynamicResource TextTertiaryColor}" 
+                                  Stretch="Uniform"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Height="20" Width="20"                                  
+                                  />
 
-                            <Path x:Name="icon"
+                            <!--<Path x:Name="icon"
                                   Grid.Column="2"
                                   Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
                                   Height="20" Width="20"
@@ -1095,7 +1115,7 @@
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Fill="{DynamicResource FourthIconColor}"                                  
-                                  Stretch="Uniform"/>
+                                  Stretch="Uniform"/>-->
 
                             <TextBlock Grid.Column="2"
                                        
@@ -1125,7 +1145,7 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="AllBack" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
                             <Setter TargetName="AllBack" Property="CornerRadius" Value="25"/>
-                            <Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>
+                            <!--<Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>-->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

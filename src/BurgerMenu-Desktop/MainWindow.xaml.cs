@@ -86,5 +86,15 @@ namespace BurgerMenu_Desktop
         {
 
         }
+
+        private void btnHome_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnHome_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

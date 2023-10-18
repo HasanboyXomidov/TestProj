@@ -84,7 +84,7 @@ namespace BurgerMenu_Desktop.Windows.ShopWindows
                             this.Close();
 
                         }
-                        else MessageBox.Show("Не обновляется!!");
+                        else MessageBox.Show("Название магазина должно быть уникальным!");
                     }
                     else MessageBox.Show("Что-то не так");
                 }

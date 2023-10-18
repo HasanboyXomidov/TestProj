@@ -114,7 +114,7 @@ public partial class CreateShopWindow : Window
                     await Refresh();
                     this.Close();
                 }
-                else MessageBox.Show("Shop not Created Something wrong !");
+                else MessageBox.Show("Название магазина должно быть уникальным!");
 
             }
         }

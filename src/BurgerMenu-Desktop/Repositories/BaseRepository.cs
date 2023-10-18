@@ -14,7 +14,7 @@ public abstract class BaseRepository
     {
         Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
         this._connection = new MySqlConnection(
-            "server=localhost;database=myshops_db;user=root;"
+           "server=localhost;database=shop_db3;user=root;password=2315655i;"
             );
     }
 }

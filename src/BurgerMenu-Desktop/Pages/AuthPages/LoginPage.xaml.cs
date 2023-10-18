@@ -167,6 +167,7 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
                         Properties.Settings.Default.UserId = UserId;
                         Properties.Settings.Default.Save();
                         MainWindow mainWindow = new MainWindow();
+                        Application.Current.Windows[0].Close();
                         mainWindow.ShowDialog();
                     }
                     else
@@ -176,6 +177,7 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
                         Properties.Settings.Default.UserId = UserId;
                         Properties.Settings.Default.Save();
                         MainWindow mainWindow = new MainWindow();
+                        Application.Current.Windows[0].Close();
                         mainWindow.ShowDialog();
                     }
                 }
