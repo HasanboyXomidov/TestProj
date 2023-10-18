@@ -1,5 +1,47 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:fa="http://schemas.fontawesome.io/icons/">
+    <!-- Start: Pop-up Button Style -->
+    <Style x:Key="PopupButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter"
+                                              Focusable="False"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- End: Pop-up Button Style -->
+    
     <!-- fIRST show me button -->
     <Style x:Key="showPasswordCrosButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="24"/>
@@ -951,6 +993,65 @@
 
     <!-- Menu RadioButton -->
     <!--Menu Buttons-->
+
+    <Style x:Key="MenuButton2"
+       TargetType="{x:Type RadioButton}">
+
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="Width" Value="220"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Cascadia Mono"/>
+        <Setter Property="Margin" Value="0 2 0 2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Grid>
+                        <Border Width="220">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="45"  
+                                           Margin="10 0"
+                                        >
+                                    
+                                    <Path x:Name="icon"
+                                           Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
+                                           Height="20" Width="20"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Fill="{DynamicResource FourthIconColor}"                                  
+                                           Stretch="Uniform"/>  
+                                </Border>
+                                <TextBlock VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="16"
+                                            Text="{TemplateBinding Content}"
+                                       Foreground="White"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <!--<Setter Property="Background" Value="Transparent" TargetName="AllBack"/>-->
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!--<Setter TargetName="AllBack" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
+                            <Setter TargetName="AllBack" Property="CornerRadius" Value="25"/>
+                            <Setter TargetName="AllBack" Property="Cursor" Value="Hand"/>-->
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <!--<Setter TargetName="AllBack" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
+                            <Setter TargetName="AllBack" Property="CornerRadius" Value="25"/>
+                            <Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>-->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
     <Style x:Key="MenuButton"
            TargetType="{x:Type RadioButton}">
 
@@ -1047,9 +1148,9 @@
                     <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                         <Viewbox Height="20" Width="20" Margin="0 6 0 0" Stretch="UniformToFill">
                             <Canvas Height="512" Width="512">
-                                <Path Data="m32 0h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource SecundaryIconColor}" Margin="0 0 0 0"/>
-                                <Path Data="m32 128h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource SecundaryIconColor}" Margin="0 20 0 0"/>
-                                <Path Data="m32 256h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource SecundaryIconColor}" Margin="0 40 0 0"/>
+                                <Path Data="m32 0h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource TextTertiaryColor}" Margin="0 0 0 0"/>
+                                <Path Data="m32 128h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource TextTertiaryColor}" Margin="0 20 0 0"/>
+                                <Path Data="m32 256h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource TextTertiaryColor}" Margin="0 40 0 0"/>
                             </Canvas>
                         </Viewbox>
                     </Border>

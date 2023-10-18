@@ -81,5 +81,10 @@ namespace BurgerMenu_Desktop
             AllShopsPage allShopsPage = new AllShopsPage();
             PageNavigator.Content = allShopsPage;
         }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
