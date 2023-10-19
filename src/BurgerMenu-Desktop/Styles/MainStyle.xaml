@@ -439,13 +439,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid >
-                        <!-- Spinner -->
-                        
 
                         <!-- Button -->
                         <Border x:Name="pictureBorder"
                                 Padding="0"
-                            CornerRadius="10"
+                            CornerRadius="8"
                             BorderThickness="1"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             Height="{TemplateBinding Height}"

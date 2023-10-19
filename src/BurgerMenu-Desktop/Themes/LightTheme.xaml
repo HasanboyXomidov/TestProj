@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="SecundaryBackgroundColor" Color="#0F172A"/>
 
     <SolidColorBrush x:Key="MenuButtonMouseOverTrueBackground" Color="#b2d0d8"/>
-    <SolidColorBrush x:Key="ThirdBackgroundColor" Color="#e3ffe6"/>
+    <SolidColorBrush x:Key="ThirdBackgroundColor" Color="#C1D8C3"/>
     <SolidColorBrush x:Key="ButtonHoverGreyColor" Color="#f3f4f6"/>
     <SolidColorBrush x:Key="NetItemsBackgroundColor" Color="#cbd5e1"/>
     <SolidColorBrush x:Key="RegisterBackgroudnColor" Color="#F5E8B7"/>

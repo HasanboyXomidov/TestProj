@@ -44,11 +44,11 @@ namespace BurgerMenu_Desktop.Pages
 
             Button button = new Button
             {
-                Width = 180,
-                Height = 150,
+                Width = 150,
+                Height = 90,
                 Style = (Style)FindResource("SaveBtn"),
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C1D8C3")),
-                Content = "Add + ",
+                Content = "Добавить +",
                 Cursor = Cursors.Hand,
                 FontSize = 40,
                 Margin = new Thickness(10)

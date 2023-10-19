@@ -1,0 +1,48 @@
+﻿<Page x:Class="BurgerMenu_Desktop.Pages.CategoriesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BurgerMenu_Desktop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
+      Title="CategoriesPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               Content="Категории"
+                   FontSize="16"     
+               FontWeight="SemiBold"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Foreground="{DynamicResource TextTertiaryColor}">
+        </Label>
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    
+                    VerticalAlignment="Center">
+            <Label Content="Магазин :"
+                   FontSize="16"                   
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Foreground="{DynamicResource TextTertiaryColor}"></Label>
+            <Label Content="Flowers SHop"
+                   FontSize="16"
+                   x:Name="lblShopName"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 Foreground="{DynamicResource FourthIconColor}"></Label>
+        </StackPanel>
+        <WrapPanel Margin="15 10"
+           x:Name="WpCategories"
+           Grid.Row="2">
+
+        </WrapPanel>
+    </Grid>
+</Page>

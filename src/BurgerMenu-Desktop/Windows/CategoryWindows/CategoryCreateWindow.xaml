@@ -1,11 +1,11 @@
-﻿<Window x:Class="BurgerMenu_Desktop.Windows.ShopWindows.CreateShopWindow"
+﻿<Window x:Class="BurgerMenu_Desktop.Windows.CategoryWindows.CategoryCreateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.ShopWindows"
+        xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.CategoryWindows"
         mc:Ignorable="d"
-        Height="250" Width="500"
+              Height="250" Width="500"
         Loaded="Window_Loaded"        
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
@@ -35,17 +35,17 @@
                             Content="{DynamicResource close}" 
                             Click="btnClose_Click"
                             Tag="IsCloseButton"/>
-                <!--end:: Close Button-->              
+                <!--end:: Close Button-->
             </StackPanel>
             <StackPanel Grid.Row="1">
-               
-               
-                <Label Content="Shop Name"
+
+
+                <Label Content="Category Name"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 25 0 0"
                        FontWeight="SemiBold">
-                    
+
                 </Label>
                 <Border         Height="50"
                                     Width="300"
@@ -79,7 +79,7 @@
                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                         Margin="0 25"
                         Click="Button_Click">
-                    
+
                 </Button>
             </StackPanel>
         </Grid>

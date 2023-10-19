@@ -5,46 +5,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BurgerMenu_Desktop.UserControls"
              mc:Ignorable="d" 
-             Height="150" Width="180"
+             Height="90" Width="150"
              Margin="10">
-    <Grid>
+    <Grid x:Name="GrShop"
+          Background="Transparent"
+          >
 
         <Border Background="{DynamicResource RegisterBackgroudnColor}"
                 CornerRadius="10"      
                 BorderThickness="1"
+                MouseEnter="Grid_MouseEnter"
+                MouseLeave="Grid_MouseLeave"
+                MouseDown="Border_MouseDown"
                 BorderBrush="{DynamicResource TextTertiaryColor}"
                 >
             <StackPanel>
                 <StackPanel Orientation="Horizontal"                           
-            Height="40"  
-            Width="80"
-            Margin="90 5 0 0"
+            Height="30"  
+            Width="60"
+            Margin="90 0 0 0"
             HorizontalAlignment="Center">
-                    <Button Width="35"
-            Height="35"
-            Margin="2 2"
+                    <Button Width="25"
+            Height="25"
+            
+            Margin="2 0"
             Cursor="Hand"
             Click="Button_Click"
             Background="{DynamicResource btnClose}"
             Style="{DynamicResource SaveBtn}"
             Foreground="{DynamicResource PrimaryBackgroundColor}"
             >
-                        <Path Width="20" Height="20" Margin="0" Data="{DynamicResource Delete}"
+                        <Path Width="15" Height="10" Margin="0" Data="{DynamicResource Delete}"
                               Fill="{DynamicResource PrimaryBackgroundColor}"
                               Stretch="Uniform"/>
 
 
                     </Button>
-                    <Button Width="35"
-            Height="35"
+                    <Button Width="25"
+            Height="25"
             Margin="2 0"
             Padding="0"
             Cursor="Hand"
             Click="updateBtn"
             Style="{DynamicResource SaveBtn}"
             Background="#C1D8C3"
-            Foreground="{DynamicResource FourthIconColor}">
-                        <Path Width="20" Height="20" Margin="0" Data="{DynamicResource Edit}"
+            >
+                        <Path Width="15" Height="10" Margin="0" Data="{DynamicResource Edit}"
                              Fill="#6A9C89"
                              Stretch="Uniform"/>
                     </Button>
@@ -56,10 +62,10 @@
                            MaxHeight="80"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Margin="5 15 0 0"
+                       Margin="5 0 0 0"
                        Padding="0"
                        TextWrapping="Wrap"
-                       FontSize="20"
+                       FontSize="16"
                        FontWeight="SemiBold"
                        >
                     
