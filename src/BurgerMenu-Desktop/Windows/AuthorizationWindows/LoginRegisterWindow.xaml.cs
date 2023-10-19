@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using MySql.Data.MySqlClient;
 namespace BurgerMenu_Desktop.Windows.AuthorizationWindows
 {
     /// <summary>
@@ -20,10 +20,9 @@ namespace BurgerMenu_Desktop.Windows.AuthorizationWindows
     /// </summary>
     public partial class LoginRegisterWindow : Window
     {
-        public LoginRegisterWindow()
-        {
-            InitializeComponent();
-        }
+           
+     
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

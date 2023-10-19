@@ -13,21 +13,9 @@
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0"
-                            Width="150"
-                            HorizontalAlignment="Right"
-                            Style="{DynamicResource SaveBtn}"
-                            Background="#C1D8C3"
-                            Click="btnCreateShop"
-                            Margin="0 0 25 0"
-                            Content="Create"
-                            Cursor="Hand"
-                            FontSize="30">
-
-        </Button>
-        <ScrollViewer Grid.Row="1">
+       
+        <ScrollViewer Grid.Row="0">
             <WrapPanel Margin="15 10"
                        x:Name="WpShops">
 

@@ -27,6 +27,7 @@
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Dapper" Version="2.1.11" />
     <PackageReference Include="MySql.Data" Version="8.1.0" />
+    <PackageReference Include="MySqlConnector" Version="2.2.7" />
     <PackageReference Include="Notification.Wpf" Version="7.0.0.2" />
   </ItemGroup>
 

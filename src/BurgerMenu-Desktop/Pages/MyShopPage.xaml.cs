@@ -41,8 +41,22 @@ namespace BurgerMenu_Desktop.Pages
         public async Task refreshAsync()
         {
             WpShops.Children.Clear();
+
+            Button button = new Button
+            {
+                Width = 180,
+                Height = 150,
+                Style = (Style)FindResource("SaveBtn"),
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C1D8C3")),
+                Content = "Add + ",
+                Cursor = Cursors.Hand,
+                FontSize = 40,
+                Margin = new Thickness(10)
+            };
+            WpShops.Children.Add(button);
+            button.Click += btnCreateShop;
             int userId = Convert.ToInt32(Properties.Settings.Default.UserId);
-            var dbResult = await _shopRepository.GetAllAsyncById(userId);
+            var dbResult = await _shopRepository.GetAllAsync();
             if (dbResult.Count > 0)
             {
                 foreach (var shop in dbResult)
@@ -55,7 +69,7 @@ namespace BurgerMenu_Desktop.Pages
 
                 }
             }
-            else MessageBox.Show("Shops Not Found");
+            //else MessageBox.Show("Shops Not Found");
 
         }
         private async void RefreshPageHandler()

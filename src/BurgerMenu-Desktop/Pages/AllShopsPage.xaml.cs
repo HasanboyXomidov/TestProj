@@ -36,22 +36,41 @@ namespace BurgerMenu_Desktop.Pages
         {
             await refreshAsync();
         }
+
         public async Task refreshAsync()
         {
             WpShops.Children.Clear();
+            Button button = new Button
+            {
+                Width = 120,
+                Height = 90,
+                Style = (Style)FindResource("SaveBtn"),
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C1D8C3")),
+                Content = "+",
+                Cursor = Cursors.Hand,
+                FontSize = 40,
+                Margin = new Thickness(10)
+            };
+            WpShops.Children.Add(button);
+            button.Click += btnCreateShop;
             var dbResult = await _shopRepository.GetAllAsync();
             if (dbResult.Count > 0)
             {
                 foreach (var shop in dbResult)
                 {
 
-                    AllShopsUserControl allShopsUserControl = new AllShopsUserControl();
-                    allShopsUserControl.setData(shop);
-                    WpShops.Children.Add(allShopsUserControl);
+                    ShopsUserControl shopsUserControl = new ShopsUserControl();
+                    shopsUserControl.setData(shop);
+                    WpShops.Children.Add(shopsUserControl);
 
                 }
             }
-            else MessageBox.Show("Shops Not Found");
+            //else MessageBox.Show("Shops Not Found");
+        }
+
+        private void btnCreateShop(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

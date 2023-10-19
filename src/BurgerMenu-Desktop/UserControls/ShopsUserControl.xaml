@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BurgerMenu_Desktop.UserControls"
              mc:Ignorable="d" 
-            Height="300" Width="300"
-             Margin="25 10">
+             Height="150" Width="180"
+             Margin="10">
     <Grid>
 
         <Border Background="{DynamicResource RegisterBackgroudnColor}"
@@ -15,55 +15,56 @@
                 BorderBrush="{DynamicResource TextTertiaryColor}"
                 >
             <StackPanel>
-                <Border Height="200"
-                        Margin="3"
-                        CornerRadius="10"
-                        Background="{DynamicResource PrimaryBackgroundColor}">
-                    <Border CornerRadius="10">
-                        <Border.Background>
-                            <ImageBrush x:Name="bgImgShops"/>
-                        </Border.Background>
-                    </Border>
-                </Border>
-                <Label Content="Flower Shop"
+                <StackPanel Orientation="Horizontal"                           
+            Height="40"  
+            Width="80"
+            Margin="90 5 0 0"
+            HorizontalAlignment="Center">
+                    <Button Width="35"
+            Height="35"
+            Margin="2 2"
+            Cursor="Hand"
+            Click="Button_Click"
+            Background="{DynamicResource btnClose}"
+            Style="{DynamicResource SaveBtn}"
+            Foreground="{DynamicResource PrimaryBackgroundColor}"
+            >
+                        <Path Width="20" Height="20" Margin="0" Data="{DynamicResource Delete}"
+                              Fill="{DynamicResource PrimaryBackgroundColor}"
+                              Stretch="Uniform"/>
+
+
+                    </Button>
+                    <Button Width="35"
+            Height="35"
+            Margin="2 0"
+            Padding="0"
+            Cursor="Hand"
+            Click="updateBtn"
+            Style="{DynamicResource SaveBtn}"
+            Background="#C1D8C3"
+            Foreground="{DynamicResource FourthIconColor}">
+                        <Path Width="20" Height="20" Margin="0" Data="{DynamicResource Edit}"
+                             Fill="#6A9C89"
+                             Stretch="Uniform"/>
+                    </Button>
+                </StackPanel>
+                
+               
+                <TextBlock Text="Flowers Shop"
                        x:Name="lblShoName"
+                           MaxHeight="80"
                        HorizontalAlignment="Center"
-                       Margin="5 8 0 0"
+                       VerticalAlignment="Center"
+                       Margin="5 15 0 0"
                        Padding="0"
-                       FontSize="16"
+                       TextWrapping="Wrap"
+                       FontSize="20"
                        FontWeight="SemiBold"
                        >
                     
-                </Label>
-                <StackPanel Orientation="Horizontal"
-                            Height="60"                            
-                            Margin="10 0"
-                            HorizontalAlignment="Center">
-                    <Button Width="85"
-                            Height="45"
-                            Margin="10 0"
-                            Cursor="Hand"
-                            Click="Button_Click"
-                            Content="Delete"
-                            Background="{DynamicResource btnClose}"
-                            Style="{DynamicResource SaveBtn}"
-                            Foreground="{DynamicResource PrimaryBackgroundColor}"
-                            >
-                        
-                    </Button>
-                    <Button Width="85"
-                            Height="45"
-                            Margin="10 0"
-                            Padding="0"
-                            Cursor="Hand"
-                            Content="Update"
-                            Click="updateBtn"
-                            Style="{DynamicResource SaveBtn}"
-                            Background="#C1D8C3"
-                            Foreground="{DynamicResource FourthIconColor}">
-                        
-                    </Button>
-                </StackPanel>
+                </TextBlock>
+                
             </StackPanel>
         </Border>
        

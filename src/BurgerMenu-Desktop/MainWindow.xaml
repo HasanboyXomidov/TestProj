@@ -40,7 +40,7 @@
                     
                 </Border>-->
                 <Border Grid.Column="0"
-                        
+                        Padding="0"
                     Background="{DynamicResource RegisterBackgroudnColor}"
                     CornerRadius="8">
                     <Grid x:Name="GridNav" Width="60">
@@ -49,7 +49,8 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0">
+                        <Grid Grid.Row="0"
+                              Margin="6 0">
                             <ToggleButton Cursor="Hand" x:Name="Tg_Btn" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource iToggleButtonStyle}" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,15,0,15" Height="30" Width="30">
                                 <ToggleButton.Triggers>
                                     <EventTrigger RoutedEvent="ToggleButton.Unchecked">
@@ -75,7 +76,7 @@
                         </Grid>
 
                         <!-- Start: MenuItem -->
-                        <StackPanel Grid.Row="1" Margin="-1 40 0 20"
+                        <StackPanel Grid.Row="1" Margin="-5 40 0 20"
                                 x:Name="SideBarUsers">
                             <!--<Button x:Name="btnHome"
                                     Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" 
@@ -87,18 +88,19 @@
                                                VerticalAlignment="Center"
                                            />
                             </Button>-->
-                            <RadioButton Content="Мои магазины"
+                            <!--<RadioButton Content="Мои магазины"
+
                                      Width="220"
                                      Tag="{DynamicResource home}"                                         
                                      Margin="0 0 0 0"
                                      Click="rbMyShopClick"
                                      Style="{DynamicResource MenuButton}">
 
-                            </RadioButton>
-                            <RadioButton Content="Все магазины"
+                            </RadioButton>-->
+                            <RadioButton Content="Мои магазины"
                                      Width="220"
                                      Tag="{DynamicResource products}"                                                                                  
-                                     Margin="0 5 0 0"
+                                     Margin="0 0 0 0"
                                      Click="rbAllShops"
                                      Style="{DynamicResource MenuButton}">
 

@@ -19,7 +19,7 @@ public class ShopRepository : BaseRepository, IShopRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "INSERT INTO shops (name,user_id,image_path) VALUES( @Name , @UserId, @ImagePath );";
+            string query = "INSERT INTO shops (name,user_id) VALUES( @Name , @UserId );";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
         }
@@ -91,7 +91,7 @@ public class ShopRepository : BaseRepository, IShopRepository
         try
         {
             await _connection.OpenAsync();
-            string query = $"update shops set name=@Name , image_Path=@ImagePath, updated_at=now() where id={id}";
+            string query = $"update shops set name=@Name , updated_at=now() where id={id}";
             var result = await _connection.ExecuteAsync(query, entity );
             return result;
         }

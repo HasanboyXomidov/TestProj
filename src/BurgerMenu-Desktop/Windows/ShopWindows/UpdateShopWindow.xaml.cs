@@ -49,28 +49,21 @@ namespace BurgerMenu_Desktop.Windows.ShopWindows
         {
 
             int count = 0;
-            if (ImgBImage.ImageSource==null)
-            {
-                MessageBox.Show("Требуется изображение");
-            }
-            else if (tbShopName.Text.Length == 0)
+        
+            if (tbShopName.Text.Length == 0)
             {
                 MessageBox.Show("требуется название магазина");
             }
             else
             {
-                string imagePath = ImgBImage.ImageSource.ToString();
                 if (ContainsPunctuation(tbShopName.Text) == false) count++;
                 else MessageBox.Show("без знаков препинания");
-                if (string.IsNullOrEmpty(imagePath) == false) count++;
-                else MessageBox.Show("Проверить изображение");
                 if (tbShopName.Text.Length >= 4) count++;
                 else MessageBox.Show("Проверьте имя магазина. Должно быть минимум 4 буквы!");
-                if (count == 3)
+                if (count == 2)
                 {
                     Shop shop = new Shop();
                     shop.Name = tbShopName.Text;
-                    shop.ImagePath = ImgBImage.ImageSource.ToString();
                     if (MessageBox.Show("Вы хотите обновить?",
                        "Обновить магазин",
                         MessageBoxButton.YesNo,
@@ -86,14 +79,13 @@ namespace BurgerMenu_Desktop.Windows.ShopWindows
                         }
                         else MessageBox.Show("Название магазина должно быть уникальным!");
                     }
-                    else MessageBox.Show("Что-то не так");
+                    else MessageBox.Show("Hе Обновлено");
                 }
             }
         }
         public void setData(Shop shop)
         {
             this.Id = shop.Id;
-            ImgBImage.ImageSource = new BitmapImage(new System.Uri(shop.ImagePath, UriKind.Relative));
             tbShopName.Text = shop.Name;
         }
 
@@ -122,7 +114,6 @@ namespace BurgerMenu_Desktop.Windows.ShopWindows
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFilePath = openFileDialog.FileName;
-                ImgBImage.ImageSource = new BitmapImage(new Uri(selectedFilePath, UriKind.Relative));
             }
         }
 

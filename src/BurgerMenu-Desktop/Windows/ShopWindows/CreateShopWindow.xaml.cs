@@ -37,7 +37,7 @@ public partial class CreateShopWindow : Window
         if (openFileDialog.ShowDialog() == true )
         {
             string selectedFilePath = openFileDialog.FileName;
-            ImgBImage.ImageSource = new BitmapImage(new Uri(selectedFilePath, UriKind.Relative));
+            //ImgBImage.ImageSource = new BitmapImage(new Uri(selectedFilePath, UriKind.Relative));
         }
     }
 
@@ -82,31 +82,25 @@ public partial class CreateShopWindow : Window
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        int count = 0;
-        if (ImgBImage.ImageSource==null )
-        {
-            MessageBox.Show("Требуется изображение");
-        }
-        else if (tbShopName.Text.Length == 0)
+        int count = 0;        
+        if (tbShopName.Text.Length == 0)
         {
             MessageBox.Show("требуется название магазина");
         }
         else
         {
-            string imagePath = ImgBImage.ImageSource.ToString();
+            //string imagePath = ImgBImage.ImageSource.ToString();
             if (ContainsPunctuation(tbShopName.Text) == false) count++;
             else MessageBox.Show("без знаков препинания");
-            if (string.IsNullOrEmpty(imagePath) == false) count++;
-            else MessageBox.Show("Проверить изображение");
             if (tbShopName.Text.Length >= 4) count++;
             else MessageBox.Show("Проверьте имя магазина. Должно быть минимум 4 буквы!");
-            if (count == 3)
+            if (count == 2)
             {
 
                 Shop shop = new Shop();
                 shop.Name = tbShopName.Text;
                 shop.UserId = Convert.ToInt32(Properties.Settings.Default.UserId);
-                shop.ImagePath = imagePath;
+                //shop.ImagePath = imagePath;
                 var dbResult = await _shopRepository.CreateAsync(shop);
                 if (dbResult > 0)
                 {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.ShopWindows"
         mc:Ignorable="d"
-    Height="600" Width="500"
+    Height="250" Width="500"
         Loaded="Window_Loaded"        
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
@@ -38,37 +38,8 @@
                 <!--end:: Close Button-->              
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Label Content="Shop Image"
-                       HorizontalAlignment="Center"
-                       FontSize="16"
-                       FontWeight="SemiBold">
-
-                </Label>
-                <Border Height="130"
-                             Width="120"
-                             HorizontalAlignment="Center"
-                            BorderBrush="{DynamicResource PrimaryBackgroundColor}"
-                            CornerRadius="10"
-                            BorderThickness="1"
-                            Background="{DynamicResource PrimaryBackgroundColor}"
-                            
-                            
-                            >
-                    <Border x:Name="ImgCourseImage"
-                            Cursor="Hand"
-                            MouseDown="ImgCourseImage_MouseDown"
-                            >
-                        <Label VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               FontSize="30">
-                            +
-                        </Label>
-                        <Border.Background>
-                            <ImageBrush x:Name="ImgBImage"
-                                        />
-                        </Border.Background>
-                    </Border>
-                </Border>
+               
+               
                 <Label Content="Shop Name"
                        HorizontalAlignment="Center"
                        FontSize="16"

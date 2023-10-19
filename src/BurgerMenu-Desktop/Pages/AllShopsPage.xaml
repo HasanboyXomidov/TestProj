@@ -13,14 +13,17 @@
         <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
-            
-            <ScrollViewer Grid.Row="1">
-                <WrapPanel Margin="15 10"
-                       x:Name="WpShops">
 
+            <ScrollViewer Grid.Row="0">
+
+                <WrapPanel Orientation="Horizontal" Margin="15 10"
+                       x:Name="WpShops">
+                    <Grid>
+                       
+                    </Grid>
                 </WrapPanel>
+                
             </ScrollViewer>
         </Grid>
     </Grid>

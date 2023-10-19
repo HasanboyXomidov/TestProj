@@ -39,8 +39,8 @@ namespace BurgerMenu_Desktop.UserControls
         public void setData(ShopsViewModel shopsViewModel)
         {
             this.shopsViewModel = shopsViewModel;
-            lblShoName.Content = shopsViewModel.Name;
-            bgImgShops.ImageSource = new BitmapImage(new System.Uri(shopsViewModel.ImagePath,UriKind.Relative));
+            lblShoName.Text = shopsViewModel.Name;
+            //bgImgShops.ImageSource = new BitmapImage(new System.Uri(shopsViewModel.ImagePath,UriKind.Relative));
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -71,7 +71,7 @@ namespace BurgerMenu_Desktop.UserControls
             Shop shop = new Shop();
             shop.Id = shopsViewModel.Id;
             shop.Name = shopsViewModel.Name;
-            shop.ImagePath = shopsViewModel.ImagePath;
+            //shop.ImagePath = shopsViewModel.ImagePath;
 
             UpdateShopWindow updateShopWindow = new UpdateShopWindow();
             updateShopWindow.setData(shop);

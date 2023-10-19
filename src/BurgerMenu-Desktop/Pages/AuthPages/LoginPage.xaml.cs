@@ -18,13 +18,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using BurgerMenu_Desktop.Repositories;
+using MySqlConnector;
 
 namespace BurgerMenu_Desktop.Pages.AuthPages
 {
     /// <summary>
     /// Логика взаимодействия для LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class LoginPage : Page 
     {
         private string registeredUsername { get; set; }
         private string registeredPassword { get; set; }
@@ -35,7 +38,7 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
         {
             InitializeComponent();
             this._userRepository = new UserRepository();
-
+            Loaded += Page_Loaded;
 
             // Load the user's preference from application settings
             if (Properties.Settings.Default.RememberMe)
@@ -47,6 +50,8 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
             }
             else { rememberMeCheckBox.IsChecked = false; }
         }
+
+        
 
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -193,6 +198,25 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            string connectionString = "server=localhost;database=myshops_db;user=root;";
+
+            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    //MessageBox.Show("Database connection established successfully.");
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to establish database connection: " + ex.Message);
+                    //var notificationManager = new NotificationManager();
+                    //notificationManager.Show("Bнимание!", "Пожалуйста, проверьте соединение", NotificationType.Error, "WindowArea");
+                }
+            }
+
             if (registeredUsername != null && registeredPassword != null)
             {
                 tbUsername.Text = registeredUsername;

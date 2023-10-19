@@ -438,12 +438,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
+                    <Grid >
                         <!-- Spinner -->
                         
 
                         <!-- Button -->
                         <Border x:Name="pictureBorder"
+                                Padding="0"
                             CornerRadius="10"
                             BorderThickness="1"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -1070,7 +1071,7 @@
            TargetType="{x:Type RadioButton}">
 
         <Setter Property="Height" Value="45"/>
-        <Setter Property="Width" Value="200"/>
+        <Setter Property="Width" Value="210"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontFamily" Value="Cascadia Mono"/>
@@ -1079,43 +1080,27 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
 
-                    <Border x:Name="AllBack" CornerRadius="25" Width="200"
-                            BorderThickness="1"
+                    <Border x:Name="AllBack" CornerRadius="0" Width="200"
+                            Margin="0"
                             BorderBrush="{DynamicResource TextTertiaryColor}">
 
-                        <Grid Margin="10 0">
+                        <Grid Margin="0">
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <!--<Border x:Name="Indicator"
-                                    Grid.Column="0"
-                                    Padding="0"    
-                                        
-                                    Visibility="Collapsed"
-                                    HorizontalAlignment="Center"
-                                    Background="{DynamicResource TextTertiaryColor}"
-                                    Height="15"                                    
-                                    Width="15"
-                                    CornerRadius="8"/>-->
+                           
                             <Path Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
                                   Fill="{DynamicResource TextTertiaryColor}" 
                                   Stretch="Uniform"
+                                  Margin="10 0 0 0"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Height="20" Width="20"                                  
                                   />
 
-                            <!--<Path x:Name="icon"
-                                  Grid.Column="2"
-                                  Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
-                                  Height="20" Width="20"
-                                  Margin="10 0 0 0"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Fill="{DynamicResource FourthIconColor}"                                  
-                                  Stretch="Uniform"/>-->
+                          
 
                             <TextBlock Grid.Column="2"
                                        
@@ -1125,7 +1110,7 @@
                                        VerticalAlignment="Center"
                                        FontSize="16"
                                        FontFamily="s"
-                                       Margin="15 0 0 0"
+                                       Margin="25 0 0 0"
                                        Text="{TemplateBinding Content}"/>
 
                         </Grid>
@@ -1139,12 +1124,12 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="AllBack" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
-                            <Setter TargetName="AllBack" Property="CornerRadius" Value="25"/>
+                            <Setter TargetName="AllBack" Property="CornerRadius" Value="5"/>
                             <Setter TargetName="AllBack" Property="Cursor" Value="Hand"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="AllBack" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
-                            <Setter TargetName="AllBack" Property="CornerRadius" Value="25"/>
+                            <Setter TargetName="AllBack" Property="CornerRadius" Value="5"/>
                             <!--<Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>-->
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -1166,7 +1151,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                        <Viewbox Height="20" Width="20" Margin="0 6 0 0" Stretch="UniformToFill">
+                        <Viewbox Height="30" Width="30" Margin="0 6 0 0" Stretch="UniformToFill">
                             <Canvas Height="512" Width="512">
                                 <Path Data="m32 0h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource TextTertiaryColor}" Margin="0 0 0 0"/>
                                 <Path Data="m32 128h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="{DynamicResource TextTertiaryColor}" Margin="0 20 0 0"/>

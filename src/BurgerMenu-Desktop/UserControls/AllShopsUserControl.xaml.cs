@@ -28,7 +28,7 @@ namespace BurgerMenu_Desktop.UserControls
         }
         public void setData(ShopsViewModel shopsViewModels)
         {
-            bgImgShops.ImageSource = new BitmapImage(new System.Uri(shopsViewModels.ImagePath,UriKind.Relative));
+            //bgImgShops.ImageSource = new BitmapImage(new System.Uri(shopsViewModels.ImagePath,UriKind.Relative));
             lblShoName.Content = shopsViewModels.Name;
         }
     }

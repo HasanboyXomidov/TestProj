@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.AuthorizationWindows"
         mc:Ignorable="d"
+        
         Loaded="Window_Loaded"
         xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"        
         
