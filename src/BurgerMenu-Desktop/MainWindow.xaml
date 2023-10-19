@@ -78,25 +78,6 @@
                         <!-- Start: MenuItem -->
                         <StackPanel Grid.Row="1" Margin="-5 40 0 20"
                                 x:Name="SideBarUsers">
-                            <!--<Button x:Name="btnHome"
-                                    Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" 
-                                    >
-                                <ctls:MenuItem GroupName="MenuItem"
-                                               IndicatorBrush="{DynamicResource PrimaryBackgroundColor}" Icon="{DynamicResource restore}"
-                                               IconWidth="16"
-                                               Text="Home"
-                                               VerticalAlignment="Center"
-                                           />
-                            </Button>-->
-                            <!--<RadioButton Content="Мои магазины"
-
-                                     Width="220"
-                                     Tag="{DynamicResource home}"                                         
-                                     Margin="0 0 0 0"
-                                     Click="rbMyShopClick"
-                                     Style="{DynamicResource MenuButton}">
-
-                            </RadioButton>-->
                             <RadioButton Content="Мои магазины"
                                      Width="220"
                                      Tag="{DynamicResource products}"                                                                                  
@@ -105,6 +86,14 @@
                                      Style="{DynamicResource MenuButton}">
 
                             </RadioButton>
+                            <Button x:Name="brProducts"
+                                     Width="220"                                    
+                                     Style="{DynamicResource MenuStaticButton}"
+                                     Tag="{DynamicResource car}"
+                                     Content="Продукты"
+                                     Visibility="Collapsed"
+                                    >
+                            </Button>
                         </StackPanel>
                         
 

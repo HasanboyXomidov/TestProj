@@ -20,7 +20,7 @@
     <!-- Typograhy Colors -->
     <SolidColorBrush x:Key="PrimaryTextColor" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="TextSecundaryColor" Color="#0F172A"/>
-    <SolidColorBrush x:Key="TextTertiaryColor" Color="#CD5C08"/>
+    <SolidColorBrush x:Key="TextTertiaryColor" Color="#CD5C09"/>
     <SolidColorBrush x:Key="TextFourthColor" Color="#4B5D78"/>
 
 
