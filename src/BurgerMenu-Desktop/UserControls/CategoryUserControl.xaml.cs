@@ -1,9 +1,14 @@
-﻿using BurgerMenu_Desktop.Interfaces.Categories;
+﻿using BurgerMenu_Desktop.Entities.Categories;
+using BurgerMenu_Desktop.Entities.Shops;
+using BurgerMenu_Desktop.Interfaces.Categories;
 using BurgerMenu_Desktop.Repositories.Categories;
 using BurgerMenu_Desktop.ViewModels.Categories;
 using BurgerMenu_Desktop.ViewModels.Shops;
+using BurgerMenu_Desktop.Windows.CategoryWindows;
+using BurgerMenu_Desktop.Windows.ShopWindows;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +30,8 @@ namespace BurgerMenu_Desktop.UserControls
     
     public partial class CategoryUserControl : UserControl
     {
+        public delegate void RefreshDelegateForMyShopPage();
+        public RefreshDelegateForMyShopPage RefreshPage { get; set; }
         private readonly ICategoryRepository _categoryRepository;
         public CategoryViewModel? categoryViewModel { get; set; }
         public CategoryUserControl()
@@ -72,7 +79,7 @@ namespace BurgerMenu_Desktop.UserControls
                 if (dll > 0)
                 {
                     MessageBox.Show("Удален!!");
-                    //RefreshPage?.Invoke();
+                    RefreshPage?.Invoke();
                 }
                 else MessageBox.Show("Не удалено!!");
             }
@@ -81,7 +88,21 @@ namespace BurgerMenu_Desktop.UserControls
 
         private void updateBtn(object sender, RoutedEventArgs e)
         {
-
+            Category category = new Category
+            {
+                Id = categoryViewModel.Id,
+                CategoryName = categoryViewModel.CategoryName,
+                ShopId = categoryViewModel.ShopId
+            };            
+            CategoryUpdateWindow categoryUpdateWindow = new CategoryUpdateWindow();
+            categoryUpdateWindow.setData(category);
+            categoryUpdateWindow.RefreshPage = refreshCategoryPage;
+            categoryUpdateWindow.ShowDialog();
+          
+        }
+        private void refreshCategoryPage()
+        {
+            RefreshPage?.Invoke();
         }
     }
 }

@@ -24,6 +24,8 @@ namespace BurgerMenu_Desktop.Windows.CategoryWindows
     /// </summary>
     public partial class CategoryCreateWindow : Window
     {
+        public delegate void RefreshDelegateForMyShopPage();
+        public RefreshDelegateForMyShopPage? RefreshPage { get; set; }
         private readonly ICategoryRepository _categoryRepository;
         public long ShopId { get; set; }
         public CategoryCreateWindow()
@@ -101,6 +103,7 @@ namespace BurgerMenu_Desktop.Windows.CategoryWindows
                     if (dbResult > 0)
                     {
                         MessageBox.Show("Создан Категория");
+                        RefreshPage?.Invoke();
                         this.Close();
                     }
                     else MessageBox.Show("Название Категория должно быть уникальным!");

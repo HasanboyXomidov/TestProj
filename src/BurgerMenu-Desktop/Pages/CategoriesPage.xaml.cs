@@ -27,7 +27,7 @@ namespace BurgerMenu_Desktop.Pages
     {
         private long ShopId { get; set; }
         private string ShopName { get; set; }
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryRepository? _categoryRepository;
         public CategoriesPage()
         {
             InitializeComponent();
@@ -62,6 +62,7 @@ namespace BurgerMenu_Desktop.Pages
                 {
                     CategoryUserControl  categoryUserControl = new CategoryUserControl();
                     categoryUserControl.setData(category);
+                    categoryUserControl.RefreshPage=refreshAsync;
                     WpCategories.Children.Add(categoryUserControl);
                 }
             }
@@ -71,6 +72,7 @@ namespace BurgerMenu_Desktop.Pages
         {
             CategoryCreateWindow categoryCreateWindow = new CategoryCreateWindow();
             categoryCreateWindow.getShopID(ShopId);
+            categoryCreateWindow.RefreshPage=refreshAsync;
             categoryCreateWindow.ShowDialog();
         }
 

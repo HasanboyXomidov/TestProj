@@ -33,7 +33,7 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
         private string registeredPassword { get; set; }
         private string passwordShower { get; set; }
         private long UserId { get; set; }
-        private readonly IUserRepository _userRepository;
+        private readonly IUserRepository? _userRepository;
         public LoginPage()
         {
             InitializeComponent();

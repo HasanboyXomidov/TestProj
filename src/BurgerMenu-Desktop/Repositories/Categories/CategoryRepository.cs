@@ -33,7 +33,7 @@ public class CategoryRepository : BaseRepository, ICategoryRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "DELETE FROM `categories` WHERE @Id";
+            string query = "DELETE FROM `categories` WHERE id = @Id";
             var result = await _connection.ExecuteAsync(query , new { Id = id });
             return result;
         }

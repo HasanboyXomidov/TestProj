@@ -54,7 +54,7 @@
                                     BorderThickness="1">
 
                     <!--begin:: Phone TextBox-->
-                    <TextBox x:Name="tbShopName"                                                
+                    <TextBox x:Name="tbCategoryName"                                                
                                     BorderThickness="0"
                                     Margin="10"
                                     FontSize="16"
