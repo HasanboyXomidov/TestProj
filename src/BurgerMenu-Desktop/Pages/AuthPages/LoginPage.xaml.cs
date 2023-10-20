@@ -198,7 +198,8 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            string connectionString = "server=localhost;database=myshops_db;user=root;";
+            IdentitySingleton identity = IdentitySingleton.GetInstance();
+            string connectionString = identity.connectionString;
 
             using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
             {
