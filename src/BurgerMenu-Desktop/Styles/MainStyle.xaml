@@ -1194,11 +1194,10 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="False">
-<<<<<<< HEAD
+
                             <Setter TargetName="AllBack" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
-=======
                             <Setter TargetName="AllBack" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}" />
->>>>>>> 37d9fcea66a1b9b0ab20016c2e5c87b973dde3b3
+
                             <Setter  TargetName="staticIcon" Property="Fill" Value="{DynamicResource TextTertiaryColor}"/>
                         </Trigger>
                        

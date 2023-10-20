@@ -13,6 +13,7 @@
 
         <Border Background="{DynamicResource RegisterBackgroudnColor}"
                 CornerRadius="10"      
+                x:Name="brButton"
                 BorderThickness="1"
                 MouseEnter="Grid_MouseEnter"
                 MouseLeave="Grid_MouseLeave"

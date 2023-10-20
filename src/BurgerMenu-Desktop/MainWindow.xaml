@@ -74,29 +74,51 @@
 
                            
                         </Grid>
-
+                        <Grid Grid.Row="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
                         <!-- Start: MenuItem -->
-                        <StackPanel Grid.Row="1" Margin="-5 40 0 20"
+                        <StackPanel Grid.Row="0" Margin="-5 40 0 20"
                                 x:Name="SideBarUsers">
-                            <RadioButton Content="Мои магазины"
+                                <!-- Start: MenuItemMyShops -->
+                                <RadioButton Content="Мои магазины"
                                      Width="220"
+                                     x:Name="rbMenuButtonMyShops"
                                      Tag="{DynamicResource products}"                                                                                  
-                                     Margin="0 0 0 0"
+                                     Margin="0"
                                      Click="rbAllShops"
                                      Style="{DynamicResource MenuButton}">
 
                             </RadioButton>
                             <Button x:Name="brProducts"
-                                     Width="220"                                    
+                                     Width="220"  
+                                     Margin="0"                                    
                                      Style="{DynamicResource MenuStaticButton}"
                                      Tag="{DynamicResource car}"
                                      Content="Продукты"
                                      Visibility="Collapsed"
                                     >
                             </Button>
-                        </StackPanel>
-                        
+                                <!-- End: MenuItemMyShops -->
 
+                            </StackPanel>
+                            <!-- Start: GoBackButtonPosition -->
+                            <Button  Grid.Row="1" 
+                                     x:Name="btnBackto"
+                                     Style="{DynamicResource MenuStaticButton}"
+                                     Width="220"
+                                     Cursor="Hand"
+                                     Click="btnBackto_Click"
+                                     Margin="0 5"                                    
+                                     Tag="{DynamicResource LeftPointer}"
+                                     Content="Back To "
+                                     Visibility="Collapsed"
+                                 >                      
+                            </Button>
+                            <!-- Finish: GoBackButtonPosition -->
+                        </Grid>
                         <!-- Start: Popup User Control -->
                         <Popup x:Name="Popup"  AllowsTransparency="True"  HorizontalOffset="0" VerticalOffset="10">
                             <ctls:UserPopup x:Name="Header" Foreground="{DynamicResource PrimaryTextColor}"/>

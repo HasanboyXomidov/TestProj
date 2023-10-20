@@ -104,6 +104,24 @@ namespace BurgerMenu_Desktop.UserControls
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+            {
+                RadioButton? radioButton = mainWindow.FindName("rbMenuButtonMyShops") as RadioButton;
+                if (radioButton  != null)
+                {
+                    radioButton.Visibility = Visibility.Collapsed;
+                    Button? button= mainWindow.FindName("brProducts") as Button;                    
+                    if(button !=null) button.Visibility = Visibility.Visible;
+                    Button? buttonBackTo = mainWindow.FindName("btnBackto") as Button;
+                    if (buttonBackTo !=null)
+                    {
+                        buttonBackTo.Visibility = Visibility.Visible;
+                        buttonBackTo.Content = "Мои магазины";
+                    }
+
+
+                }
+            }
             // Get the parent Frame control
             Frame frame = FindParent<Frame>(this);
 

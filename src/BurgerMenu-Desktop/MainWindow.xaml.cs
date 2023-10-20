@@ -1,5 +1,7 @@
 ﻿using BurgerMenu_Desktop.Pages;
+using BurgerMenu_Desktop.Pages.AuthPages;
 using BurgerMenu_Desktop.UserControls;
+using BurgerMenu_Desktop.ViewModels.Shops;
 using BurgerMenu_Desktop.Windows;
 using BurgerMenu_Desktop.Windows.ShopWindows;
 using System;
@@ -94,6 +96,16 @@ namespace BurgerMenu_Desktop
 
         private void btnHome_MouseLeave(object sender, MouseEventArgs e)
         {
+
+        }
+
+        private void btnBackto_Click(object sender, RoutedEventArgs e)
+        {
+            MyShopPage myShopPage = new MyShopPage();
+            PageNavigator.Content = myShopPage;
+            btnBackto.Visibility = Visibility.Collapsed;
+            brProducts.Visibility = Visibility.Collapsed;
+            rbMenuButtonMyShops.Visibility = Visibility.Visible;
 
         }
     }
