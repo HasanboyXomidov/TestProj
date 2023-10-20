@@ -118,7 +118,8 @@ namespace BurgerMenu_Desktop.UserControls
                     if (buttonBackTo !=null)
                     {
                         buttonBackTo.Visibility = Visibility.Visible;
-                        buttonBackTo.Content = "Мои магазины";
+
+                        //buttonBackTo.Content = "Мои магазины";
                     }
 
 
@@ -132,6 +133,7 @@ namespace BurgerMenu_Desktop.UserControls
             categoriesPage.setData(shopsViewModel.Id,shopsViewModel.Name);
             frame.Navigate(categoriesPage);
         }
+       
         private T? FindParent<T>(DependencyObject child) where T : DependencyObject
         {
             DependencyObject parent = VisualTreeHelper.GetParent(child);

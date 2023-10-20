@@ -1,6 +1,8 @@
 ﻿using BurgerMenu_Desktop.Entities.Categories;
 using BurgerMenu_Desktop.Entities.Shops;
 using BurgerMenu_Desktop.Interfaces.Categories;
+using BurgerMenu_Desktop.Pages;
+using BurgerMenu_Desktop.Pages.AuthPages;
 using BurgerMenu_Desktop.Repositories.Categories;
 using BurgerMenu_Desktop.ViewModels.Categories;
 using BurgerMenu_Desktop.ViewModels.Shops;
@@ -65,7 +67,10 @@ namespace BurgerMenu_Desktop.UserControls
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+            {
+                mainWindow.PageNavigator.Navigate(new SubCategoryPage());              
+            }
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

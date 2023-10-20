@@ -68,6 +68,13 @@ namespace BurgerMenu_Desktop.Pages
             }
 
         }
+        //private void BackButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (NavigationService.CanGoBack)
+        //    {
+        //        NavigationService.GoBack();
+        //    }
+        //}
         private void btnCreateCategory(object sender, RoutedEventArgs e)
         {
             CategoryCreateWindow categoryCreateWindow = new CategoryCreateWindow();
