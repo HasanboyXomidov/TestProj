@@ -13,13 +13,27 @@
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
-       
-        <ScrollViewer Grid.Row="0">
-            <WrapPanel Margin="15 10"
+            <StackPanel Orientation="Horizontal"
+            HorizontalAlignment="Left"
+            
+            VerticalAlignment="Center">
+                <Label Content="Магазин"
+           FontWeight="SemiBold"
+           FontSize="16"                   
+        VerticalContentAlignment="Center"
+        Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+               
+            </StackPanel>
+            <ScrollViewer Grid.Row="1">
+            <Border Background="{DynamicResource RegisterBackgroudnColor}"
+                    CornerRadius="8">
+            <WrapPanel Margin="15 10"                                              
                        x:Name="WpShops">
 
             </WrapPanel>
+            </Border>
         </ScrollViewer>
     </Grid>
 </Page>

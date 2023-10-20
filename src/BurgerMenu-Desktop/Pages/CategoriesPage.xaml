@@ -15,34 +15,43 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0"
+        <StackPanel  Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label
                Content="Категории"
-                   FontSize="16"     
+               FontSize="16"     
+                Padding="0"
                FontWeight="SemiBold"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
-               Foreground="{DynamicResource TextTertiaryColor}">
-        </Label>
-        <StackPanel Grid.Row="1" Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    
-                    VerticalAlignment="Center">
-            <Label Content="Магазин :"
-                   FontSize="16"                   
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Foreground="{DynamicResource TextTertiaryColor}"></Label>
-            <Label Content="Flowers SHop"
-                   FontSize="16"
-                   x:Name="lblShopName"
-                 HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center"
-                 Foreground="{DynamicResource FourthIconColor}"></Label>
+               Foreground="{DynamicResource RegisterBackgroudnColor}">
+            </Label>
+           
         </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Магазин :"
+                FontWeight="SemiBold"
+                FontSize="16"               
+                Padding="0"
+             HorizontalContentAlignment="Center"
+             VerticalContentAlignment="Center"
+             Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+            <Label Content="Flowers SHop" 
+            FontSize="16"
+            x:Name="lblShopName"
+          HorizontalContentAlignment="Center"
+          VerticalContentAlignment="Center"
+          Foreground="#C1D8C3"></Label>
+        </StackPanel >
+        <ScrollViewer Grid.Row="2">
+        <Border 
+                CornerRadius="10"
+                Background="{DynamicResource RegisterBackgroudnColor}">
         <WrapPanel Margin="15 10"
            x:Name="WpCategories"
-           Grid.Row="2">
+           >
 
         </WrapPanel>
+        </Border>
+            </ScrollViewer>
     </Grid>
 </Page>

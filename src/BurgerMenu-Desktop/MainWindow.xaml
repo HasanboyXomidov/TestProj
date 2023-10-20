@@ -131,7 +131,7 @@
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="22*"/>
                     </Grid.RowDefinitions>
 
                     
@@ -160,7 +160,7 @@
                     <Border Grid.Row="2"
                             Margin="15"
                             CornerRadius="15"
-                            Background="{DynamicResource RegisterBackgroudnColor}">
+                            Background="Transparent">
                         <Frame x:Name="PageNavigator"
                                NavigationUIVisibility="Hidden">
                             

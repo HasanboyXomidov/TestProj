@@ -55,7 +55,7 @@ namespace BurgerMenu_Desktop.Pages
             };
             WpCategories.Children.Add(button);
             button.Click += btnCreateCategory;
-            var dbResult = await _categoryRepository.GetAllByIdAsync(ShopId);
+            var dbResult = await _categoryRepository.GetAllAsync();
             if(dbResult.Count > 0)
             {
                 foreach (var category in dbResult)
