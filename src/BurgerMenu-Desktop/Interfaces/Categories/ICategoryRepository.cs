@@ -10,5 +10,5 @@ namespace BurgerMenu_Desktop.Interfaces.Categories;
 
 public interface ICategoryRepository : IRepository<Category , CategoryViewModel>
 {
-
+    public Task<List<CategoryViewModel>> GetAllByIdAsync(long shopId);
 }

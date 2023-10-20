@@ -1,5 +1,6 @@
 ﻿using BurgerMenu_Desktop.Interfaces.Categories;
 using BurgerMenu_Desktop.Repositories.Categories;
+using BurgerMenu_Desktop.UserControls;
 using BurgerMenu_Desktop.Windows.CategoryWindows;
 using BurgerMenu_Desktop.Windows.ShopWindows;
 using System;
@@ -24,16 +25,21 @@ namespace BurgerMenu_Desktop.Pages
     /// </summary>
     public partial class CategoriesPage : Page
     {
+        private long ShopId { get; set; }
+        private string ShopName { get; set; }
         private readonly ICategoryRepository _categoryRepository;
         public CategoriesPage()
         {
             InitializeComponent();
             this._categoryRepository = new CategoryRepository();
         }
-        public void setData(long id)
+        public void setData(long id,string shopName)
         {
+            this.ShopId = id;
+            this.ShopName = shopName;
+            lblShopName.Content = shopName;
         }
-        public async Task refreshAsync()
+        public async void refreshAsync()
         {
             WpCategories.Children.Clear();
             Button button = new Button
@@ -49,17 +55,28 @@ namespace BurgerMenu_Desktop.Pages
             };
             WpCategories.Children.Add(button);
             button.Click += btnCreateCategory;
+            var dbResult = await _categoryRepository.GetAllByIdAsync(ShopId);
+            if(dbResult.Count > 0)
+            {
+                foreach (var category in dbResult)
+                {
+                    CategoryUserControl  categoryUserControl = new CategoryUserControl();
+                    categoryUserControl.setData(category);
+                    WpCategories.Children.Add(categoryUserControl);
+                }
+            }
 
         }
         private void btnCreateCategory(object sender, RoutedEventArgs e)
         {
             CategoryCreateWindow categoryCreateWindow = new CategoryCreateWindow();
+            categoryCreateWindow.getShopID(ShopId);
             categoryCreateWindow.ShowDialog();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await refreshAsync();
+            refreshAsync();
         }
     }
 }

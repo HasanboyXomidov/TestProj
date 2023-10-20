@@ -33,7 +33,9 @@ namespace BurgerMenu_Desktop.UserControls
         public RefreshDelegate RefreshPage { get; set; }
         ShopsViewModel shopsViewModel { get; set; }
         private readonly IShopRepository _shopRepository;
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public ShopsUserControl()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             InitializeComponent();
             this._shopRepository = new ShopRepository();
@@ -60,7 +62,7 @@ namespace BurgerMenu_Desktop.UserControls
                 }
                 else MessageBox.Show("Не удалено!!");
             }
-            else MessageBox.Show("Что-то не так");
+            else MessageBox.Show("Не удалено!!2");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -127,17 +129,17 @@ namespace BurgerMenu_Desktop.UserControls
 
             // Navigate to the new page
             CategoriesPage categoriesPage = new CategoriesPage();
-            categoriesPage.setData(shopsViewModel.Id);
+            categoriesPage.setData(shopsViewModel.Id,shopsViewModel.Name);
             frame.Navigate(categoriesPage);
         }
-        private T FindParent<T>(DependencyObject child) where T : DependencyObject
+        private T? FindParent<T>(DependencyObject child) where T : DependencyObject
         {
             DependencyObject parent = VisualTreeHelper.GetParent(child);
 
             if (parent == null)
                 return null;
 
-            T typedParent = parent as T;
+            T? typedParent = parent as T;
             return typedParent ?? FindParent<T>(parent);
         }
     }

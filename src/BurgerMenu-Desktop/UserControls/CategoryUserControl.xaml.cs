@@ -1,0 +1,87 @@
+﻿using BurgerMenu_Desktop.Interfaces.Categories;
+using BurgerMenu_Desktop.Repositories.Categories;
+using BurgerMenu_Desktop.ViewModels.Categories;
+using BurgerMenu_Desktop.ViewModels.Shops;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace BurgerMenu_Desktop.UserControls
+{
+    /// <summary>
+    /// Interaction logic for CategoryUserControl.xaml
+    /// </summary>
+    
+    public partial class CategoryUserControl : UserControl
+    {
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryViewModel? categoryViewModel { get; set; }
+        public CategoryUserControl()
+        {
+            InitializeComponent();
+            this._categoryRepository = new CategoryRepository();
+        }
+
+        public void setData(CategoryViewModel category)
+        {
+            categoryViewModel = category;
+            lblShoName.Text = categoryViewModel.CategoryName;
+        }
+
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Border border)
+            {
+                border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6A9C89"));
+                Cursor = Cursors.Hand;
+            }
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Border border)
+            {
+                border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Transparent"));
+            }
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы хотите удалить?",
+                  "Удалить Категория",
+           MessageBoxButton.YesNo,
+                  MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                var dll = await _categoryRepository.DeleteAsync(categoryViewModel.Id);
+                if (dll > 0)
+                {
+                    MessageBox.Show("Удален!!");
+                    //RefreshPage?.Invoke();
+                }
+                else MessageBox.Show("Не удалено!!");
+            }
+            else MessageBox.Show("Не удалено!!2");
+        }
+
+        private void updateBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}

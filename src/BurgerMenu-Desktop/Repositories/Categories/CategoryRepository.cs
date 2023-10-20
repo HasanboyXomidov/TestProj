@@ -63,6 +63,22 @@ public class CategoryRepository : BaseRepository, ICategoryRepository
         finally { await _connection.CloseAsync(); }
     }
 
+    public async Task<List<CategoryViewModel>> GetAllByIdAsync(long shopId)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"SELECT * FROM `categories` where shop_id = {shopId} order by id desc;";
+            var result = (await _connection.QueryAsync<CategoryViewModel>(query)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<CategoryViewModel>();
+        }
+        finally { await _connection.CloseAsync(); }
+    }
+
     public async Task<int> UpdateAsync(long id, Category entity)
     {
         try
@@ -81,4 +97,6 @@ public class CategoryRepository : BaseRepository, ICategoryRepository
             await _connection.CloseAsync();
         }
     }
+
+    
 }
