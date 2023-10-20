@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using BurgerMenu_Desktop.Security;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ public abstract class BaseRepository
     protected readonly MySqlConnection _connection;
     public BaseRepository()
     {
+        IdentitySingleton identity = IdentitySingleton.GetInstance();
         Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
-        this._connection = new MySqlConnection(
-           "server=localhost;database=myshops_db;user=root;"
+        this._connection = new MySqlConnection(           
+           identity.connectionString
             );
     }
 }
