@@ -33,13 +33,10 @@ namespace BurgerMenu_Desktop
 
         }
         
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
           
-        }
-      
-
+        }      
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -109,12 +106,6 @@ namespace BurgerMenu_Desktop
             rbMenuButtonMyShops.Visibility = Visibility.Visible;
         }
 
-        private void btnBacktoCategories_Click(object sender, RoutedEventArgs e)
-        {
-            //CategoriesPage categoriesPage = new CategoriesPage();
-            //PageNavigator.Content = categoriesPage;
-            //btnBackto.Visibility = Visibility.Visible;
-            //btnBacktoCategories.Visibility = Visibility.Collapsed;
-        }
+       //
     }
 }
