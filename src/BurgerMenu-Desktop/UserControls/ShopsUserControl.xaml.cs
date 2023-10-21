@@ -31,6 +31,9 @@ namespace BurgerMenu_Desktop.UserControls
 
         public delegate void RefreshDelegate();
         public RefreshDelegate RefreshPage { get; set; }
+
+        //public delegate void NavigatePageToCategoryPage();
+        //public NavigatePageToCategoryPage NavigatePage { get; set; }
         ShopsViewModel shopsViewModel { get; set; }
         private readonly IShopRepository _shopRepository;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -118,7 +121,6 @@ namespace BurgerMenu_Desktop.UserControls
                     if (buttonBackTo !=null)
                     {
                         buttonBackTo.Visibility = Visibility.Visible;
-
                         //buttonBackTo.Content = "Мои магазины";
                     }
 

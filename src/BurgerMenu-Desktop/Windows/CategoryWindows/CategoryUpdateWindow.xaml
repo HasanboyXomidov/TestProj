@@ -59,7 +59,6 @@
                                     Margin="10"
                                     FontSize="16"
                                     PreviewTextInput="TextBox_PreviewTextInput"
-                                    PreviewKeyDown="TextBox_PreviewKeyDown"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"

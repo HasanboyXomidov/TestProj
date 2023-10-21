@@ -113,7 +113,7 @@
                                      Click="btnBackto_Click"
                                      Margin="0 5"                                    
                                      Tag="{DynamicResource LeftPointer}"
-                                     Content="Back To asdf"
+                                     Content="Мои магазины"
                                      Visibility="Collapsed"
                                  >                      
                             </Button>
@@ -122,7 +122,7 @@
                                      Style="{DynamicResource MenuStaticButton}"
                                      Width="220"
                                      Cursor="Hand"
-                                     Click="btnBackto_Click"
+                                     Click="btnBacktoCategories_Click"
                                      Margin="0 5"                                    
                                      Tag="{DynamicResource LeftPointer}"
                                      Content="Back"

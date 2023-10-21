@@ -61,7 +61,7 @@ namespace BurgerMenu_Desktop.Pages
                 foreach (var category in dbResult)
                 {
                     CategoryUserControl  categoryUserControl = new CategoryUserControl();
-                    categoryUserControl.setData(category);
+                    categoryUserControl.setData(category,ShopName);
                     categoryUserControl.RefreshPage=refreshAsync;
                     WpCategories.Children.Add(categoryUserControl);
                 }

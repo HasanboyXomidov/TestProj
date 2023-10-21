@@ -36,8 +36,9 @@ namespace BurgerMenu_Desktop
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
- 
+          
         }
+      
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -98,34 +99,8 @@ namespace BurgerMenu_Desktop
         {
 
         }
-
+      
         private void btnBackto_Click(object sender, RoutedEventArgs e)
-        {
-            //if (PageNavigator.CanGoBack)
-            //{
-            //    PageNavigator.GoBack();
-            //    //btnBackto.Visibility = Visibility.Collapsed;
-            //    btnBackto.Visibility = Visibility.Collapsed;
-            //}
-            if (PageNavigator.Content is MyShopPage)
-            {
-                btnBackto.Visibility = Visibility.Collapsed;
-            }
-            else if (PageNavigator.Content is CategoriesPage)
-            {
-                CategoriesPage categoriesPage = new CategoriesPage();
-                btnBackto.Visibility = Visibility.Visible;
-                PageNavigator.Content = categoriesPage;
-            }
-            else if (PageNavigator.Content is SubCategoryPage)
-            {
-                btnBackto.Visibility = Visibility.Visible;
-                SubCategoryPage subCategoryPage = new SubCategoryPage();
-                PageNavigator.Content = subCategoryPage;
-            }
-
-        }
-        public void NavigatePageToMyShops()
         {
             MyShopPage myShopPage = new MyShopPage();
             PageNavigator.Content = myShopPage;
@@ -133,13 +108,13 @@ namespace BurgerMenu_Desktop
             brProducts.Visibility = Visibility.Collapsed;
             rbMenuButtonMyShops.Visibility = Visibility.Visible;
         }
-        public void NavigatePageToCategories()
+
+        private void btnBacktoCategories_Click(object sender, RoutedEventArgs e)
         {
-            CategoriesPage categoriesPage= new CategoriesPage();
-            PageNavigator.Content = categoriesPage;
-            //btnBackto.Visibility = Visibility.Collapsed;
-            //brProducts.Visibility = Visibility.Collapsed;
-            //rbMenuButtonMyShops.Visibility = Visibility.Visible;
+            //CategoriesPage categoriesPage = new CategoriesPage();
+            //PageNavigator.Content = categoriesPage;
+            //btnBackto.Visibility = Visibility.Visible;
+            //btnBacktoCategories.Visibility = Visibility.Collapsed;
         }
     }
 }

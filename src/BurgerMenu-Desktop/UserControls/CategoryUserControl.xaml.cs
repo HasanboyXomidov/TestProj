@@ -23,6 +23,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static BurgerMenu_Desktop.Pages.CategoriesPage;
 
 namespace BurgerMenu_Desktop.UserControls
 {
@@ -34,18 +35,21 @@ namespace BurgerMenu_Desktop.UserControls
     {
         public delegate void RefreshDelegateForMyShopPage();
         public RefreshDelegateForMyShopPage RefreshPage { get; set; }
+        private string ShopName { get; set; }
+
         private readonly ICategoryRepository _categoryRepository;
-        public CategoryViewModel? categoryViewModel { get; set; }
+        public CategoryViewModel categoryViewModel { get; set; }
         public CategoryUserControl()
         {
             InitializeComponent();
             this._categoryRepository = new CategoryRepository();
         }
 
-        public void setData(CategoryViewModel category)
+        public void setData(CategoryViewModel category,string ShopName)
         {
             categoryViewModel = category;
             lblShoName.Text = categoryViewModel.CategoryName;
+            this.ShopName = ShopName;
         }
 
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
@@ -67,9 +71,14 @@ namespace BurgerMenu_Desktop.UserControls
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            
             if (Window.GetWindow(this) is MainWindow mainWindow)
             {
-                mainWindow.PageNavigator.Navigate(new SubCategoryPage());              
+                
+                SubCategoryPage subCategoryPage = new SubCategoryPage();
+                subCategoryPage.setCategoryid(categoryViewModel.Id,categoryViewModel.CategoryName,ShopName);
+                mainWindow.PageNavigator.Navigate(subCategoryPage);
+
             }
         }
 
