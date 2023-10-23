@@ -15,19 +15,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
-        <StackPanel  Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label
-               Content="Категории"
-               FontSize="16"     
-                Padding="0"
-               FontWeight="SemiBold"
-               HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center"
-               Foreground="{DynamicResource RegisterBackgroudnColor}">
-            </Label>
-           
-        </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Магазин :"
                 FontWeight="SemiBold"
                 FontSize="16"               
@@ -42,6 +31,18 @@
           VerticalContentAlignment="Center"
           Foreground="#C1D8C3"></Label>
         </StackPanel >
+        <StackPanel  Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label
+       Content="Категории"
+       FontSize="16"     
+        Padding="0"
+       FontWeight="SemiBold"
+       HorizontalContentAlignment="Center"
+       VerticalContentAlignment="Center"
+       Foreground="{DynamicResource RegisterBackgroudnColor}">
+            </Label>
+
+        </StackPanel>
         <ScrollViewer Grid.Row="2">
         <Border 
                 CornerRadius="10"

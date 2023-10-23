@@ -1,5 +1,6 @@
 ﻿using BurgerMenu_Desktop.Pages;
 using BurgerMenu_Desktop.Pages.AuthPages;
+using BurgerMenu_Desktop.Pages.WareHousePages;
 using BurgerMenu_Desktop.UserControls;
 using BurgerMenu_Desktop.ViewModels.Shops;
 using BurgerMenu_Desktop.Windows;
@@ -106,6 +107,15 @@ namespace BurgerMenu_Desktop
             rbMenuButtonMyShops.Visibility = Visibility.Visible;
         }
 
-       //
+        private void rbMyWareHouseClick(object sender, RoutedEventArgs e)
+        {
+            MyWareHousePage myWareHousePage = new MyWareHousePage();
+            PageNavigator.Content = myWareHousePage;
+            btnBackto.Visibility = Visibility.Collapsed;
+            brProducts.Visibility = Visibility.Collapsed;
+            rbMenuButtonMyShops.Visibility = Visibility.Visible;
+        }
+
+        //
     }
 }

@@ -87,12 +87,21 @@
                                      Width="220"
                                      x:Name="rbMenuButtonMyShops"
                                      Tag="{DynamicResource products}"                                                                                  
-                                     Margin="0"
+                                     Margin="0 2"
                                      Click="rbAllShops"
                                      Style="{DynamicResource MenuButton}">
 
                             </RadioButton>
-                            <Button x:Name="brProducts"
+                                <RadioButton Content="Mой склад"
+                                     Width="220"
+                                     x:Name="rbMenuButtonMyWareHouse"
+                                     Tag="{DynamicResource dashboard}"                                                                                  
+                                     Margin="0 2"
+                                     Click="rbMyWareHouseClick"
+                                     Style="{DynamicResource MenuButton}">
+
+                                </RadioButton>
+                                <Button x:Name="brProducts"
                                      Width="220"  
                                      Margin="0"                                    
                                      Style="{DynamicResource MenuStaticButton}"

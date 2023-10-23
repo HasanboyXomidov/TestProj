@@ -15,18 +15,38 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
-        <StackPanel  Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label
-               Content="Подкатегория"
-               FontSize="16"     
-                Padding="0"
-               FontWeight="SemiBold"
-               HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center"
-               Foreground="{DynamicResource RegisterBackgroudnColor}">
-            </Label>
-
+        <StackPanel  Orientation="Horizontal"
+               HorizontalAlignment="Center"
+               Grid.Row="0">
+            <Label Content="Магазины :"
+            FontWeight="SemiBold"
+            FontSize="16"               
+            Padding="0"
+         HorizontalContentAlignment="Center"
+         VerticalContentAlignment="Center"
+         Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+            <Label Content="Flowers" 
+        FontSize="16"
+        x:Name="lblSubCategoryName1"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center"
+      Foreground="#C1D8C3"></Label>
+            <Label Content="Категория :"
+      FontWeight="SemiBold"
+      FontSize="16"  
+             Margin="10 0 0 0"
+      Padding="0"
+   HorizontalContentAlignment="Center"
+   VerticalContentAlignment="Center"
+   Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+            <Label Content="Roses" 
+  FontSize="16"
+  x:Name="lblSubCategoryName"
+HorizontalContentAlignment="Center"
+VerticalContentAlignment="Center"
+Foreground="#C1D8C3"></Label>
         </StackPanel >
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -46,36 +66,17 @@
                 Visibility="Visible"
                 >
                   </Button>
-            <StackPanel  Orientation="Horizontal"
-                         HorizontalAlignment="Left"
-                         Grid.Column="1">
-                <Label Content="Магазины :"
-                      FontWeight="SemiBold"
-                      FontSize="16"               
-                      Padding="0"
-                   HorizontalContentAlignment="Center"
-                   VerticalContentAlignment="Center"
-                   Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
-                      <Label Content="Flowers" 
-                  FontSize="16"
-                  x:Name="lblSubCategoryName1"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Foreground="#C1D8C3"></Label>
-                <Label Content="Категория :"
-                FontWeight="SemiBold"
-                FontSize="16"  
-                       Margin="10 0 0 0"
-                Padding="0"
-             HorizontalContentAlignment="Center"
-             VerticalContentAlignment="Center"
-             Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
-                <Label Content="Roses" 
-            FontSize="16"
-            x:Name="lblSubCategoryName"
-          HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center"
-          Foreground="#C1D8C3"></Label>
+            <StackPanel  Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label
+       Content="Подкатегория"
+       FontSize="16"     
+       Padding="0"
+       FontWeight="SemiBold"
+       HorizontalContentAlignment="Center"
+       VerticalContentAlignment="Center"
+       Foreground="{DynamicResource RegisterBackgroudnColor}">
+                </Label>
+
             </StackPanel >
         </Grid>
         <ScrollViewer Grid.Row="2">

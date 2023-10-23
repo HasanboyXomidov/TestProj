@@ -1,0 +1,112 @@
+﻿<Page x:Class="BurgerMenu_Desktop.Pages.ProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BurgerMenu_Desktop.Pages"
+      mc:Ignorable="d" 
+         d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
+      Title="CategoriesPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+        <StackPanel  Orientation="Horizontal"
+               HorizontalAlignment="Center"
+               Margin="0 0"
+               Grid.Row="0">
+            <Label Content="Магазины :"
+            FontWeight="SemiBold"
+            FontSize="16"               
+            Padding="0"
+         HorizontalContentAlignment="Center"
+         VerticalContentAlignment="Center"
+         Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+            <Label Content="Flowers" 
+        FontSize="16"
+        x:Name="lblShopName1"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center"
+      Foreground="#C1D8C3"></Label>
+
+            <Label Content="Категория :"
+      FontWeight="SemiBold"
+      FontSize="16"  
+             Margin="10 0 0 0"
+      Padding="0"
+   HorizontalContentAlignment="Center"
+   VerticalContentAlignment="Center"
+   Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+            <Label Content="Roses" 
+  FontSize="16"
+  x:Name="lblSubCategoryName"
+HorizontalContentAlignment="Center"
+VerticalContentAlignment="Center"
+Foreground="#C1D8C3"></Label>
+
+            <Label Content="Подкатегория :"
+        FontWeight="SemiBold"
+        FontSize="16"               
+        Padding="0"
+             Margin="10 0 0 0"
+     HorizontalContentAlignment="Center"
+     VerticalContentAlignment="Center"
+     Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+            <Label Content="RedRose" 
+    FontSize="16"
+    x:Name="lblSubCategoryName3"
+  HorizontalContentAlignment="Center"
+  VerticalContentAlignment="Center"
+  Foreground="#C1D8C3"></Label>
+        </StackPanel >
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Button  Grid.Column="0"
+                     HorizontalAlignment="Left"
+                x:Name="btnBacktoCategories"
+                Style="{DynamicResource MenuStaticButton}"
+                Width="220"
+                     
+                Cursor="Hand"
+                Click="btnBacktoCategories_Click"
+                Margin="0 5"                                    
+                Tag="{DynamicResource LeftPointer}"
+                Content="Подкатегория"
+                Visibility="Visible"
+                >
+            </Button>
+            <StackPanel  Grid.Column="1" Orientation="Horizontal"
+                         HorizontalAlignment="Left">
+                <Label
+       Content="Продукты"
+                    Margin="5 0"
+       FontSize="16"     
+        Padding="0"
+       FontWeight="SemiBold"
+       HorizontalContentAlignment="Center"
+       VerticalContentAlignment="Center"
+       Foreground="{DynamicResource RegisterBackgroudnColor}">
+                </Label>
+
+            </StackPanel >
+        </Grid>
+        <ScrollViewer Grid.Row="2">
+            <Border 
+                CornerRadius="10"
+                Background="{DynamicResource RegisterBackgroudnColor}">
+                <WrapPanel Margin="15 10"
+           x:Name="WpProduct"
+           >
+                </WrapPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>
