@@ -1,5 +1,7 @@
 ﻿using BurgerMenu_Desktop.Entities.SubCategories;
 using BurgerMenu_Desktop.Interfaces.SubCategories;
+using BurgerMenu_Desktop.Pages;
+using BurgerMenu_Desktop.Pages.AuthPages;
 using BurgerMenu_Desktop.Repositories.SubCategories;
 using BurgerMenu_Desktop.ViewModels.Categories;
 using BurgerMenu_Desktop.ViewModels.SubCategories;
@@ -39,7 +41,11 @@ namespace BurgerMenu_Desktop.UserControls
 
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
-
+            if (sender is Border border)
+            {
+                border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6A9C89"));
+                Cursor = Cursors.Hand;
+            }
         }
         public void setData(SubCategoryViewModel subcategoryViewModel)
         {
@@ -54,12 +60,19 @@ namespace BurgerMenu_Desktop.UserControls
 
         private void Grid_MouseLeave(object sender, MouseEventArgs e)
         {
-
+            if (sender is Border border)
+            {
+                border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Transparent"));
+            }
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+            {
+                ProductsPage productsPage = new ProductsPage();
+                mainWindow.PageNavigator.Navigate(productsPage);
+            }
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

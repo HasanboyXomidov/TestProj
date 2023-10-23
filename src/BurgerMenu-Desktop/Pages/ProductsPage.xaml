@@ -39,7 +39,7 @@
                 Width="220"
                      
                 Cursor="Hand"
-                Click="btnBacktoCategories_Click"
+                Click="btnBacktoSubCategories_Click"
                 Margin="0 5"                                    
                 Tag="{DynamicResource LeftPointer}"
                 Content="Подкатегория"
@@ -102,7 +102,6 @@
                 <WrapPanel Margin="15 10"
            x:Name="WpProduct"
            >
-
                 </WrapPanel>
             </Border>
         </ScrollViewer>

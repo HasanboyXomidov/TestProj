@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BurgerMenu_Desktop.Entities.Categories;
+using BurgerMenu_Desktop.Entities.SubCategories;
+using BurgerMenu_Desktop.Windows.Products;
+using BurgerMenu_Desktop.Windows.SubCategoryWindows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +27,38 @@ namespace BurgerMenu_Desktop.Pages
         public ProductsPage()
         {
             InitializeComponent();
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            WpProduct.Children.Clear();
+            Button button = new Button
+            {
+                Width = 150,
+                Height = 90,
+                Style = (Style)FindResource("SaveBtn"),
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C1D8C3")),
+                Content = "Добавить +",
+                Cursor = Cursors.Hand,
+                FontSize = 40,
+                Margin = new Thickness(10)
+            };
+            WpProduct.Children.Add(button);
+            button.Click += btnCreateProduct;
+        }
+        private  void btnCreateProduct(object sender, RoutedEventArgs e)
+        {
+           ProductCreateWindow productCreateWindow = new ProductCreateWindow();
+           productCreateWindow.ShowDialog();
+        }
+        public async void refreshAsync()
+        {
+
+        }
+
+        private void btnBacktoSubCategories_Click(object sender, RoutedEventArgs e)
+        {
+                
         }
     }
 }
