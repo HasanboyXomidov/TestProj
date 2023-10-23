@@ -48,7 +48,7 @@
                 </StackPanel>
             </Border>
             <StackPanel Grid.Row="1" Orientation="Horizontal"
-               HorizontalAlignment="Left"
+               HorizontalAlignment="Center"
                Margin="0 0"
                Grid.Column="1">
                 <Label Content="Магазины :"

@@ -212,5 +212,10 @@ namespace BurgerMenu_Desktop.Windows.Products
                 }
             }
         }
+
+        private void scrollWindow(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }
