@@ -51,21 +51,6 @@
                HorizontalAlignment="Center"
                Margin="0 0"
                Grid.Column="1">
-                <Label Content="Магазины :"
-            FontWeight="SemiBold"
-            FontSize="16"    
-                       Margin="5 0 0 0"
-            Padding="0"
-         HorizontalContentAlignment="Center"
-         VerticalContentAlignment="Center"
-         Foreground="{DynamicResource TextTertiaryColor}"></Label>
-                <Label Content="Flowers" 
-        FontSize="16"
-        x:Name="lblShopName1"
-      HorizontalContentAlignment="Center"
-      VerticalContentAlignment="Center"
-      ></Label>
-
                 <Label Content="Категория :"
       FontWeight="SemiBold"
       FontSize="16"  

@@ -82,7 +82,6 @@ namespace BurgerMenu_Desktop.Windows.Products
         public void setData(long SubCategoryId,string shopName,string categoryName,string subCategoryname)
         {
             this.SubCategoryId = SubCategoryId;
-            lblShopName1.Content = shopName;
             lblSubCategoryName.Content = categoryName;
             lblSubCategoryName3.Content = subCategoryname;
         }
@@ -109,15 +108,15 @@ namespace BurgerMenu_Desktop.Windows.Products
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             int count = 0;
-            if (tbProductName.Text.Length == 0 && tbQuantity.Text.Length == 0 && tbStartingPrice.Text.Length == 0  && tbSoldPrice.Text.Length == 0 
-                && tbBarCode.Text.Length == 0)
+            if (tbProductName.Text.Length == 0 && tbQuantity.Text.Length == 0 && tbStartingPrice.Text.Length == 0  && tbSoldPrice.Text.Length == 0
+                )//&& tbBarCode.Text.Length == 0
             {
                 MessageBox.Show("Пожалуйста, заполните все поля");
             }
             else
             {
                 //string imagePath = ImgBImage.ImageSource.ToString();
-              
+
                 if (ContainsPunctuation(tbProductName.Text) == false) count++;
                 else MessageBox.Show("без знаков препинания");
                 if (tbProductName.Text.Length >= 4) count++;
@@ -125,16 +124,19 @@ namespace BurgerMenu_Desktop.Windows.Products
                 if (IsDigitOnly(tbQuantity.Text) == true) count++;
                 else MessageBox.Show("Только цифра для количества");
                 string ReFormattedStartPrice = ReformatNumericString(tbStartingPrice.Text);
-                if ( IsDigitOnly(ReFormattedStartPrice) == true)count++;
+                if (IsDigitOnly(ReFormattedStartPrice) == true) count++;
                 else MessageBox.Show("Только цифра для Начальная цена");
                 string ReFormattedSoldString = ReformatNumericString(tbSoldPrice.Text);
                 if (IsDigitOnly(ReFormattedSoldString) == true) count++;
                 else MessageBox.Show("Только цифра для Цена продажи");
-                if (IsDigitOnly(tbBarCode.Text) == true) count++;
-                else MessageBox.Show("Только цифра для Штрих-код");
-                if(tbBarCode.Text.Length == 13 )  count++;
-                else MessageBox.Show("Проверьте Штрих-код Продукт. Должно быть 13 цифра!");
-                if (count == 7)
+                if (tbBarCode.Text.Length != 0)
+                {
+                    if (IsDigitOnly(tbBarCode.Text) == true) count++;
+                    else MessageBox.Show("Только цифра для Штрих-код");
+                    if (tbBarCode.Text.Length == 13 || tbBarCode.Text.Length == 0) count++;
+                    else MessageBox.Show("Проверьте Штрих-код Продукт. Должно быть 13 цифра!");
+                }
+                if (count == 5 || count == 7)
                 {
                     Product product = new Product();
                     product.ProductName = tbProductName.Text;
@@ -143,7 +145,15 @@ namespace BurgerMenu_Desktop.Windows.Products
                     product.StartingPrice = startingPrice;
                     float soldPrice = GetFloatValueFromFormattedText(tbSoldPrice.Text);
                     product.SoldPrice = soldPrice;
-                    product.BarCode = long.Parse(tbBarCode.Text);
+                    if(tbBarCode.Text.Length == 0)
+                    {
+                        long RandomGenerated = long.Parse(GenerateUniqueNumberWithLength(13));
+                        product.BarCode = RandomGenerated;
+                    }
+                    else
+                    {
+                        product.BarCode = long.Parse(tbBarCode.Text);
+                    }
                     product.SubcategoryId = this.SubCategoryId;
                     var dbResult = await _product.CreateAsync(product);
                     if (dbResult > 0)
@@ -155,6 +165,30 @@ namespace BurgerMenu_Desktop.Windows.Products
                     else MessageBox.Show("Штрих-код должно быть уникальным!");
                 }
             }
+        }
+        private HashSet<string> generatedNumbers = new HashSet<string>();
+        private string GenerateUniqueNumberWithLength(int targetLength)
+        {
+            Random random = new Random();
+            int numberLength = targetLength;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while (stringBuilder.Length < numberLength)
+            {
+                stringBuilder.Append(random.Next(0, 10));
+            }
+
+            string generatedNumber = stringBuilder.ToString();
+
+            // Check uniqueness
+            if (generatedNumbers.Contains(generatedNumber))
+            {
+                // Recursively call the function again if the number is not unique
+                return GenerateUniqueNumberWithLength(targetLength);
+            }
+
+            generatedNumbers.Add(generatedNumber); // Add the number to the collection
+            return generatedNumber;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

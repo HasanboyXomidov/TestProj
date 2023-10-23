@@ -57,11 +57,10 @@ namespace BurgerMenu_Desktop.Windows.Products
             tbSoldPrice.Text = FormattedSoldPrice;
 
    
-            tbBarCode.Text = (product.BarCode).ToString();
+            //tbBarCode.Text = (product.BarCode).ToString();
 
             this.productId = product.Id;
 
-            lblShopName1.Content = shopName;
             lblSubCategoryName.Content = categoryName;
             lblSubCategoryName3.Content = subCategoryname;
 
@@ -145,8 +144,8 @@ namespace BurgerMenu_Desktop.Windows.Products
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             int count = 0;
-            if (tbProductName.Text.Length == 0 && tbQuantity.Text.Length == 0 && tbStartingPrice.Text.Length == 0  && tbSoldPrice.Text.Length == 0
-                && tbBarCode.Text.Length == 0)
+            if (tbProductName.Text.Length == 0 && tbQuantity.Text.Length == 0 && tbStartingPrice.Text.Length == 0  && tbSoldPrice.Text.Length == 0)
+                ///*&& tbBarCode.Text.Length == 0*/)
             {
                 MessageBox.Show("Пожалуйста, заполните все поля");
             }
@@ -163,11 +162,11 @@ namespace BurgerMenu_Desktop.Windows.Products
                 if (IsDigitOnly(ReFormattedStartPrice) == true) count++;
                 else MessageBox.Show("Только цифра для Начальная цена");
                 string ReFormattedSoldString = ReformatNumericString(tbSoldPrice.Text);
-                if (IsDigitOnly(ReFormattedSoldString) == true) count++;
-                else MessageBox.Show("Только цифра для Цена продажи");
-                if (IsDigitOnly(tbBarCode.Text) == true) count++;
-                else MessageBox.Show("Только цифра для Штрих-код");
-                if (count == 6)
+                //if (IsDigitOnly(ReFormattedSoldString) == true) count++;
+                //else MessageBox.Show("Только цифра для Цена продажи");
+                //if (IsDigitOnly(tbBarCode.Text) == true) count++;
+                //else MessageBox.Show("Только цифра для Штрих-код");
+                if (count == 4)
                 {
                     Product product = new Product();
                     product.ProductName = tbProductName.Text;
@@ -176,7 +175,6 @@ namespace BurgerMenu_Desktop.Windows.Products
                     product.StartingPrice = startingPrice;
                     float soldPrice = GetFloatValueFromFormattedText(tbSoldPrice.Text);
                     product.SoldPrice = soldPrice;
-                    product.BarCode = long.Parse(tbBarCode.Text);
                     var dbResult = await _product.UpdateAsync(productId, product);
                     if (dbResult > 0)
                     {

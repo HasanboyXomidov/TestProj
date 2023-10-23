@@ -48,20 +48,7 @@
                HorizontalAlignment="Center"
                Margin="0 0"
                Grid.Column="1">
-                <Label Content="Магазины :"
-            FontWeight="SemiBold"
-            FontSize="16"    
-                       Margin="5 0 0 0"
-            Padding="0"
-         HorizontalContentAlignment="Center"
-         VerticalContentAlignment="Center"
-         Foreground="{DynamicResource TextTertiaryColor}"></Label>
-                <Label Content="Flowers" 
-        FontSize="16"
-        x:Name="lblShopName1"
-      HorizontalContentAlignment="Center"
-      VerticalContentAlignment="Center"
-      ></Label>
+               
 
                 <Label Content="Категория :"
       FontWeight="SemiBold"
@@ -210,7 +197,7 @@ VerticalContentAlignment="Center"
                     <!--end:: Phone TextBox-->
 
                 </Border>
-                <Label Content="Штрих-код"
+                <!--<Label Content="Штрих-код"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 0 0 0"
@@ -224,7 +211,7 @@ VerticalContentAlignment="Center"
                                     CornerRadius="10"
                                     BorderThickness="1">
 
-                    <!--begin:: Phone TextBox-->
+                    --><!--begin:: Phone TextBox--><!--
                     <TextBox x:Name="tbBarCode"                                                
                                     BorderThickness="0"
                                     Margin="10"                             
@@ -234,9 +221,9 @@ VerticalContentAlignment="Center"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
-                                    MaxLength="30"/>
-                    <!--end:: Phone TextBox-->
-                </Border>
+                                    MaxLength="13"/>
+                    --><!--end:: Phone TextBox--><!--
+                </Border>-->
                 <Button HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Style="{DynamicResource SaveBtn}"
