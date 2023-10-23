@@ -1,4 +1,5 @@
 ﻿using BurgerMenu_Desktop.Entities.SubCategories;
+using BurgerMenu_Desktop.ViewModels.Products;
 using BurgerMenu_Desktop.ViewModels.SubCategories;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace BurgerMenu_Desktop.Interfaces.SubCategories;
 
 public  interface ISubCategoryRepository : IRepository<SubCategory , SubCategoryViewModel>
 {
+    public Task<List<SubCategoryViewModel>> GetAllSubCategoriesByCategoryIdAsync(long categoryId);
 
 }

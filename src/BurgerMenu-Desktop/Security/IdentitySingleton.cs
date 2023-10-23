@@ -9,7 +9,7 @@ namespace BurgerMenu_Desktop.Security;
 public class IdentitySingleton
 {
     public static IdentitySingleton _identitySingleton;
-    public string connectionString = "server=localhost;database=myshops_db;user=root;password=2315655i";
+    public string connectionString = "server=localhost;database=myshops_db;user=root;";
     private IdentitySingleton()
     {
         

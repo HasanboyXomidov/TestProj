@@ -31,6 +31,8 @@ namespace BurgerMenu_Desktop.UserControls
         public delegate void RefreshDelegateForMyShopPage();
         public RefreshDelegateForMyShopPage? RefreshPage { get; set; }
         private long SubCategoryId { get; set; }
+        private string ShopName { get; set; }   
+        private string CategoryName { get; set; }
         private SubCategory? subCategory {  get; set; }
         private readonly ISubCategoryRepository _repository;
         public SubCategoryUserControl()
@@ -47,8 +49,10 @@ namespace BurgerMenu_Desktop.UserControls
                 Cursor = Cursors.Hand;
             }
         }
-        public void setData(SubCategoryViewModel subcategoryViewModel)
+        public void setData(SubCategoryViewModel subcategoryViewModel,string ShopName , string CategroyName )
         {
+            this.ShopName = ShopName;
+            this.CategoryName = CategroyName;
             lblSubCategoryName.Text = subcategoryViewModel.SubCategoryName;
             this.SubCategoryId = subcategoryViewModel.Id;
             SubCategory subCategory = new SubCategory();
@@ -71,10 +75,10 @@ namespace BurgerMenu_Desktop.UserControls
             if (Window.GetWindow(this) is MainWindow mainWindow)
             {
                 ProductsPage productsPage = new ProductsPage();
+                productsPage.setData(SubCategoryId,this.ShopName,this.CategoryName,subCategory.SubCategoryName);
                 mainWindow.PageNavigator.Navigate(productsPage);
             }
         }
-
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы хотите удалить?",
@@ -92,7 +96,6 @@ namespace BurgerMenu_Desktop.UserControls
             }
             else MessageBox.Show("Не удалено!!2");
         }
-
         private void updateBtn(object sender, RoutedEventArgs e)
         {
             SubCategoryUpdateWindow subCategoryUpdateWindow = new SubCategoryUpdateWindow();

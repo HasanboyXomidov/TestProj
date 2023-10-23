@@ -36,10 +36,10 @@
                      HorizontalAlignment="Left"
                 x:Name="btnBacktoCategories"
                 Style="{DynamicResource MenuStaticButton}"
-                Width="220"
+                Width="180"
                      
                 Cursor="Hand"
-                Click="btnBacktoSubCategories_Click"
+                Click="btnBacktoCategories_Click"
                 Margin="0 5"                                    
                 Tag="{DynamicResource LeftPointer}"
                 Content="Подкатегория"
@@ -48,7 +48,7 @@
             </Button>
             <StackPanel  Orientation="Horizontal"
                          HorizontalAlignment="Left"
-                         Margin="10 0"
+                         Margin="0 0"
                          Grid.Column="1">
                 <Label Content="Магазины :"
                       FontWeight="SemiBold"
@@ -59,7 +59,7 @@
                    Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
                 <Label Content="Flowers" 
                   FontSize="16"
-                  x:Name="lblSubCategoryName1"
+                  x:Name="lblShopName1"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 Foreground="#C1D8C3"></Label>

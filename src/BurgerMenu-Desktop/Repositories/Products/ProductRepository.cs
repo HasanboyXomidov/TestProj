@@ -93,7 +93,7 @@ public class ProductRepository : BaseRepository, IProductInterface
         {
             await _connection.OpenAsync();
             string query = $"UPDATE `products` SET `product_name`=@ProductName,`quantity`=@Quantity,`starting_price`=@StartingPrice," +
-                $"`sold_price`=@SoldPrice,`bar_code`=@BarCode,`subcategory_id`=@SubcategoryId WHERE id = {id}";
+                $"`sold_price`=@SoldPrice,`bar_code`=@BarCode WHERE id = {id}";
             var result = await _connection.ExecuteAsync(query, editObj);
             return result;
         }

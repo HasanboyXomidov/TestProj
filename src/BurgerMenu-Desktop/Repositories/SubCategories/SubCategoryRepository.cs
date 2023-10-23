@@ -1,6 +1,9 @@
 ﻿using BurgerMenu_Desktop.Entities.SubCategories;
+using BurgerMenu_Desktop.Entities.Users;
 using BurgerMenu_Desktop.Interfaces.SubCategories;
 using BurgerMenu_Desktop.ViewModels.Categories;
+using BurgerMenu_Desktop.ViewModels.Products;
+using BurgerMenu_Desktop.ViewModels.Shops;
 using BurgerMenu_Desktop.ViewModels.SubCategories;
 using Dapper;
 using System;
@@ -64,6 +67,23 @@ public class SubCategoryRepository : BaseRepository, ISubCategoryRepository
         }
         finally { await _connection.CloseAsync(); }
     }
+
+    public async Task<List<SubCategoryViewModel>> GetAllSubCategoriesByCategoryIdAsync(long categoryId)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"select * from subcategories where category_id = {categoryId} order by id desc;";
+            var result = (await _connection.QueryAsync<SubCategoryViewModel>(query)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<SubCategoryViewModel>();
+        }
+        finally { await _connection.CloseAsync(); }
+    }
+   
 
     public async Task<int> UpdateAsync(long id, SubCategory editObj)
     {

@@ -3,25 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.Products"
+        xmlns:local="clr-namespace:BurgerMenu_Desktop.Helpers"
         mc:Ignorable="d"
         Title="ProductCreateWindow" 
-        Height="560" Width="500"
+        Height="600" Width="500"
         Loaded="Window_Loaded"        
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize">
-
+    <Window.Resources>
+        <local:NumericFormatConverter x:Key="NumericFormatConverter"/>
+    </Window.Resources>
     <Border Background="{DynamicResource RegisterBackgroudnColor}"
             CornerRadius="15"
             BorderThickness="1"
             BorderBrush="{DynamicResource FourthIconColor}">
-        <Grid>
+    
+        <Grid >
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" 
+            <Border  Background="Transparent" 
+                                    MouseDown="scrollWindow"
+                    Cursor="ScrollAll" 
+>
+                <StackPanel Grid.Row="0"
                             HorizontalAlignment="Right" 
                             VerticalAlignment="Top" 
                             Margin="0,5,10,0" 
@@ -30,18 +38,68 @@
                             FlowDirection="RightToLeft" 
                             Grid.RowSpan="2">
 
-                <!--begin:: Close Button-->
-                <Button x:Name="btnClose" 
+                    <!--begin:: Close Button-->
+                    <Button x:Name="btnClose" 
                             Style="{StaticResource IconButtonsStyle}" 
                             Content="{DynamicResource close}" 
                             Click="btnClose_Click"
                             Tag="IsCloseButton"/>
-                <!--end:: Close Button-->
-            </StackPanel>
-            <StackPanel Grid.Row="1">
+                    <!--end:: Close Button-->
+                </StackPanel>
+            </Border>
+            <StackPanel Grid.Row="1" Orientation="Horizontal"
+               HorizontalAlignment="Left"
+               Margin="0 0"
+               Grid.Column="1">
+                <Label Content="Магазины :"
+            FontWeight="SemiBold"
+            FontSize="16"    
+                       Margin="5 0 0 0"
+            Padding="0"
+         HorizontalContentAlignment="Center"
+         VerticalContentAlignment="Center"
+         Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                <Label Content="Flowers" 
+        FontSize="16"
+        x:Name="lblShopName1"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center"
+      ></Label>
+
+                <Label Content="Категория :"
+      FontWeight="SemiBold"
+      FontSize="16"  
+             Margin="10 0 0 0"
+      Padding="0"
+   HorizontalContentAlignment="Center"
+   VerticalContentAlignment="Center"
+   Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                <Label Content="Roses" 
+  FontSize="16"
+  x:Name="lblSubCategoryName"
+HorizontalContentAlignment="Center"
+VerticalContentAlignment="Center"
+></Label>
+
+                <Label Content="Подкатегория :"
+        FontWeight="SemiBold"
+        FontSize="16"               
+        Padding="0"
+             Margin="10 0 0 0"
+     HorizontalContentAlignment="Center"
+     VerticalContentAlignment="Center"
+     Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                <Label Content="RedRose" 
+    FontSize="16"
+    x:Name="lblSubCategoryName3"
+  HorizontalContentAlignment="Center"
+  VerticalContentAlignment="Center"
+  ></Label>
+            </StackPanel >
+            <StackPanel Grid.Row="2">
 
 
-                <Label Content="Product Name"
+                <Label Content="Hаименование товара"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 0 0 0"
@@ -61,7 +119,6 @@
                                     Margin="10"                             
                                     FontSize="16"
                                     PreviewTextInput="TextBox_PreviewTextInput"
-                                    PreviewKeyDown="TextBox_PreviewKeyDown"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
@@ -69,7 +126,7 @@
                     <!--end:: Phone TextBox-->
 
                 </Border>
-                <Label Content="Quantity"
+                <Label Content="Количество"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 0 0 0"
@@ -88,16 +145,16 @@
                                     BorderThickness="0"
                                     Margin="10"                             
                                     FontSize="16"
-                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    PreviewTextInput="TextBox_PreviewTextInputOnlyDigit"
                                     PreviewKeyDown="TextBox_PreviewKeyDown"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
-                                    MaxLength="30"/>
+                                    MaxLength="9"/>
                     <!--end:: Phone TextBox-->
 
                 </Border>
-                <Label Content="Starting Price"
+                <Label Content="Начальная цена"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 0 0 0"
@@ -115,10 +172,11 @@
                     <TextBox x:Name="tbStartingPrice"                                                
                                     BorderThickness="0"
                                     Margin="10"
-                             
+                                    Text="{Binding NumericFormatConverter, Converter={StaticResource NumericFormatConverter}}"
                                     FontSize="16"
-                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    PreviewTextInput="TextBox_PreviewTextInputOnlyDigit"
                                     PreviewKeyDown="TextBox_PreviewKeyDown"
+                                    TextChanged="tbStartingPrice_TextChanged"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
@@ -126,7 +184,7 @@
                     <!--end:: Phone TextBox-->
 
                 </Border>
-                <Label Content="Sold Price"
+                <Label Content="Цена продажи"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 0 0 0"
@@ -143,11 +201,11 @@
                     <!--begin:: Phone TextBox-->
                     <TextBox x:Name="tbSoldPrice"                                                
                                     BorderThickness="0"
-                                    Margin="10"
-                             
+                                    Margin="10"                             
                                     FontSize="16"
-                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    PreviewTextInput="TextBox_PreviewTextInputOnlyDigit"
                                     PreviewKeyDown="TextBox_PreviewKeyDown"
+                                    TextChanged="tbStartingPrice_TextChanged"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
@@ -155,7 +213,7 @@
                     <!--end:: Phone TextBox-->
 
                 </Border>
-                <Label Content="Bar Code"
+                <Label Content="Штрих-код"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 0 0 0"
@@ -170,18 +228,18 @@
                                     BorderThickness="1">
 
                     <!--begin:: Phone TextBox-->
-                    <TextBox x:Name="tbBarCode"                                                
+                    <TextBox x:Name="tbBarCode"              
+                                    MaxLength="13"
                                     BorderThickness="0"
                                     Margin="10"                             
                                     FontSize="16"
-                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    PreviewTextInput="TextBox_PreviewTextInputOnlyDigit"
                                     PreviewKeyDown="TextBox_PreviewKeyDown"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
-                                    MaxLength="30"/>
+                               />
                     <!--end:: Phone TextBox-->
-
                 </Border>
                 <Button HorizontalAlignment="Center"
                         VerticalAlignment="Center"

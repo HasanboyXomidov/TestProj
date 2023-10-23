@@ -27,6 +27,7 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
     public partial class SubCategoryPage : Page
     {
         private long CategoryId {  get; set; }  
+        private string CategoryName {  get; set; }  
         private readonly ISubCategoryRepository _subCategoryRepository;
         private string? ShopName { get; set; }
         public SubCategoryPage()
@@ -53,6 +54,7 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
         public void setCategoryid(long CategoryId,string CategoryName,string ShopName)
         {
             lblSubCategoryName.Content = CategoryName;
+            this.CategoryName = CategoryName;
             this.CategoryId = CategoryId;
             this.ShopName = ShopName;
         }      
@@ -78,11 +80,11 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
             };
             WpSubCategory.Children.Add(button);
             button.Click += btnCreateSubCategory;
-            var dbResult = await _subCategoryRepository.GetAllAsync();
+            var dbResult = await _subCategoryRepository.GetAllSubCategoriesByCategoryIdAsync(CategoryId);
             foreach (var subCategory in dbResult)
             {
                 SubCategoryUserControl subCategoryUserControl = new SubCategoryUserControl();
-                subCategoryUserControl.setData(subCategory);
+                subCategoryUserControl.setData(subCategory, ShopName, CategoryName);
                 subCategoryUserControl.RefreshPage=refreshPage;
                 WpSubCategory.Children.Add(subCategoryUserControl);
             }
@@ -97,8 +99,12 @@ namespace BurgerMenu_Desktop.Pages.AuthPages
 
         private void btnBacktoCategories_Click(object sender, RoutedEventArgs e)
         {
-            CategoriesPage categoriesPage = new CategoriesPage();
-            NavigationService?.Navigate(categoriesPage);
+            //CategoriesPage categoriesPage = new CategoriesPage();
+            //NavigationService?.Navigate(categoriesPage);
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
         }
     }
 
