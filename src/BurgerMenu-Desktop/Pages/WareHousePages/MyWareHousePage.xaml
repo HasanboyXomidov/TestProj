@@ -32,17 +32,19 @@
                 <DataGrid x:Name="DataGrid"
                           IsReadOnly="True"
                           AutoGenerateColumns="False" 
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
                           Background="{DynamicResource RegisterBackgroudnColor}"
                           
                           >
                     <DataGrid.Columns>
                         <!-- Define columns for each property -->
-                        <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}"/>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                        <DataGridTextColumn Header="Starting Price" Binding="{Binding StartingPrice}" />
-                        <DataGridTextColumn Header="Sold Price" Binding="{Binding SoldPrice}" />
-                        <DataGridTextColumn Header="Bar Code" Binding="{Binding BarCode}" />
-                        <DataGridTextColumn Header="Subcategory ID" Binding="{Binding SubcategoryId}" />
+                        <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" Width="*"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+                        <DataGridTextColumn Header="Starting Price" Binding="{Binding StartingPrice}" Width="*"/>
+                        <DataGridTextColumn Header="Sold Price" Binding="{Binding SoldPrice}" Width="*"/>
+                        <DataGridTextColumn Header="Bar Code" Binding="{Binding BarCode}" Width="*"/>
+                        <DataGridTextColumn Header="Subcategory ID" Binding="{Binding SubcategoryId}" Width="*"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
