@@ -78,8 +78,8 @@ namespace BurgerMenu_Desktop.Windows.SubCategoryWindows
                 //string imagePath = ImgBImage.ImageSource.ToString();
                 if (ContainsPunctuation(tbCategoryName.Text) == false) count++;
                 else MessageBox.Show("без знаков препинания");
-                if (tbCategoryName.Text.Length >= 4) count++;
-                else MessageBox.Show("Проверьте имя Подкатегория. Должно быть минимум 4 буквы!");
+                if (tbCategoryName.Text.Length >= 4 && tbCategoryName.Text.Length <= 50 ) count++;
+                else MessageBox.Show("Проверьте имя Подкатегория. Должно быть минимум 4 символов и не более 50 символов !!");
                 if (count == 2)
                 {
                         SubCategory subCategory = new SubCategory();

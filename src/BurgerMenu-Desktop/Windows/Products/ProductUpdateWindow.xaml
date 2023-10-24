@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.Products"
         mc:Ignorable="d"
-         Height="600" Width="500"
+        Height="620" Width="500"
         Loaded="Window_Loaded"        
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
@@ -19,7 +19,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="14*"/>
             </Grid.RowDefinitions>
             <Border  Background="Transparent" 
                      MouseDown="scrollWindow"
@@ -64,23 +65,26 @@
 HorizontalContentAlignment="Center"
 VerticalContentAlignment="Center"
 ></Label>
-
-                <Label Content="Подкатегория :"
-        FontWeight="SemiBold"
-        FontSize="16"               
-        Padding="0"
-             Margin="10 0 0 0"
-     HorizontalContentAlignment="Center"
-     VerticalContentAlignment="Center"
-     Foreground="{DynamicResource TextTertiaryColor}"></Label>
-                <Label Content="RedRose" 
-    FontSize="16"
-    x:Name="lblSubCategoryName3"
-  HorizontalContentAlignment="Center"
-  VerticalContentAlignment="Center"
-  ></Label>
+                
             </StackPanel >
-            <StackPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Grid.Row="2"
+                        HorizontalAlignment="Center">
+                <Label Content="Подкатегория :"
+                          FontWeight="SemiBold"
+                          FontSize="16"               
+                          Padding="0"
+                               Margin="10 0 0 0"
+                       HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"
+                       Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                                <Label Content="RedRose" 
+                      FontSize="16"
+                      x:Name="lblSubCategoryName3"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    ></Label>           
+            </StackPanel>
+            <StackPanel Grid.Row="3">
 
 
                 <Label Content="Hаименование товара"
@@ -106,7 +110,7 @@ VerticalContentAlignment="Center"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
-                                    MaxLength="30"/>
+                                    MaxLength="50"/>
                     <!--end:: Phone TextBox-->
 
                 </Border>
@@ -134,7 +138,7 @@ VerticalContentAlignment="Center"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
-                                    MaxLength="9"/>
+                                    MaxLength="20"/>
                     <!--end:: Phone TextBox-->
 
                 </Border>
@@ -164,7 +168,7 @@ VerticalContentAlignment="Center"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
-                                    MaxLength="30"/>
+                                    MaxLength="16"/>
                     <!--end:: Phone TextBox-->
 
                 </Border>
@@ -193,7 +197,7 @@ VerticalContentAlignment="Center"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
                                     Foreground="{DynamicResource TextTertiaryColor}"
-                                    MaxLength="30"/>
+                                    MaxLength="16"/>
                     <!--end:: Phone TextBox-->
 
                 </Border>

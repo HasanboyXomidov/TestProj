@@ -87,6 +87,27 @@ public class ProductRepository : BaseRepository, IProductInterface
         finally { await _connection.CloseAsync(); }
     }
 
+    public async Task<List<ProductWithDetailsViewModel>> GetAllWithCategoryAndSubcategoryIdById()
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT products.id, products.product_name,products.quantity, products.starting_price, products.sold_price, products.bar_code,categories.category_name AS 'Category', " +
+                "subcategories.subcategory_name AS 'Subcategory' FROM  products JOIN  subcategories ON products.subcategory_id = subcategories.id JOIN  categories ON subcategories.category_id = categories.id order by products.id desc;";
+            var result = (await _connection.QueryAsync<ProductWithDetailsViewModel>(query)).ToList();
+            return result;
+
+        }
+        catch
+        {
+            return new List<ProductWithDetailsViewModel>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
     public async Task<int> UpdateAsync(long id, Product editObj)
     {
         try

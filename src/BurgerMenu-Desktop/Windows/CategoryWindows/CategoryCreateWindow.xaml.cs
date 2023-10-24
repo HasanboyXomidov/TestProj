@@ -88,7 +88,11 @@ namespace BurgerMenu_Desktop.Windows.CategoryWindows
             else
             {
                 //string imagePath = ImgBImage.ImageSource.ToString();
-                if (ContainsPunctuation(tbCategoryName.Text) == false) count++;
+                if (ContainsPunctuation(tbCategoryName.Text) == false)
+                {
+                    if (tbCategoryName.Text.Length > 50) MessageBox.Show("Категория с очень длинным названием");
+                    else count++;
+                }
                 else MessageBox.Show("без знаков препинания");
                 if (tbCategoryName.Text.Length >= 4) count++;
                 else MessageBox.Show("Проверьте имя Категория. Должно быть минимум 4 буквы!");

@@ -5,6 +5,7 @@ using BurgerMenu_Desktop.UserControls;
 using BurgerMenu_Desktop.ViewModels.Shops;
 using BurgerMenu_Desktop.Windows;
 using BurgerMenu_Desktop.Windows.ShopWindows;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,8 @@ namespace BurgerMenu_Desktop
         {
             MyShopPage myShopPage = new MyShopPage();
             PageNavigator.Content = myShopPage;
+            rbMenuButtonMyWareHouse.Visibility = Visibility.Visible;
+            btnBacktoHome.Visibility = Visibility.Visible;
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
@@ -105,6 +108,7 @@ namespace BurgerMenu_Desktop
             btnBackto.Visibility = Visibility.Collapsed;
             brProducts.Visibility = Visibility.Collapsed;
             rbMenuButtonMyShops.Visibility = Visibility.Visible;
+            btnBacktoHome.Visibility = Visibility.Visible;
         }
 
         private void rbMyWareHouseClick(object sender, RoutedEventArgs e)
@@ -114,8 +118,18 @@ namespace BurgerMenu_Desktop
             btnBackto.Visibility = Visibility.Collapsed;
             brProducts.Visibility = Visibility.Collapsed;
             rbMenuButtonMyShops.Visibility = Visibility.Visible;
+            btnBacktoHome.Visibility = Visibility.Visible;
         }
 
-        //
+        private void btnBacktoHome_Click(object sender, RoutedEventArgs e)
+        {
+            rbMenuButtonMyShops.Visibility = Visibility.Visible;
+            brProducts.Visibility = Visibility.Collapsed;
+            rbMenuButtonMyWareHouse.Visibility = Visibility.Collapsed;
+            btnBackto.Visibility = Visibility.Collapsed;
+            btnBacktoHome.Visibility = Visibility.Collapsed;
+            PageNavigator.Content = null;
+        }
+
     }
 }

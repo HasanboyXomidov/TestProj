@@ -1,8 +1,8 @@
 ﻿using BurgerMenu_Desktop.Entities.Products;
 using BurgerMenu_Desktop.Interfaces.Products;
-using BurgerMenu_Desktop.Pages.AuthPages;
 using BurgerMenu_Desktop.Repositories.Products;
 using BurgerMenu_Desktop.ViewModels.Products;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +21,17 @@ using System.Windows.Shapes;
 namespace BurgerMenu_Desktop.Windows.Products
 {
     /// <summary>
-    /// Interaction logic for ProductUpdateWindow.xaml
+    /// Interaction logic for ProductUpdateWindowForWareHouse.xaml
     /// </summary>
-    public partial class ProductUpdateWindow : Window
+    public partial class ProductUpdateWindowForWareHouse : Window
     {
         public delegate void RefreshDelegateForMyShopPage();
         public RefreshDelegateForMyShopPage? RefreshPage { get; set; }
         private ProductsViewModel viewModel { get; set; }
         private long productId { get; set; }
         private readonly IProductInterface _product;
-
-        public ProductUpdateWindow()
+        private int ExtraQuantity { get; set; } = 0;
+        public ProductUpdateWindowForWareHouse()
         {
             InitializeComponent();
             this._product = new ProductRepository();
@@ -62,24 +62,7 @@ namespace BurgerMenu_Desktop.Windows.Products
             lblSubCategoryName.Content = product.Category;
             lblSubCategoryName3.Content = product.Subcategory;
 
-        }
-        public void setData(ProductsViewModel product,string shopName, string categoryName, string subCategoryname)
-        {
-            tbProductName.Text = product.ProductName;
-            tbQuantity.Text = (product.Quantity).ToString();
-
-            string FormattedStartingPrice = FormatPrice((product.StartingPrice).ToString());
-            tbStartingPrice.Text = FormattedStartingPrice;
-            string FormattedSoldPrice = FormatPrice((product.SoldPrice).ToString());
-            tbSoldPrice.Text = FormattedSoldPrice;
-
-            this.productId = product.Id;
-
-            lblSubCategoryName.Content = categoryName;
-            lblSubCategoryName3.Content = subCategoryname;
-
-        }
-
+        }       
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -159,7 +142,7 @@ namespace BurgerMenu_Desktop.Windows.Products
         {
             int count = 0;
             if (tbProductName.Text.Length == 0 && tbQuantity.Text.Length == 0 && tbStartingPrice.Text.Length == 0  && tbSoldPrice.Text.Length == 0)
-                ///*&& tbBarCode.Text.Length == 0*/)
+            ///*&& tbBarCode.Text.Length == 0*/)
             {
                 MessageBox.Show("Пожалуйста, заполните все поля");
             }
@@ -169,13 +152,14 @@ namespace BurgerMenu_Desktop.Windows.Products
                 if (ContainsPunctuation(tbProductName.Text) == false) count++;
                 else MessageBox.Show("без знаков препинания");
                 if (tbProductName.Text.Length >= 4 && tbProductName.Text.Length <= 50) count++;
-                else MessageBox.Show("Проверьте имя Продукт. Должно быть минимум 4 символов и не более 50 символов ! ");
-                if (IsDigitOnly(tbQuantity.Text) == true)
+                else MessageBox.Show("Проверьте имя Продукт. Должно быть минимум 4 символов и не более 30 символов ! ");
+                string ReFormattedStringForQuantity = ReformatNumericString(tbQuantity.Text);
+                if (IsDigitOnly(ReFormattedStringForQuantity) == true)
                 {
-                    if (tbQuantity.Text.Length > 30) MessageBox.Show("Продукт с очень длинным названием");
-                    else count++;
+                    if (ReFormattedStringForQuantity.Length > 0 || ReFormattedStringForQuantity.Length < 13) { count++; }
+                    else MessageBox.Show("Проверьте имя Продукт. Должно быть минимум 4 символов и не более 30 символов ! ");
                 }
-                else MessageBox.Show("Только цифра для количества");
+                else MessageBox.Show("Только цифра для количества");             
                 string ReFormattedStartPrice = ReformatNumericString(tbStartingPrice.Text);
                 if (IsDigitOnly(ReFormattedStartPrice) == true)
                 {
@@ -190,11 +174,35 @@ namespace BurgerMenu_Desktop.Windows.Products
                     else count++;
                 }
                 else MessageBox.Show("Только цифра для Цена продажи");
-                if (count == 5)
+                //if (tbAddQuantity.Text.Length>0)
+                //{
+                //    string ReFormattedStringForAddingQuantity = ReformatNumericString(tbAddQuantity.Text);
+                //    if (IsDigitOnly(ReFormattedStringForAddingQuantity) == true)
+                //    {
+                //        if (ReFormattedSoldString.Length > 9)
+                //        {
+                //            MessageBox.Show("Невозможно добавить так много количества товаров");
+                //            count++;
+                //        }
+                //        else
+                //        {
+                //            float quantity = GetFloatValueFromFormattedText(tbAddQuantity.Text);
+                //            ExtraQuantity += Convert.ToInt32(quantity);
+                //            count++;
+                //        }
+                //    }
+                //    //else MessageBox.Show("Только цифра для количества");
+
+                //}
+                //else count++;
+                
+
+                if (count == 5 )
                 {
                     Product product = new Product();
                     product.ProductName = tbProductName.Text;
-                    product.Quantity = int.Parse(tbQuantity.Text);
+                    float quantity = GetFloatValueFromFormattedText(tbQuantity.Text);
+                    product.Quantity = Convert.ToInt32(quantity) + ExtraQuantity;
                     float startingPrice = GetFloatValueFromFormattedText(tbStartingPrice.Text);
                     product.StartingPrice = startingPrice;
                     float soldPrice = GetFloatValueFromFormattedText(tbSoldPrice.Text);

@@ -119,15 +119,27 @@ namespace BurgerMenu_Desktop.Windows.Products
 
                 if (ContainsPunctuation(tbProductName.Text) == false) count++;
                 else MessageBox.Show("без знаков препинания");
-                if (tbProductName.Text.Length >= 4) count++;
-                else MessageBox.Show("Проверьте имя Продукт. Должно быть минимум 4 буквы!");
-                if (IsDigitOnly(tbQuantity.Text) == true) count++;
+                if (tbProductName.Text.Length >= 4 && tbProductName.Text.Length <= 50 ) count++;
+                else MessageBox.Show("Проверьте имя Продукт. Должно быть минимум 4 символов и не более 50 символов ! ");
+                if (IsDigitOnly(tbQuantity.Text) == true)
+                {
+                    if (tbQuantity.Text.Length > 30) MessageBox.Show("Продукт с очень длинным названием");
+                    else count++; 
+                }
                 else MessageBox.Show("Только цифра для количества");
                 string ReFormattedStartPrice = ReformatNumericString(tbStartingPrice.Text);
-                if (IsDigitOnly(ReFormattedStartPrice) == true) count++;
+                if (IsDigitOnly(ReFormattedStartPrice) == true)
+                {
+                    if (ReFormattedStartPrice.Length > 13) MessageBox.Show("Очень большая сумма");
+                    else count++;
+                }
                 else MessageBox.Show("Только цифра для Начальная цена");
                 string ReFormattedSoldString = ReformatNumericString(tbSoldPrice.Text);
-                if (IsDigitOnly(ReFormattedSoldString) == true) count++;
+                if (IsDigitOnly(ReFormattedSoldString) == true)
+                {
+                    if (ReFormattedSoldString.Length > 13) MessageBox.Show("Очень большая сумма");
+                    else count++;
+                }
                 else MessageBox.Show("Только цифра для Цена продажи");
                 if (tbBarCode.Text.Length != 0)
                 {

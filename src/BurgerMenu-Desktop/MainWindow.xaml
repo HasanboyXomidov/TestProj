@@ -92,24 +92,26 @@
                                      Style="{DynamicResource MenuButton}">
 
                             </RadioButton>
-                                <RadioButton Content="Mой склад"
-                                     Width="220"
-                                     x:Name="rbMenuButtonMyWareHouse"
-                                     Tag="{DynamicResource dashboard}"                                                                                  
-                                     Margin="0 2"
-                                     Click="rbMyWareHouseClick"
-                                     Style="{DynamicResource MenuButton}">
 
-                                </RadioButton>
                                 <Button x:Name="brProducts"
                                      Width="220"  
-                                     Margin="0"                                    
+                                     Margin="0 2"                                    
                                      Style="{DynamicResource MenuStaticButton}"
                                      Tag="{DynamicResource car}"
                                      Content="Продукты"
                                      Visibility="Collapsed"
                                     >
-                            </Button>
+                                </Button>
+                                <RadioButton Content="Mой склад"
+                                      Width="220"
+                                      x:Name="rbMenuButtonMyWareHouse"
+                                      Tag="{DynamicResource dashboard}"                                                                                  
+                                      Margin="0 2"
+                                      Visibility="Collapsed"
+                                      Click="rbMyWareHouseClick"
+                                      Style="{DynamicResource MenuButton}">
+
+                                </RadioButton>
                                 <!-- End: MenuItemMyShops -->
 
                             </StackPanel>
@@ -120,24 +122,24 @@
                                      Width="220"
                                      Cursor="Hand"
                                      Click="btnBackto_Click"
-                                     Margin="0 5"                                    
+                                     Margin="0 2"                                    
                                      Tag="{DynamicResource LeftPointer}"
                                      Content="Мои магазины"
                                      Visibility="Collapsed"
                                  >                      
                             </Button>
-                            <!--<Button  Grid.Row="1" 
-                                     x:Name="btnBacktoCategories"
+                            <Button  Grid.Row="1" 
+                                     x:Name="btnBacktoHome"
                                      Style="{DynamicResource MenuStaticButton}"
                                      Width="220"
                                      Cursor="Hand"
-                                     Click="btnBacktoCategories_Click"
-                                     Margin="0 5"                                    
+                                     Margin="0 2"                     
+                                     Click="btnBacktoHome_Click"
                                      Tag="{DynamicResource LeftPointer}"
-                                     Content="Back"
+                                     Content="Домой"
                                      Visibility="Collapsed"
                                      >      
-                            </Button>-->
+                            </Button>
                             <!-- Finish: GoBackButtonPosition -->
                         </Grid>
                         <!-- Start: Popup User Control -->

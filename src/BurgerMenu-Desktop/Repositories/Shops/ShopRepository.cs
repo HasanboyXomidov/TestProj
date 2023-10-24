@@ -85,7 +85,7 @@ public class ShopRepository : BaseRepository, IShopRepository
         }
         finally { await _connection.CloseAsync(); }
     }
-
+  
     public async Task<int> UpdateAsync(long id, Shop entity)
     {
         try

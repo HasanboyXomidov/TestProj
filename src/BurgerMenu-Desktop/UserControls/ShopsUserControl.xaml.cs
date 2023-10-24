@@ -118,9 +118,12 @@ namespace BurgerMenu_Desktop.UserControls
                     Button? button= mainWindow.FindName("brProducts") as Button;                    
                     if(button !=null) button.Visibility = Visibility.Visible;
                     Button? buttonBackTo = mainWindow.FindName("btnBackto") as Button;
+                    Button? btnBackToHome = mainWindow.FindName("btnBacktoHome") as Button;
+                    if (btnBackToHome !=null) btnBackToHome.Visibility = Visibility.Hidden;
                     if (buttonBackTo !=null)
                     {
                         buttonBackTo.Visibility = Visibility.Visible;
+
                         //buttonBackTo.Content = "Мои магазины";
                     }
 

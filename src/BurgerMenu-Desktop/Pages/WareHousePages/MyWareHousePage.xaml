@@ -3,17 +3,20 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:locals="clr-namespace:BurgerMenu_Desktop.Helpers"      
       xmlns:local="clr-namespace:BurgerMenu_Desktop.Pages.WareHousePages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="Transparent"
       Loaded="Page_Loaded"
       Title="MyWareHousePage">
-
+    <Page.Resources>
+        <locals:NumericFormatConverter x:Key="NumericFormatConverter"/>
+    </Page.Resources>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="12*"/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
             HorizontalAlignment="Left"
@@ -24,27 +27,104 @@
            FontSize="16"                   
         VerticalContentAlignment="Center"
         Foreground="{DynamicResource RegisterBackgroudnColor}"></Label>
+            <Button Style="{DynamicResource SaveBtn}"
+                    Width="150"
+                    Margin="15 0"
+                    Background="{DynamicResource FourthIconColor}"
+                    Content="Обновить"
+                    Foreground="White"
+                    FontSize="16"
+                    Cursor="Hand"
+                    x:Name="btnUpdateInWareHousePage"
+                    Click="btnUpdateInWareHousePage_Click"
+                    >
 
+            </Button>
+            <Button Style="{DynamicResource SaveBtn}"
+                    Width="180"
+                    Margin="0"
+                    Background="{DynamicResource FourthIconColor}"
+                    Content="Быстрое добавление"
+                    Foreground="White"
+                    FontSize="16"
+                    Cursor="Hand"
+                    x:Name="btnQuickAdd"
+                    Click="btnQuickAdd_Click"
+                    >
+
+            </Button>
         </StackPanel>
         <ScrollViewer Grid.Row="1">
             <Border Background="{DynamicResource RegisterBackgroudnColor}"
                     CornerRadius="8">
                 <DataGrid x:Name="DataGrid"
                           IsReadOnly="True"
+                          GridLinesVisibility="None"
                           AutoGenerateColumns="False" 
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
-                          Background="{DynamicResource RegisterBackgroudnColor}"
-                          
+                          SelectionChanged="productDataGrid_SelectionChanged"
+                          Background="Transparent"                          
                           >
-                    <DataGrid.Columns>
+                 
+                    <!-- Other DataGrid configuration -->
+
+                    <DataGrid.Resources >
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{DynamicResource TextTertiaryColor}" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Height" Value="25" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="BorderThickness" Value="1 0"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource TextTertiaryColor}"/>
+                        </Style>
+                        
+                        <Style TargetType="DataGridRow">
+                            <!--<Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextTertiaryColor}" />-->
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryIconColor}"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                               
+                            </Style.Triggers>
+                        </Style>
+                        
+                        <Style TargetType="DataGridCell" >
+                            <Setter Property="Padding" Value="5" 
+                                    />
+                            <Setter Property="BorderThickness" Value="0.8"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            
+                            <!--<Setter Property="Background" Value="{DynamicResource RegisterBackgroudnColor}" />-->
+                            <!--<Setter Property="Foreground" Value="{DynamicResource TextTertiaryColor}" />-->
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource TextTertiaryColor}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource RegisterBackgroudnColor}"/>
+                                </Trigger> 
+                            </Style.Triggers>
+                        </Style>
+                        
+                        
+                    </DataGrid.Resources>
+                    <DataGrid.Columns >
                         <!-- Define columns for each property -->
-                        <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" Width="*"/>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
-                        <DataGridTextColumn Header="Starting Price" Binding="{Binding StartingPrice}" Width="*"/>
-                        <DataGridTextColumn Header="Sold Price" Binding="{Binding SoldPrice}" Width="*"/>
-                        <DataGridTextColumn Header="Bar Code" Binding="{Binding BarCode}" Width="*"/>
-                        <DataGridTextColumn Header="Subcategory ID" Binding="{Binding SubcategoryId}" Width="*"/>
+                        <DataGridTextColumn Header="Штрих-код" Binding="{Binding BarCode}" Width="*"/>
+                        <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="*"/>
+                        <DataGridTextColumn Header="Подкатегория" Binding="{Binding Subcategory}" Width="*"/>
+                        <DataGridTextColumn Header="Наименование товара" Binding="{Binding product_name}" Width="*"/>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding quantity}" Width="*"/>
+                        <DataGridTextColumn Header="Начальная цена" Binding="{Binding StartingPrice}" Width="*"/>
+                        <DataGridTextColumn Header="Цена продажи" Binding="{Binding SoldPrice ,Converter={StaticResource NumericFormatConverter}}" Width="*"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
