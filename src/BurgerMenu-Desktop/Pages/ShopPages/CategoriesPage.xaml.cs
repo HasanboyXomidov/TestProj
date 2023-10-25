@@ -20,28 +20,47 @@ using System.Windows.Shapes;
 
 namespace BurgerMenu_Desktop.Pages
 {
+    public class CustomEventArgs : EventArgs
+    {
+        public string Id { get; }
+        public string Name { get; }
+
+        public CustomEventArgs(string id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+    }
     /// <summary>
     /// Interaction logic for CategoriesPage.xaml
     /// </summary>
     public partial class CategoriesPage : Page
     {
-        private long ShopId { get; set; }
+        public static long ShopId2 {get ; set ; }
+        public static string ShopName2 { get ; set ; }
+        private long ShopId { get; set; }     
         private string ShopName { get; set; }
+
         private readonly ICategoryRepository? _categoryRepository;
         public CategoriesPage()
         {
             InitializeComponent();
             this._categoryRepository = new CategoryRepository();
+
         }
+
         public void setData(long id,string shopName)
         {
             this.ShopId = id;
+            ShopId2 = ShopId;
+            ShopName2= ShopName;
             this.ShopName = shopName;
             lblShopName.Content = shopName;
         }
         public async void refreshAsync()
         {
             WpCategories.Children.Clear();
+            
             Button button = new Button
             {
                 Width = 150,

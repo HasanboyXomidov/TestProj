@@ -27,6 +27,7 @@ namespace BurgerMenu_Desktop.Pages
     public partial class MyShopPage : Page
     {
         private readonly IShopRepository _shopRepository;
+        public long ShopId { get; set; }    
         public MyShopPage()
         {
             InitializeComponent();

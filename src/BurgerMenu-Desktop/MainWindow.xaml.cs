@@ -1,7 +1,9 @@
-﻿using BurgerMenu_Desktop.Pages;
+﻿using BurgerMenu_Desktop.Interfaces.CasheRegisters;
+using BurgerMenu_Desktop.Pages;
 using BurgerMenu_Desktop.Pages.AuthPages;
 using BurgerMenu_Desktop.Pages.CasheRegisterPages;
 using BurgerMenu_Desktop.Pages.WareHousePages;
+using BurgerMenu_Desktop.Repositories.CasheRegisters;
 using BurgerMenu_Desktop.UserControls;
 using BurgerMenu_Desktop.ViewModels.Shops;
 using BurgerMenu_Desktop.Windows;
@@ -29,11 +31,14 @@ namespace BurgerMenu_Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        //private readonly IKassaRepository _kassaRepository;
+        public event EventHandler<long> ButtonClicked;
+        private long ShopId { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-
+            ButtonClicked += MainWindow_ButtonClicked;
+            //this._kassaRepository = new KassaRepository();
         }
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -144,6 +149,17 @@ namespace BurgerMenu_Desktop
             MyCasheRegisterPage myCasheRegisterPage = new MyCasheRegisterPage();
             PageNavigator.Content = myCasheRegisterPage;
             btnBacktoCategory.Visibility = Visibility.Visible;
+
+            ButtonClicked?.Invoke(this, CategoriesPage.ShopId2);
+
+        }
+        private void MainWindow_ButtonClicked(object sender, long ShopId)
+        {
+            // Handle the event and retrieve the ID
+            this.ShopId = ShopId;
+            MyCasheRegisterPage myCasheRegisterPage = new MyCasheRegisterPage();
+            myCasheRegisterPage.setData(ShopId);
+            PageNavigator.Content = myCasheRegisterPage;
         }
 
         private void btnBacktoCategory_Click(object sender, RoutedEventArgs e)

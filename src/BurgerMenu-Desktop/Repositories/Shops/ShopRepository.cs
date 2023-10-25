@@ -1,4 +1,5 @@
-﻿using BurgerMenu_Desktop.Entities.Shops;
+﻿using BurgerMenu_Desktop.Entities.Products;
+using BurgerMenu_Desktop.Entities.Shops;
 using BurgerMenu_Desktop.Interfaces;
 using BurgerMenu_Desktop.Interfaces.Shops;
 using BurgerMenu_Desktop.ViewModels.Shops;
@@ -85,7 +86,26 @@ public class ShopRepository : BaseRepository, IShopRepository
         }
         finally { await _connection.CloseAsync(); }
     }
-  
+
+    public async Task<ShopsViewModel?> GetShopById(long ShopId)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"SELECT * FROM `shops` WHERE id = @Id";
+            var result = await _connection.QuerySingleAsync<ShopsViewModel>(query, new {Id = ShopId });
+            return result;
+        }
+        catch 
+        {
+            return null;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
     public async Task<int> UpdateAsync(long id, Shop entity)
     {
         try
