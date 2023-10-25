@@ -24,7 +24,7 @@
 
                 <TextBlock Text="Hasanboy's Kassa"
                        x:Name="lblCasheRegister"
-                           MaxHeight="80"
+                           MaxHeight="20"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Margin="5 25 0 10"

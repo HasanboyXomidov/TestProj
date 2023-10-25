@@ -40,6 +40,7 @@ namespace BurgerMenu_Desktop.UserControls
         {
             this.KassaId =kassa.Id;
             kassaViewModel = kassa;
+            lblCasheRegister.Text = kassa.Name;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

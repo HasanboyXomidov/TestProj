@@ -2,6 +2,7 @@
 using BurgerMenu_Desktop.Interfaces.Shops;
 using BurgerMenu_Desktop.Repositories.CasheRegisters;
 using BurgerMenu_Desktop.Repositories.Shops;
+using BurgerMenu_Desktop.UserControls;
 using BurgerMenu_Desktop.Windows.MyCasheRegisterWindows;
 using BurgerMenu_Desktop.Windows.ShopWindows;
 using System;
@@ -62,6 +63,10 @@ namespace BurgerMenu_Desktop.Pages.CasheRegisterPages
             var dbResult = await _kassaRepository.GetAllByIdAsync(this.ShopId);
             foreach (var item in dbResult)
             {
+                KassaUserControl kassa = new KassaUserControl();
+                kassa.setData(item);
+                kassa.RefreshPage = refreshAsync;
+                WpCasheRegister.Children.Add(kassa);
 
             }
 
