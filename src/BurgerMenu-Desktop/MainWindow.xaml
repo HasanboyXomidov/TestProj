@@ -18,27 +18,6 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <!--<Border Grid.Column="0"
-                        CornerRadius="15"
-                        Background="{DynamicResource RegisterBackgroudnColor}">
-                    --><!--<StackPanel>
-                        <RadioButton Content="Мои магазины"
-                                     Width="250"
-                                     Margin="0 30 0 0"
-                                     Click="rbMyShopClick"
-                                     Style="{DynamicResource MenuButton}">
-                            
-                        </RadioButton>
-                        <RadioButton Content="Все магазины"
-                                     Width="250"
-                                     Margin="0 5 0 0"
-                                     Click="rbAllShops"
-                                     Style="{DynamicResource MenuButton}">
-
-                        </RadioButton>
-                    </StackPanel>--><!--
-                    
-                </Border>-->
                 <Border Grid.Column="0"
                         Padding="0"
                     Background="{DynamicResource RegisterBackgroudnColor}"
@@ -56,7 +35,7 @@
                                     <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                                         <BeginStoryboard>
                                             <Storyboard x:Name="HideStackPanel">
-                                                <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="210" To="60" Duration="0:0:0.5">
+                                                <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="210" To="60" Duration="0:0:0.001">
                                                 </DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -64,7 +43,7 @@
                                     <EventTrigger RoutedEvent="ToggleButton.Checked">
                                         <BeginStoryboard>
                                             <Storyboard x:Name="ShowStackPanel">
-                                                <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="60" To="210" Duration="0:0:0.5">
+                                                <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="60" To="210" Duration="0:0:0.001">
                                                 </DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -83,7 +62,7 @@
                         <StackPanel Grid.Row="0" Margin="-5 40 0 20"
                                 x:Name="SideBarUsers">
                                 <!-- Start: MenuItemMyShops -->
-                                <RadioButton Content="Мои магазины"
+                                <RadioButton Content="Магазины"
                                      Width="220"
                                      x:Name="rbMenuButtonMyShops"
                                      Tag="{DynamicResource products}"                                                                                  
@@ -102,13 +81,23 @@
                                      Visibility="Collapsed"
                                     >
                                 </Button>
-                                <RadioButton Content="Mой склад"
+                                <RadioButton Content="Cклад"
                                       Width="220"
                                       x:Name="rbMenuButtonMyWareHouse"
                                       Tag="{DynamicResource dashboard}"                                                                                  
                                       Margin="0 2"
                                       Visibility="Collapsed"
                                       Click="rbMyWareHouseClick"
+                                      Style="{DynamicResource MenuButton}">
+
+                                </RadioButton>
+                                <RadioButton Content="Кассa"
+                                      Width="220"
+                                      x:Name="rbMenuButtonMyCashRegister"
+                                      Tag="{DynamicResource billing}"                                                                                  
+                                      Margin="0 2"
+                                      Visibility="Collapsed"
+                                      Click="rbMenuButtonMyCashRegister_Click"
                                       Style="{DynamicResource MenuButton}">
 
                                 </RadioButton>
@@ -135,10 +124,21 @@
                                      Cursor="Hand"
                                      Margin="0 2"                     
                                      Click="btnBacktoHome_Click"
-                                     Tag="{DynamicResource LeftPointer}"
-                                     Content="Домой"
+                                     Tag="{DynamicResource LeftPointer}"                                     
                                      Visibility="Collapsed"
                                      >      
+                            </Button>
+                            <Button   Grid.Row="1" 
+                                      x:Name="btnBacktoCategory"
+                                      Style="{DynamicResource MenuStaticButton}"
+                                      Width="220"
+                                      Cursor="Hand"
+                                      Margin="0 2"    
+                                      Content="Домой"
+                                      Click="btnBacktoCategory_Click"
+                                      Tag="{DynamicResource LeftPointer}"                                     
+                                      Visibility="Collapsed"
+                                      >         
                             </Button>
                             <!-- Finish: GoBackButtonPosition -->
                         </Grid>

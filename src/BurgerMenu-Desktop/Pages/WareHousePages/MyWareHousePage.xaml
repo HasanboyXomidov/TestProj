@@ -31,7 +31,7 @@
                     Width="150"
                     Margin="15 0"
                     Background="{DynamicResource FourthIconColor}"
-                    Content="Обновить"
+                    Content="Редактироват"
                     Foreground="White"
                     FontSize="16"
                     Cursor="Hand"

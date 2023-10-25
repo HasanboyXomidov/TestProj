@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.Products"
         mc:Ignorable="d"
-             Height="420" Width="500"
+             Height="480" Width="500"
         Loaded="Window_Loaded"        
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
@@ -17,8 +17,6 @@
             BorderBrush="{DynamicResource FourthIconColor}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
@@ -45,36 +43,40 @@
                 </StackPanel>
             </Border>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal"
-               HorizontalAlignment="Center"
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            
+             <Grid></Grid>
+            <StackPanel  Orientation="Horizontal"
+               HorizontalAlignment="Left"
                Margin="0 0"
                Grid.Column="1">
 
 
                 <Label Content="Категория :"
-      FontWeight="SemiBold"
-      FontSize="16"  
-             Margin="10 0 0 0"
-      Padding="0"
-   HorizontalContentAlignment="Center"
-   VerticalContentAlignment="Center"
-   Foreground="{DynamicResource TextTertiaryColor}"></Label>
-                <Label Content="Roses" 
-                  FontWeight="SemiBold"
-  FontSize="16"
-  x:Name="lblSubCategoryName"
-HorizontalContentAlignment="Center"
-VerticalContentAlignment="Center"
-></Label>
+                          FontWeight="SemiBold"
+                          FontSize="16"  
+                                 Margin="0 0 0 0"
+                          Padding="0"
+                       HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"
+                       Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                                    <Label Content="Roses" 
+                                      FontWeight="SemiBold"
+                      FontSize="16"
+                      x:Name="lblSubCategoryName"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    ></Label>
 
             </StackPanel >
-            <StackPanel Orientation="Horizontal" Grid.Row="2"
-                        HorizontalAlignment="Center">
+            
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left">
                 <Label Content="Подкатегория :"
                           FontWeight="SemiBold"
                           FontSize="16"               
                           Padding="0"
-                               Margin="10 0 0 0"
+                               Margin="0 0 0 0"
                        HorizontalContentAlignment="Center"
                        VerticalContentAlignment="Center"
                        Foreground="{DynamicResource TextTertiaryColor}"></Label>
@@ -86,51 +88,89 @@ VerticalContentAlignment="Center"
                     VerticalContentAlignment="Center"
                     ></Label>
             </StackPanel>
-            <StackPanel Grid.Row="3">
+            <StackPanel >
 
-
-                <Label Content="Hаименование товара"
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"> 
+                    <Label Content="Hаименование товара :"
                        HorizontalAlignment="Center"
                        FontSize="16"
+                            Foreground="{DynamicResource TextTertiaryColor}"
                        Margin="0 0 0 0"
                        FontWeight="SemiBold">
 
                 </Label>
-                
-                <Label Content="Количество"
+                    <Label Content="Драконья роза" 
+                  FontWeight="SemiBold"
+                      FontSize="16"
+                      x:Name="lblSubCategoryName4"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    ></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Количество : "
                        HorizontalAlignment="Center"
                        FontSize="16"
+                       Margin="0 0 0 0"     Foreground="{DynamicResource TextTertiaryColor}"
+                       FontWeight="SemiBold">
+
+                    </Label>
+                    <Label Content="75" 
+                           FontWeight="SemiBold"
+                           FontSize="16"
+                           x:Name="lblQuantity"
+                           HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Center"
+                            ></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Начальная цена : "
+                       HorizontalAlignment="Center"
+                       FontSize="16"     Foreground="{DynamicResource TextTertiaryColor}"
                        Margin="0 0 0 0"
                        FontWeight="SemiBold">
 
-                </Label>
-                
-
-                <Label Content="Начальная цена"
+                    </Label>
+                    <Label Content="14 400" 
+                          FontWeight="SemiBold"
+                              FontSize="16"
+                              x:Name="lblStartingPrice"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                     ></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Цена продажи : "
                        HorizontalAlignment="Center"
                        FontSize="16"
+                       Foreground="{DynamicResource TextTertiaryColor}"
                        Margin="0 0 0 0"
                        FontWeight="SemiBold">
+                    </Label>
+                    <Label Content="2 000" 
+                          FontWeight="SemiBold"
+                          FontSize="16"
+                          x:Name="lblFinishPrice"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center">
+                    </Label>
+                </StackPanel>
 
-                </Label>
-                
-                <Label Content="Цена продажи"
-                       HorizontalAlignment="Center"
-                       FontSize="16"
-                       Margin="0 0 0 0"
-                       FontWeight="SemiBold">
-
-                </Label>
-                <Label Content="Добавить количество"
+                </StackPanel>
+                <!--afd-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Margin="0 15">
+                    <Label Content="Добавить количество"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 0 0 0"
                        Foreground="{DynamicResource TextTertiaryColor}"
                        FontWeight="SemiBold">
-
-                </Label>
+                    </Label>
+                
+                </StackPanel>
                 <Border         Height="50"
-                    Width="300"
+                    Width="200"
                     Margin="0 0 0 0"
                     BorderBrush="{DynamicResource TextTertiaryColor}"
                     CornerRadius="10"
@@ -156,7 +196,7 @@ VerticalContentAlignment="Center"
                 <Button HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Style="{DynamicResource SaveBtn}"
-                        Width="300"
+                        Width="200"
                         Height="50"
                         Background="{DynamicResource FourthIconColor}"
                         Content="Добавить"

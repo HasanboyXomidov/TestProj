@@ -70,15 +70,14 @@ namespace BurgerMenu_Desktop.UserControls
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            
+        {            
             if (Window.GetWindow(this) is MainWindow mainWindow)
-            {
-                
+            {                
                 SubCategoryPage subCategoryPage = new SubCategoryPage();
                 subCategoryPage.setCategoryid(categoryViewModel.Id,categoryViewModel.CategoryName,ShopName);
                 mainWindow.PageNavigator.Navigate(subCategoryPage);
-
+                Button? btnBackToCategory = mainWindow.FindName("btnBacktoCategory") as Button;
+                if (btnBackToCategory !=null) btnBackToCategory.Visibility = Visibility.Visible;
             }
         }
 

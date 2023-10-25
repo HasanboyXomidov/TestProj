@@ -13,6 +13,6 @@ namespace BurgerMenu_Desktop.Interfaces.Products
     {
         public Task<List<ProductsViewModel>> GetAllProductsBySubcategoryIdAsync(long SubCategoryId);
         public Task<List<ProductWithDetailsViewModel>> GetAllWithCategoryAndSubcategoryIdById();
-
+        public Task<int> AddQuantityToProduct(long ProductId,int ProductQuantity);
     }
 }

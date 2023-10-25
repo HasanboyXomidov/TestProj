@@ -83,7 +83,7 @@ namespace BurgerMenu_Desktop.Pages.WareHousePages
 
         private void btnQuickAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGrid.SelectedItems.Count == 1)
+            if (DataGrid.SelectedItems.Count == 1 )
             {
                 // Check if a row is selected
                 if (DataGrid.SelectedItem != null)
@@ -92,10 +92,10 @@ namespace BurgerMenu_Desktop.Pages.WareHousePages
                     var selectedRow = DataGrid.SelectedItem as ProductWithDetailsViewModel;
 
                     // Create and show the window
-                    ProductUpdateWindowForWareHouse window = new ProductUpdateWindowForWareHouse();
-                    window.setDataFromWareHouse(selectedRow);
-                    window.RefreshPage = refreshAsync;
-                    window.ShowDialog();
+                    ProductQuantityQuickAddWindow quickAdd = new ProductQuantityQuickAddWindow();
+                    quickAdd.setData(selectedRow);
+                    quickAdd.RefreshPage = refreshAsync;
+                    quickAdd.ShowDialog();
                 }
             }
             else

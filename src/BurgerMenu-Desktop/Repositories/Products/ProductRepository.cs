@@ -15,6 +15,26 @@ namespace BurgerMenu_Desktop.Repositories.Products;
 
 public class ProductRepository : BaseRepository, IProductInterface
 {
+    public async Task<int> AddQuantityToProduct(long ProductId , int ProductQuantity)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"UPDATE `products` SET `quantity`=@productQuantity WHERE id = {ProductId}";
+            var result = await _connection.ExecuteAsync(query,new { productQuantity = ProductQuantity });
+            return result;
+
+        }
+        catch
+        {
+            return 0;       
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
     public async Task<int> CreateAsync(Product entity)
     {
         try

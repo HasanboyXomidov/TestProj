@@ -1,5 +1,6 @@
 ﻿using BurgerMenu_Desktop.Pages;
 using BurgerMenu_Desktop.Pages.AuthPages;
+using BurgerMenu_Desktop.Pages.CasheRegisterPages;
 using BurgerMenu_Desktop.Pages.WareHousePages;
 using BurgerMenu_Desktop.UserControls;
 using BurgerMenu_Desktop.ViewModels.Shops;
@@ -82,8 +83,11 @@ namespace BurgerMenu_Desktop
         {
             MyShopPage myShopPage = new MyShopPage();
             PageNavigator.Content = myShopPage;
-            rbMenuButtonMyWareHouse.Visibility = Visibility.Visible;
+            //btnBacktoCategory.Visibility = Visibility.Visible;
+            btnBacktoCategory.Visibility = Visibility.Collapsed;
             btnBacktoHome.Visibility = Visibility.Visible;
+            //rbMenuButtonMyWareHouse.Visibility = Visibility.Visible;
+            //btnBacktoHome.Visibility = Visibility.Visible;
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
@@ -105,20 +109,22 @@ namespace BurgerMenu_Desktop
         {
             MyShopPage myShopPage = new MyShopPage();
             PageNavigator.Content = myShopPage;
+
             btnBackto.Visibility = Visibility.Collapsed;
-            brProducts.Visibility = Visibility.Collapsed;
-            rbMenuButtonMyShops.Visibility = Visibility.Visible;
+            brProducts.Visibility = Visibility.Visible;           
+            rbMenuButtonMyWareHouse.Visibility = Visibility.Collapsed;
             btnBacktoHome.Visibility = Visibility.Visible;
+            rbMenuButtonMyCashRegister.Visibility = Visibility.Collapsed;
+            rbMenuButtonMyShops.IsChecked = true;
         }
 
         private void rbMyWareHouseClick(object sender, RoutedEventArgs e)
         {
             MyWareHousePage myWareHousePage = new MyWareHousePage();
             PageNavigator.Content = myWareHousePage;
-            btnBackto.Visibility = Visibility.Collapsed;
-            brProducts.Visibility = Visibility.Collapsed;
-            rbMenuButtonMyShops.Visibility = Visibility.Visible;
-            btnBacktoHome.Visibility = Visibility.Visible;
+       
+            btnBacktoCategory.Visibility = Visibility.Visible;
+       
         }
 
         private void btnBacktoHome_Click(object sender, RoutedEventArgs e)
@@ -129,7 +135,30 @@ namespace BurgerMenu_Desktop
             btnBackto.Visibility = Visibility.Collapsed;
             btnBacktoHome.Visibility = Visibility.Collapsed;
             PageNavigator.Content = null;
+            rbMenuButtonMyCashRegister.Visibility = Visibility.Collapsed;
+            rbMenuButtonMyShops.IsChecked = false;
         }
 
+        private void rbMenuButtonMyCashRegister_Click(object sender, RoutedEventArgs e)
+        {
+            MyCasheRegisterPage myCasheRegisterPage = new MyCasheRegisterPage();
+            PageNavigator.Content = myCasheRegisterPage;
+            btnBacktoCategory.Visibility = Visibility.Visible;
+        }
+
+        private void btnBacktoCategory_Click(object sender, RoutedEventArgs e)
+        {
+            MyShopPage myShopPage = new MyShopPage();
+            PageNavigator.Content=myShopPage;
+            
+            rbMenuButtonMyShops.IsChecked = true;
+            btnBacktoCategory.Visibility = Visibility.Collapsed;
+            btnBacktoHome.Visibility=Visibility.Visible;
+
+            rbMenuButtonMyWareHouse.Visibility=Visibility.Collapsed;
+            rbMenuButtonMyCashRegister.Visibility=Visibility.Collapsed;
+            brProducts.Visibility=Visibility.Collapsed;
+            rbMenuButtonMyShops.Visibility=Visibility.Visible;
+        }
     }
 }
