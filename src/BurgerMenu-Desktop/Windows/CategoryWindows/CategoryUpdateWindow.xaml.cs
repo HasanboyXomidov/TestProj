@@ -76,10 +76,7 @@ namespace BurgerMenu_Desktop.Windows.CategoryWindows
             this.Close();
         }
 
-        private ICategoryRepository? Get_categoryRepository()
-        {
-            return _categoryRepository;
-        }
+       
        
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

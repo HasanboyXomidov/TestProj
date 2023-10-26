@@ -34,25 +34,8 @@
            
         </StackPanel >
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Button  Grid.Column="0"
-                     HorizontalAlignment="Left"
-                x:Name="btnBacktoMyShops"
-                Style="{DynamicResource MenuStaticButton}"
-                Width="220"                     
-                Cursor="Hand"
-                Click="btnBacktoMyShops_Click"
-                Margin="0 5"                                    
-                Tag="{DynamicResource LeftPointer}"
-                Content="Магазины"
-                Visibility="Visible"
-                >
-            </Button>
-            <StackPanel  Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+      
+            <Grid  Grid.Row="1"  HorizontalAlignment="Center">
                 <Label
        Content="Касса"
        FontSize="16"     
@@ -63,8 +46,7 @@
        Foreground="{DynamicResource RegisterBackgroudnColor}">
                 </Label>
                 
-            </StackPanel >
-        </Grid>
+            </Grid >
         <ScrollViewer Grid.Row="2">
             <Border 
                 CornerRadius="10"

@@ -117,14 +117,14 @@ namespace BurgerMenu_Desktop.UserControls
                     radioButton.Visibility = Visibility.Collapsed;
                     Button? button= mainWindow.FindName("brProducts") as Button;                    
                     if(button !=null) button.Visibility = Visibility.Visible;
-                    Button? buttonBackTo = mainWindow.FindName("btnBackto") as Button;
+                    //Button? buttonBackTo = mainWindow.FindName("btnBackto") as Button;
                     Button? btnBackToCategory = mainWindow.FindName("btnBacktoCategory") as Button;
                     RadioButton? rbMyWareHouse = mainWindow.FindName("rbMenuButtonMyWareHouse") as RadioButton;
                     RadioButton? rbMyCasheRegister = mainWindow.FindName("rbMenuButtonMyCashRegister") as RadioButton;
                     if (btnBackToCategory !=null) btnBackToCategory.Visibility = Visibility.Visible;
-                    if (buttonBackTo !=null)
-                    {
-                        buttonBackTo.Visibility = Visibility.Visible;
+                    //if (buttonBackTo !=null)
+                    //{
+                        //buttonBackTo.Visibility = Visibility.Visible;
                         if(rbMyWareHouse != null )
                         {
                             rbMyWareHouse.Visibility =Visibility.Visible;                            
@@ -136,7 +136,7 @@ namespace BurgerMenu_Desktop.UserControls
 
 
                         //buttonBackTo.Content = "Мои магазины";
-                    }
+                    //}
 
 
                 }

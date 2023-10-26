@@ -15,7 +15,9 @@
                 CornerRadius="10"      
                 x:Name="brButton"
                 BorderThickness="1"
-
+                MouseEnter="Grid_MouseEnter"
+                MouseLeave="Grid_MouseLeave"
+                MouseDown="Border_MouseDown"
                 BorderBrush="{DynamicResource TextTertiaryColor}"
                 >
             <StackPanel>

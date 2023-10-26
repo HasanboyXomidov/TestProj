@@ -43,7 +43,8 @@ namespace BurgerMenu_Desktop
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-          
+            //GridNav.Width = 210;
+            Tg_Btn.IsChecked = true;
         }      
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -90,9 +91,8 @@ namespace BurgerMenu_Desktop
             PageNavigator.Content = myShopPage;
             //btnBacktoCategory.Visibility = Visibility.Visible;
             btnBacktoCategory.Visibility = Visibility.Collapsed;
-            btnBacktoHome.Visibility = Visibility.Visible;
-            //rbMenuButtonMyWareHouse.Visibility = Visibility.Visible;
-            //btnBacktoHome.Visibility = Visibility.Visible;
+           
+           
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
@@ -112,15 +112,15 @@ namespace BurgerMenu_Desktop
       
         private void btnBackto_Click(object sender, RoutedEventArgs e)
         {
-            MyShopPage myShopPage = new MyShopPage();
-            PageNavigator.Content = myShopPage;
+            //MyShopPage myShopPage = new MyShopPage();
+            //PageNavigator.Content = myShopPage;
 
-            btnBackto.Visibility = Visibility.Collapsed;
-            brProducts.Visibility = Visibility.Visible;           
-            rbMenuButtonMyWareHouse.Visibility = Visibility.Collapsed;
-            btnBacktoHome.Visibility = Visibility.Visible;
-            rbMenuButtonMyCashRegister.Visibility = Visibility.Collapsed;
-            rbMenuButtonMyShops.IsChecked = true;
+            //btnBackto.Visibility = Visibility.Collapsed;
+            //brProducts.Visibility = Visibility.Visible;           
+            //rbMenuButtonMyWareHouse.Visibility = Visibility.Collapsed;
+            ////btnBacktoHome.Visibility = Visibility.Visible;
+            //rbMenuButtonMyCashRegister.Visibility = Visibility.Collapsed;
+            //rbMenuButtonMyShops.IsChecked = true;
         }
 
         private void rbMyWareHouseClick(object sender, RoutedEventArgs e)
@@ -128,7 +128,7 @@ namespace BurgerMenu_Desktop
             MyWareHousePage myWareHousePage = new MyWareHousePage();
             PageNavigator.Content = myWareHousePage;
        
-            btnBacktoCategory.Visibility = Visibility.Visible;
+            //btnBacktoCategory.Visibility = Visibility.Visible;
        
         }
 
@@ -138,7 +138,7 @@ namespace BurgerMenu_Desktop
             brProducts.Visibility = Visibility.Collapsed;
             rbMenuButtonMyWareHouse.Visibility = Visibility.Collapsed;
             btnBackto.Visibility = Visibility.Collapsed;
-            btnBacktoHome.Visibility = Visibility.Collapsed;
+            //btnBacktoHome.Visibility = Visibility.Collapsed;
             PageNavigator.Content = null;
             rbMenuButtonMyCashRegister.Visibility = Visibility.Collapsed;
             rbMenuButtonMyShops.IsChecked = false;
@@ -166,15 +166,20 @@ namespace BurgerMenu_Desktop
         {
             MyShopPage myShopPage = new MyShopPage();
             PageNavigator.Content=myShopPage;
-            
-            rbMenuButtonMyShops.IsChecked = true;
             btnBacktoCategory.Visibility = Visibility.Collapsed;
-            btnBacktoHome.Visibility=Visibility.Visible;
+            rbMenuButtonMyShops.IsChecked = true;
+            //btnBacktoCategory.Visibility = Visibility.Collapsed;
+            //btnBacktoHome.Visibility=Visibility.Visible;
 
             rbMenuButtonMyWareHouse.Visibility=Visibility.Collapsed;
             rbMenuButtonMyCashRegister.Visibility=Visibility.Collapsed;
             brProducts.Visibility=Visibility.Collapsed;
             rbMenuButtonMyShops.Visibility=Visibility.Visible;
+        }
+
+        private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

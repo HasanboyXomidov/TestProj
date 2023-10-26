@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="BurgerMenu_Desktop.UserControls.TabUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BurgerMenu_Desktop.UserControls"
+             mc:Ignorable="d" 
+             Height="35" d:DesignWidth="120"
+             Margin="5 0">
+    <Grid>
+        <Border Background="{DynamicResource RegisterBackgroudnColor}"
+                CornerRadius="10"
+                Cursor="Hand"
+                >
+            <Label x:Name="lblTabName"
+                   Content="Category"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   MaxWidth="110"
+                   MaxHeight="35"
+                   Foreground="{DynamicResource TextTertiaryColor}"
+                   FontSize="16">
+                
+            </Label>
+        </Border>   
+    </Grid>
+</UserControl>

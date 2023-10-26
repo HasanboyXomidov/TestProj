@@ -1,8 +1,10 @@
 ﻿using BurgerMenu_Desktop.Entities.CasheRegisters;
 using BurgerMenu_Desktop.Interfaces.CasheRegisters;
+using BurgerMenu_Desktop.Pages.AuthPages;
 using BurgerMenu_Desktop.Repositories.CasheRegisters;
 using BurgerMenu_Desktop.ViewModels.CasheRegisters;
 using BurgerMenu_Desktop.ViewModels.Categories;
+using BurgerMenu_Desktop.Windows.MyCasheRegisterWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +40,15 @@ namespace BurgerMenu_Desktop.UserControls
         }
         public void setData(KassaViewModel kassa)
         {
-            this.KassaId =kassa.Id;
-            kassaViewModel = kassa;
+            this.kassaViewModel = new KassaViewModel()
+            {
+                Id = kassa.Id,
+                Name = kassa.Name,
+                ShopId = kassa.ShopId,
+            };
+            //kassaViewModel = kassa;
             lblCasheRegister.Text = kassa.Name;
+            this.KassaId = kassa.Id;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -73,8 +81,44 @@ namespace BurgerMenu_Desktop.UserControls
                 Name = kassaViewModel.Name,
                 ShopId = kassaViewModel.ShopId,
             };
+            KassaUpdateWindow kassaUpdateWindow = new KassaUpdateWindow();
+            kassaUpdateWindow.setData(kassaViewModel);
+            kassaUpdateWindow.RefreshPage = refreshPage;
+            kassaUpdateWindow.ShowDialog();            
+        }
+        public void refreshPage()
+        {
+            RefreshPage?.Invoke();
+        }
 
-            
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Border border)
+            {
+                border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6A9C89"));
+                Cursor = Cursors.Hand;
+            }
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Border border)
+            {
+                border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Transparent"));
+            }
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+            {
+                PaymentWindow paymentWindow = new PaymentWindow();
+                paymentWindow.setData(KassaId);
+                paymentWindow.ShowDialog();
+                //mainWindow.PageNavigator.Navigate(subCategoryPage);
+                //Button? btnBackToCategory = mainWindow.FindName("btnBacktoCategory") as Button;
+                //if (btnBackToCategory !=null) btnBackToCategory.Visibility = Visibility.Visible;
+            }
         }
     }
 }

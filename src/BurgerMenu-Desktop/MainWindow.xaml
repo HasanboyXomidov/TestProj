@@ -30,20 +30,25 @@
 
                         <Grid Grid.Row="0"
                               Margin="6 0">
-                            <ToggleButton Cursor="Hand" x:Name="Tg_Btn" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource iToggleButtonStyle}" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,15,0,15" Height="30" Width="30">
+                            <ToggleButton Cursor="Hand" x:Name="Tg_Btn" Grid.Column="1"
+                                          VerticalAlignment="Center" 
+                                          Style="{DynamicResource iToggleButtonStyle}"
+                                          HorizontalAlignment="Left" BorderThickness="0"
+                                          Background="Transparent" Margin="10,15,0,15" 
+                                          Height="30" Width="30">
                                 <ToggleButton.Triggers>
-                                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                                        <BeginStoryboard>
-                                            <Storyboard x:Name="HideStackPanel">
-                                                <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="210" To="60" Duration="0:0:0.001">
-                                                </DoubleAnimation>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
                                     <EventTrigger RoutedEvent="ToggleButton.Checked">
                                         <BeginStoryboard>
                                             <Storyboard x:Name="ShowStackPanel">
                                                 <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="60" To="210" Duration="0:0:0.001">
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                        <BeginStoryboard>
+                                            <Storyboard x:Name="HideStackPanel">
+                                                <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="210" To="60" Duration="0:0:0.001">
                                                 </DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>

@@ -32,7 +32,6 @@ namespace BurgerMenu_Desktop.Pages.WareHousePages
             InitializeComponent();
             this._productRepository = new ProductRepository();
         }
-
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             refreshAsync();
@@ -40,24 +39,16 @@ namespace BurgerMenu_Desktop.Pages.WareHousePages
         public async void refreshAsync()
         {
             var dbResult = await _productRepository.GetAllWithCategoryAndSubcategoryIdById();
-
             DataGrid.ItemsSource = dbResult;
         }
         public void FillingDataGrid()
         {
-            Product product = new Product();
-            DataTable dataTable = new DataTable();
-            DataColumn name = new DataColumn("Product Name ", typeof(string));
-            dataTable.Columns.Add(product.ProductName);
+
             //dataTable.Columns.Add(product.Quantity);
         }
-
         private void productDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           
-            
+        {                       
         }
-
         private void btnUpdateInWareHousePage_Click(object sender, RoutedEventArgs e)
         {
             if (DataGrid.SelectedItems.Count == 1)

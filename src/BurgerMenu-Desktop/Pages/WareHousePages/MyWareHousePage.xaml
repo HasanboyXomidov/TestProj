@@ -57,7 +57,7 @@
         <ScrollViewer Grid.Row="1">
             <Border Background="{DynamicResource RegisterBackgroudnColor}"
                     CornerRadius="8">
-                <DataGrid x:Name="DataGrid"
+                <DataGrid RowStyle="{DynamicResource DataGridRowStyle}" x:Name="DataGrid"
                           IsReadOnly="True"
                           GridLinesVisibility="None"
                           AutoGenerateColumns="False" 
@@ -76,45 +76,40 @@
                             <Setter Property="FontWeight" Value="Bold" />
                             <Setter Property="Height" Value="25" />
                             <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="ClickMode" Value="Press"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
                             <Setter Property="BorderThickness" Value="1 0"/>
                             <Setter Property="BorderBrush" Value="{DynamicResource TextTertiaryColor}"/>
                         </Style>
                         
                         <Style TargetType="DataGridRow">
-                            <!--<Setter Property="Background" Value="White" />
-                            <Setter Property="Foreground" Value="{DynamicResource TextTertiaryColor}" />-->
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="SnapsToDevicePixels" Value="True" />
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryIconColor}"/>
-                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="Background" Value="Gray"/>
+                                    <Setter Property="Foreground" Value="White"/>
                                 </Trigger>
-                                <Trigger Property="IsMouseOver" Value="False">
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="Black"/>
+                           
+                                <Trigger Property="IsSelected"  Value="True">
+                                    <Setter Property="Background" Value="Gray" />
+                                    <Setter Property="Foreground" Value="White" />
                                 </Trigger>
-                               
                             </Style.Triggers>
                         </Style>
-                        
                         <Style TargetType="DataGridCell" >
-                            <Setter Property="Padding" Value="5" 
-                                    />
-                            <Setter Property="BorderThickness" Value="0.8"/>
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Setter Property="BorderThickness" Value="0.5 0 0.5 0"/>
                             <Setter Property="Height" Value="30"/>
-                            <Setter Property="BorderBrush" Value="Black"/>
-                            
-                            <!--<Setter Property="Background" Value="{DynamicResource RegisterBackgroudnColor}" />-->
-                            <!--<Setter Property="Foreground" Value="{DynamicResource TextTertiaryColor}" />-->
-                            <Style.Triggers>
+                           <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{DynamicResource TextTertiaryColor}"/>
-                                    <Setter Property="Foreground" Value="{DynamicResource RegisterBackgroudnColor}"/>
+                                    <!--<Setter Property="Background" Value="{DynamicResource TextTertiaryColor}"/>-->
+                                    <!--<Setter Property="Foreground" Value="{DynamicResource RegisterBackgroudnColor}"/>-->
                                 </Trigger> 
                             </Style.Triggers>
                         </Style>
-                        
-                        
                     </DataGrid.Resources>
                     <DataGrid.Columns >
                         <!-- Define columns for each property -->
