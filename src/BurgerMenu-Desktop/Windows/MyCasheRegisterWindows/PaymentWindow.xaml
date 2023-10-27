@@ -11,17 +11,7 @@
          Background="Transparent" AllowsTransparency="True"
          Loaded="Window_Loaded"
          ResizeMode="NoResize" FontFamily="Poppins">
-    <Window.Resources>
-        <Style x:Key="SelectedUserControlStyle" TargetType="locals:TabUserControl">
-            <Setter Property="BorderBrush" Value="Gray" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="BorderBrush" Value="Black" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
+    
     <Border Background="{DynamicResource ThirdBackgroundColor}" 
                 CornerRadius="8"
                 BorderThickness="3"
@@ -73,10 +63,9 @@
                                                           VerticalScrollBarVisibility="Hidden"
                                                           Margin="5"
                                                           >
-                                        <StackPanel x:Name="WpPanel"
-                                                    Orientation="Horizontal">
+                                        <WrapPanel x:Name="WpPanel">
                                                 
-                                        </StackPanel>
+                                        </WrapPanel>
                                             </ScrollViewer>
                                             <!--</ScrollViewer>-->
                                     </Border>

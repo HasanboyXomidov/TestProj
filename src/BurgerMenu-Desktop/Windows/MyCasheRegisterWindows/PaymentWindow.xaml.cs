@@ -7,6 +7,7 @@ using BurgerMenu_Desktop.Windows.CategoryWindows;
 using BurgerMenu_Desktop.Windows.TabWindows;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,14 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
     /// <summary>
     /// Interaction logic for PaymentWindow.xaml
     /// </summary>
-    public partial class PaymentWindow : Window
+    public partial class PaymentWindow : Window, INotifyPropertyChanged
     {
         public delegate void OpenMainWindowDelegate();
         public OpenMainWindowDelegate? OpenWindow { get; set; }
         private readonly ITabsrepository _tabsRepository;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         private long KassaId { get; set; }
         private long TabId { get; set; }    
         public PaymentWindow()
@@ -79,7 +83,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
             {
                 foreach (var item in dbResult)
                 {
-                    TabUserControl tabUserControl = new TabUserControl();
+                    TabUserControl tabUserControl = new TabUserControl(this);
                     tabUserControl.setData(item);
                     tabUserControl.UserControlClicked += YourUserControl_UserControlClicked;
                     WpPanel.Children.Add(tabUserControl);
@@ -144,6 +148,18 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
         private void scrollWindow(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        public void ClearUserControlBorder()
+        {
+
+            foreach (var item in WpPanel.Children)
+            {
+                if(item is TabUserControl)
+                {
+                    (item as TabUserControl).BorderContainer.BorderBrush = null;
+                }
+            }
         }
     }
 }

@@ -9,13 +9,17 @@
              Height="35" d:DesignWidth="120"
              Margin="5 0">
     <!--<Grid>-->
+
+    <Border>
+        
         <Border Background="{DynamicResource RegisterBackgroudnColor}"
                 CornerRadius="10"
                 Cursor="Hand"
                 BorderThickness="1"
+                BorderBrush="Transparent"
                 MouseDown="Border_MouseDown"
                 x:Name="BorderContainer"
-             
+                
                 >
             <Label x:Name="lblTabName"
                    Content="Category"
@@ -28,5 +32,6 @@
                 
             </Label>
         </Border>   
+    </Border>
     <!--</Grid>-->
 </UserControl>
