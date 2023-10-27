@@ -114,11 +114,36 @@ namespace BurgerMenu_Desktop.UserControls
             {
                 PaymentWindow paymentWindow = new PaymentWindow();
                 paymentWindow.setData(KassaId);
+                paymentWindow.OpenWindow = ShowMainWindow;
+                HideMainWindow();
                 paymentWindow.ShowDialog();
+
+
                 //mainWindow.PageNavigator.Navigate(subCategoryPage);
                 //Button? btnBackToCategory = mainWindow.FindName("btnBacktoCategory") as Button;
                 //if (btnBackToCategory !=null) btnBackToCategory.Visibility = Visibility.Visible;
             }
         }
+        private void HideMainWindow()
+        {
+            Window mainWindow = Window.GetWindow(this);
+
+            if (mainWindow != null)
+            {
+                // Hide the main window
+                mainWindow.Visibility = Visibility.Hidden;
+            }
+        }
+        private void ShowMainWindow()
+        {
+            Window mainWindow = Window.GetWindow(this);
+
+            if (mainWindow != null)
+            {
+                // Show the main window
+                mainWindow.Visibility = Visibility.Visible;
+            }
+        }
+
     }
 }

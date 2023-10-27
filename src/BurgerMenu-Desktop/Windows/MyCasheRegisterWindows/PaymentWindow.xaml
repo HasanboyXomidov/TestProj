@@ -4,16 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BurgerMenu_Desktop.Windows.MyCasheRegisterWindows"
+        xmlns:locals="clr-namespace:BurgerMenu_Desktop.UserControls"
         mc:Ignorable="d"
-        Title="PaymentWindow" Height="700" Width="950"
+        Title="PaymentWindow" Height="750" Width="1024"
          WindowStartupLocation="CenterScreen" WindowStyle="None"
          Background="Transparent" AllowsTransparency="True"
          Loaded="Window_Loaded"
          ResizeMode="NoResize" FontFamily="Poppins">
+    <Window.Resources>
+        <Style x:Key="SelectedUserControlStyle" TargetType="locals:TabUserControl">
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="BorderBrush" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Border Background="{DynamicResource ThirdBackgroundColor}" 
                 CornerRadius="8"
-                BorderThickness="1"
-                BorderBrush="{DynamicResource ThirdBackgroundColor}">
+                BorderThickness="3"
+                BorderBrush="{DynamicResource RegisterBackgroudnColor}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,7 +33,7 @@
         </Grid.RowDefinitions>
             <Border Grid.Row="0"
                     Cursor="ScrollAll"
-                    Background="Transparent"
+                    Background="{DynamicResource RegisterBackgroudnColor}"
                     MouseDown="scrollWindow">
                 <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
                     <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}"  Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
@@ -34,13 +46,15 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0" 
-                            Margin="10 0">
+                            Margin="10 10 10 10">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="8*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    BorderThickness="1"
                                     Background="{DynamicResource RegisterBackgroudnColor}"
                                     CornerRadius="10">
                                 <Grid>
@@ -49,15 +63,21 @@
                                         <RowDefinition Height="5*"/>
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0"
-                                            Margin="10"
+                                            Margin="10" BorderBrush="{DynamicResource TextTertiaryColor}"
+                                            BorderThickness="1"
                                             Background="{DynamicResource ThirdBackgroundColor}"
                                             CornerRadius="10">
                                             <!--<ScrollViewer HorizontalScrollBarVisibility="Visible"
                                                           VerticalScrollBarVisibility="Hidden">-->
+                                            <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                                                          VerticalScrollBarVisibility="Hidden"
+                                                          Margin="5"
+                                                          >
                                         <StackPanel x:Name="WpPanel"
                                                     Orientation="Horizontal">
                                                 
                                         </StackPanel>
+                                            </ScrollViewer>
                                             <!--</ScrollViewer>-->
                                     </Border>
                                     <Border Grid.Row="1"
@@ -67,6 +87,37 @@
                                         </WrapPanel>
                                     </Border>
                                 </Grid>
+                            </Border>
+                            <Border Grid.Row="1"
+                                    Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{DynamicResource SaveBtn}"
+                                            Width="120"
+                                            Margin="20 0"
+                                            Content="Button"
+                                            Foreground="{DynamicResource RegisterBackgroudnColor}"
+                                            Background="{DynamicResource TextTertiaryColor}">
+                                            
+                                    </Button>
+                                    <Button Style="{DynamicResource SaveBtn}"
+                                             Width="120"
+                                             Content="Button"
+                                            Margin="20 0"
+                                            
+                                             Foreground="{DynamicResource RegisterBackgroudnColor}"
+                                             Background="{DynamicResource TextTertiaryColor}">
+
+                                    </Button>
+                                    <Button Style="{DynamicResource SaveBtn}"
+                                             Width="120"
+                                             Content="Button"
+                                            Margin="20 0"
+                                            
+                                             Foreground="{DynamicResource RegisterBackgroudnColor}"
+                                             Background="{DynamicResource TextTertiaryColor}">
+
+                                    </Button>
+                                </StackPanel>
                             </Border>
                         </Grid>
                     </Border>
@@ -78,8 +129,19 @@
                                 <RowDefinition Height="8*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
+                            <Border Grid.Row="0"
+                                    Margin="10"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Background="{DynamicResource RegisterBackgroudnColor}"
+                                    >
+                                
+                            </Border>
                             <Border Grid.Row="1"
-                                    Margin="8"
+                                    Margin="10"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    BorderThickness="1"
                                     Cursor="Hand"                                    
                                     Background="{DynamicResource RegisterBackgroudnColor}"
                                     CornerRadius="10"

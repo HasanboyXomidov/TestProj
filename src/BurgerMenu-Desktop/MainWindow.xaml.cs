@@ -38,6 +38,7 @@ namespace BurgerMenu_Desktop
         {
             InitializeComponent();
             ButtonClicked += MainWindow_ButtonClicked;
+
             //this._kassaRepository = new KassaRepository();
         }
         

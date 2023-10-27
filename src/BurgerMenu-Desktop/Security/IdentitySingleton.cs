@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BurgerMenu_Desktop.ViewModels.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ public class IdentitySingleton
 {
     public static IdentitySingleton _identitySingleton;
     public string connectionString = "server=localhost;database=myshops_db;user=root;";
+    public IList<ProductWithTabDetails> AddToCartList { get; set; } = new List<ProductWithTabDetails>();
     private IdentitySingleton()
     {
         
