@@ -12,7 +12,8 @@
             CornerRadius="10"      
             x:Name="brButton"
             BorderThickness="1"
-            
+            Cursor="Hand"
+            MouseDown="brButton_MouseDown"
             BorderBrush="{DynamicResource TextTertiaryColor}"
             >
             <StackPanel>
@@ -21,35 +22,7 @@
                     Width="60"
                     Margin="90 0 0 0"
                     HorizontalAlignment="Center">
-                    <!--<Button Width="25"
-                    Height="25"
-    
-                    Margin="2 0"
-                    Cursor="Hand"
-                    Click="Button_Click"
-                    Background="{DynamicResource btnClose}"
-                    Style="{DynamicResource SaveBtn}"
-                    Foreground="{DynamicResource PrimaryBackgroundColor}"
-                    >       
-                        <Path Width="15" Height="10" Margin="0" Data="{DynamicResource Delete}"
-                      Fill="{DynamicResource PrimaryBackgroundColor}"
-                      Stretch="Uniform"/>
-
-
-                    </Button>
-                    <Button Width="25"
-                        Height="25"
-                        Margin="2 0"
-                        Padding="0"
-                        Cursor="Hand"
-                        Click="updateBtn"
-                        Style="{DynamicResource SaveBtn}"
-                        Background="#C1D8C3"
-                        >       
-                        <Path Width="15" Height="10" Margin="0" Data="{DynamicResource Edit}"
-                     Fill="#6A9C89"
-                     Stretch="Uniform"/>
-                    </Button>-->
+                    
                 </StackPanel>
 
 

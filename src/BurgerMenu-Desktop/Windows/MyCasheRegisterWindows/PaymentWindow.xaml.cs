@@ -56,10 +56,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
         public void setData(long KassaId)
         {
             this.KassaId = KassaId;
-        }
-        private void brPayment_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-        }
+        }     
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -69,7 +66,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
         {
             WpPanel.Children.Clear();
             TabId = 0;
-            //WpMainPayment.Children.Clear();
+            WpMainPayment.Children.Clear();
             Button tabButton = new Button
             {
                 Width = 60,
@@ -96,7 +93,9 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
                     tabUserControl.UserControlClicked += YourUserControl_UserControlClicked;
                     WpPanel.Children.Add(tabUserControl);
                 }
-            }            
+            }
+            //ProductTotalCollectUserControl productTotalCollectUserControl_ = new ProductTotalCollectUserControl();
+            //WpThird.Children.Add(productTotalCollectUserControl_);
         }
         public async void refreshSecondWrapPanel()
         {
@@ -121,8 +120,19 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
                 {                    
                         SellProductUserControl sellProductUserControl = new SellProductUserControl();
                         sellProductUserControl.setData(product);
+                        sellProductUserControl.RefreshThirdWrapPanel = refreshThirdWrapPanel;
                         WpMainPayment.Children.Add(sellProductUserControl);      
                 }
+            }
+        }
+        public void refreshThirdWrapPanel() 
+        {
+            WpThird.Children.Clear();
+            var identity = IdentitySingleton.GetInstance();
+            var ProductList = identity.AddToCartList;
+            foreach (var product in ProductList)
+            {
+
             }
         }
         private void btnCreateTab(object sender, RoutedEventArgs e)
@@ -171,17 +181,13 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
                 TabUpdateWindow updateWindow = new TabUpdateWindow();
                 updateWindow.setData(TabId);
                 updateWindow.RefreshPage = refreshAsync;
-                //updateWindow.RefreshPage2 = RefreshTabs;
+                //updateWindow.RefreshPage2 = ClearUserControlBorder;
                 updateWindow.ShowDialog();
-                TabId = 0;
-                WpMainPayment.Children.Clear();
+                //TabId = 0;
+                //WpMainPayment.Children.Clear();
             }
         }
-        public void RefreshTabs()
-        {
-            TabId = 0;
-            WpPanel.Children.Clear();
-        }
+      
 
         private async void btnDeleteClick_Click(object sender, RoutedEventArgs e)
         {
@@ -206,6 +212,11 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
                 }
                 else MessageBox.Show("Не удалено!!2");
             }
+        }
+
+        private void brPayment_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -150,6 +150,7 @@
                     </Border>
 
                     <Border Grid.Column="1"
+                            
                             >
                         <Grid>
                             <Grid.RowDefinitions>
@@ -163,7 +164,38 @@
                                     CornerRadius="10"
                                     Background="{DynamicResource RegisterBackgroudnColor}"
                                     >
-                                
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="8*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <ScrollViewer>
+                                    <WrapPanel x:Name="WpThird" Orientation="Vertical"
+                                                Grid.Row="0"
+                                                Margin="5"
+                                           >
+                                            
+                                        </WrapPanel>
+                                    </ScrollViewer>
+                                    <Border Grid.Row="1"
+                                            x:Name="brTotalSumma"
+                                            Visibility="Visible"
+                                            Background="{DynamicResource ThirdBackgroundColor}"
+                                            CornerRadius="10"
+                                            BorderBrush="{DynamicResource TextTertiaryColor}"
+                                            BorderThickness="1"
+                                            Padding="5">
+                                        <Label HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               x:Name="lblTotalSumma"
+                                               Content="1 320 000"
+                                               Foreground="Green"
+                                               FontWeight="SemiBold"
+                                               FontSize="16">
+                                            
+                                        </Label>
+                                    </Border>
+                                </Grid>
                             </Border>
                             <Border Grid.Row="1"
                                     Margin="10"

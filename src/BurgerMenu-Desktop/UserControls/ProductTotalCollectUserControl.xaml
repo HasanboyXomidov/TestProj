@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="BurgerMenu_Desktop.UserControls.ProductTotalCollectUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BurgerMenu_Desktop.UserControls"
+             mc:Ignorable="d" 
+             Width="180"
+             Height="65"
+             >
+    <Border Background="{DynamicResource TextTertiaryColor}"
+            CornerRadius="8"
+            BorderThickness="1"
+            BorderBrush="{DynamicResource RegisterBackgroudnColor}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" x:Name="lblProductName" Content="Carrot"
+               Foreground="{DynamicResource RegisterBackgroudnColor}"
+               FontSize="16"
+               Padding="0"
+               FontWeight="SemiBold"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center">
+            
+        </Label>
+            <Grid Grid.Row="1" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblProductCost"
+                       Grid.Column="0"
+                       Foreground="{DynamicResource RegisterBackgroudnColor}"
+                       FontSize="9"
+                       Padding="0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Content="12 000">
+                </Label>
+                <Label 
+                       Grid.Column="1"
+                       Foreground="{DynamicResource RegisterBackgroudnColor}"
+                       FontSize="9"
+                       Padding="0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Content="X">
+                </Label>
+                <Label x:Name="lblProductQuantity"
+                       Grid.Column="2"
+                       Foreground="{DynamicResource RegisterBackgroudnColor}"
+                       FontSize="9"
+                       Padding="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Content="4">
+                </Label>
+                <Label 
+                       Grid.Column="3"
+                       Foreground="{DynamicResource RegisterBackgroudnColor}"
+                       FontSize="9"
+                       Padding="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Content="=">
+                </Label>
+                <Label x:Name="lblProductTotalPrice"
+                       Grid.Column="4"
+                       Foreground="{DynamicResource RegisterBackgroudnColor}"
+                       FontSize="9"
+                       Padding="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Content="48 000">        
+                </Label>
+
+            </Grid>
+    </Grid>
+    </Border>
+</UserControl>
