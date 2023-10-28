@@ -41,7 +41,42 @@
         </Setter>
     </Style>
     <!-- End: Pop-up Button Style -->
-    
+
+
+    <Style x:Key="SettingSButtonWithOneIcon" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border 
+                x:Name="B"
+                 Background="{DynamicResource RegisterBackgroudnColor}"
+                    CornerRadius="50"
+                >
+                        <Path Fill="{TemplateBinding Foreground}" 
+                      Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
+                      Height="25"
+                      Width="25"
+                      Stretch="Uniform"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}" TargetName="B" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource RegisterBackgroudnColor}" TargetName="B" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+                
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- fIRST show me button -->
     <Style x:Key="showPasswordCrosButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="24"/>

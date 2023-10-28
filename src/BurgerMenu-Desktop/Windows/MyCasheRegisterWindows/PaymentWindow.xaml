@@ -52,14 +52,21 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="5*"/>
                                     </Grid.RowDefinitions>
-                                    <Border Grid.Row="0"
+                                    <Grid Grid.Row="0">
+                                        
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                    <Border 
                                             Margin="10" BorderBrush="{DynamicResource TextTertiaryColor}"
                                             BorderThickness="1"
                                             Background="{DynamicResource ThirdBackgroundColor}"
                                             CornerRadius="10">
                                             <!--<ScrollViewer HorizontalScrollBarVisibility="Visible"
                                                           VerticalScrollBarVisibility="Hidden">-->
-                                            <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                                            <ScrollViewer Grid.Column="0"
+                                                HorizontalScrollBarVisibility="Visible"
                                                           VerticalScrollBarVisibility="Hidden"
                                                           Margin="5"
                                                           >
@@ -69,6 +76,37 @@
                                             </ScrollViewer>
                                             <!--</ScrollViewer>-->
                                     </Border>
+                                        <Border Grid.Column="1" Padding="0"
+                                                 Margin="10"
+                                                 Background="{DynamicResource ThirdBackgroundColor}"
+                                                 BorderBrush="{DynamicResource TextTertiaryColor}"
+                                                 BorderThickness="1"
+                                                 CornerRadius="10">
+                                        <StackPanel Orientation="Horizontal" Grid.Column="1" >
+                                               
+                                            <Button Style="{DynamicResource SettingSButtonWithOneIcon}"
+                                                    Tag="{DynamicResource SettingsIcon}"
+                                                    x:Name="btnSettingsClick"
+                                                    Foreground="Green"
+                                                    Cursor="Hand"
+                                                    Margin="10 0"
+                                                    Padding="0"
+                                                    Click="btnSettingsClick_Click">
+                                                
+                                            </Button>
+                                                <Button Style="{DynamicResource SettingSButtonWithOneIcon}"
+                                                        Tag="{DynamicResource Delete}" 
+                                                        Foreground="Red"
+                                                        x:Name="btnDeleteClick"
+                                                        Cursor="Hand"
+                                                        Margin="10 0"
+                                                        Padding="0"
+                                                        Click="btnDeleteClick_Click">
+
+                                                </Button>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
                                     <Border Grid.Row="1"
                                             Margin="10">
                                         <WrapPanel x:Name="WpMainPayment">

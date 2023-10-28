@@ -1,6 +1,9 @@
 ﻿using BurgerMenu_Desktop.Entities.Categories;
+using BurgerMenu_Desktop.Entities.SaleProducts;
 using BurgerMenu_Desktop.Interfaces.Products;
+using BurgerMenu_Desktop.Interfaces.SaleProducts;
 using BurgerMenu_Desktop.Repositories.Products;
+using BurgerMenu_Desktop.Repositories.SaleProducts;
 using BurgerMenu_Desktop.Security;
 using BurgerMenu_Desktop.ViewModels.Products;
 using System;
@@ -25,6 +28,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
     /// </summary>
     public partial class ProductsWindow : Window
     {
+        private readonly ISaleProductsRepository _saleProductsRepository;
         private long TabId {  get; set; }
         private readonly IProductInterface _productRepository;
         public delegate void RefreshProPaymentWindow();
@@ -34,6 +38,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
         {
             InitializeComponent();
             this._productRepository = new ProductRepository();
+            this._saleProductsRepository = new SaleProductsRepository();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -65,7 +70,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
             this.TabId = TabId;
         }
 
-        private void MyDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void MyDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // Handle the double-click event here
             // You can access the selected item or perform any desired action
@@ -76,7 +81,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
                 {
                     // Get the selected item from the DataGrid
                     var selectedItem= dataGrid.SelectedItem as ProductWithDetailsViewModel;
-                    ProductWithTabDetails productWithTabDetails = new ProductWithTabDetails()
+                    ProductTab productWithTab = new ProductTab()
                     {
                         id = selectedItem.id,
                         product_name = selectedItem.product_name,
@@ -88,17 +93,22 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
                         Subcategory = selectedItem.Subcategory,
                         tab_id = this.TabId
                     };
-                    // Perform any desired action with the selected item
-                    // For example:
-                    //MessageBox.Show($"Double-clicked on row: {selectedItem}");
-                    var identity = IdentitySingleton.GetInstance();
+
                     if (selectedItem != null)
-                    {
-                        identity.AddToCartList.Add(productWithTabDetails);
-                        RefreshWindow?.Invoke();
-                        this.Close();
+                    {                       
+                        var dbResult = await _saleProductsRepository.CreateSaleProduct(productWithTab);
+                        if (dbResult>0)
+                        {
+                            MessageBox.Show("Добавлен +");
+                            RefreshWindow?.Invoke();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не добавлено! Уже добавленный товар");
+                        }
                     }
-                    else MessageBox.Show("SomeThing Wrong ! try again ");
+                    else MessageBox.Show("Что-то не так ! Попробуйте еще раз");
                     
                 }
             }
