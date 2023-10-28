@@ -11,4 +11,5 @@ namespace BurgerMenu_Desktop.Interfaces.Tabs;
 public interface ITabsrepository : IRepository<Tab, TabViewModel>
 {
     public Task<IList<TabViewModel>> GetTabsByKassaIdAsync(long KassaId);
+    public Task<TabViewModel> GetTabByTabId(long TabId);
 }

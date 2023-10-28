@@ -31,8 +31,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
     /// </summary>
     public partial class PaymentWindow : Window, INotifyPropertyChanged
     {
-        //public delegate void RefreshPaymentWindowAboveWrapPanel();
-        //public RefreshPaymentWindowAboveWrapPanel? RefreshPage { get ; set; }
+       
         public delegate void OpenMainWindowDelegate();
         public OpenMainWindowDelegate? OpenWindow { get; set; }
         private readonly ITabsrepository _tabsRepository;
@@ -69,6 +68,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
         public async void refreshAsync()
         {
             WpPanel.Children.Clear();
+            TabId = 0;
             //WpMainPayment.Children.Clear();
             Button tabButton = new Button
             {
@@ -168,8 +168,19 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
             if (TabId == 0) MessageBox.Show("Пожалуйста, выберите вкладку");
             else
             {
-
+                TabUpdateWindow updateWindow = new TabUpdateWindow();
+                updateWindow.setData(TabId);
+                updateWindow.RefreshPage = refreshAsync;
+                //updateWindow.RefreshPage2 = RefreshTabs;
+                updateWindow.ShowDialog();
+                TabId = 0;
+                WpMainPayment.Children.Clear();
             }
+        }
+        public void RefreshTabs()
+        {
+            TabId = 0;
+            WpPanel.Children.Clear();
         }
 
         private async void btnDeleteClick_Click(object sender, RoutedEventArgs e)

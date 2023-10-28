@@ -90,7 +90,7 @@ namespace BurgerMenu_Desktop.Windows.CategoryWindows
             {
                 if (ContainsPunctuation(tbCategoryName.Text) == false) count++;
                 else MessageBox.Show("без знаков препинания");
-                if (tbCategoryName.Text.Length >= 4 && tbCategoryName.Text.Length <= 5 ) count++;
+                if (tbCategoryName.Text.Length >= 4 && tbCategoryName.Text.Length <= 50 ) count++;
                 else MessageBox.Show("Проверьте имя Категория. Должно быть минимум 4 символов и не более 50 символов !");
                 if (count == 2)
                 {

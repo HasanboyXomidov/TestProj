@@ -54,6 +54,25 @@ class TabRepository : BaseRepository, ITabsrepository
         throw new NotImplementedException();
     }
 
+    public async Task<TabViewModel> GetTabByTabId(long TabId)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM `tabs` WHERE id = @tabId";
+            var result = await _connection.QuerySingleAsync<TabViewModel>(query, new { tabId = TabId });
+            return result;
+        }
+        catch 
+        {
+            return new TabViewModel();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
     public async Task<IList<TabViewModel>> GetTabsByKassaIdAsync(long KassaId)
     {
         try
