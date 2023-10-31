@@ -61,6 +61,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             refreshAsync();
+            refreshThirdWrapPanel();
         }
         public async void refreshAsync()
         {
@@ -117,9 +118,10 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
             if (dbResult.Count > 0)
             {
                 foreach (var product in dbResult)
-                {                    
+                {       
+                  
                         SellProductUserControl sellProductUserControl = new SellProductUserControl();
-                        sellProductUserControl.setData(product);
+                        sellProductUserControl.setData(product, this.KassaId);
                         sellProductUserControl.RefreshThirdWrapPanel = refreshThirdWrapPanel;
                         WpMainPayment.Children.Add(sellProductUserControl);      
                 }
@@ -130,10 +132,26 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
             WpThird.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
             var ProductList = identity.AddToCartList;
+            float AllTotalSum = 0;
             foreach (var product in ProductList)
             {
-
+                //product.
+                if(product.shopId == this.KassaId)
+                {
+                    ProductTotalCollectUserControl productTotalCollectUserControl = new ProductTotalCollectUserControl();
+                    productTotalCollectUserControl.setData(product);
+                    WpThird.Children.Add(productTotalCollectUserControl);
+                    AllTotalSum +=product.SoldPrice * product.quantity; 
+                }
             }
+            string FormattedAllTotalPrice = FormatPrice((AllTotalSum).ToString());
+            lblTotalSumma.Content = FormattedAllTotalPrice;
+        }
+        public string FormatPrice(string Price)
+        {
+            float number = float.Parse(Price);
+            string formattedNumber = number.ToString("#,##0").Replace(",", " ");
+            return formattedNumber;
         }
         private void btnCreateTab(object sender, RoutedEventArgs e)
         {

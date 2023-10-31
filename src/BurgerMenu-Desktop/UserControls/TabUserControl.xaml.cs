@@ -24,7 +24,6 @@ namespace BurgerMenu_Desktop.UserControls
     public partial class TabUserControl : UserControl
     {
 
-        
 
         public delegate void UserControlClickedEventHandler(long id);
         public event UserControlClickedEventHandler UserControlClicked;
@@ -47,6 +46,7 @@ namespace BurgerMenu_Desktop.UserControls
         {
             lblTabName.Content = tabViewModel.name;
             this.TabId = tabViewModel.id;
+            
         }
         
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

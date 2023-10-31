@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BurgerMenu_Desktop.Entities.Products;
+using BurgerMenu_Desktop.ViewModels.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,26 @@ namespace BurgerMenu_Desktop.UserControls
         public ProductTotalCollectUserControl()
         {
             InitializeComponent();
+        }
+        public string FormatPrice(string Price)
+        {
+            float number = float.Parse(Price);
+            string formattedNumber = number.ToString("#,##0").Replace(",", " ");
+            return formattedNumber;
+        }
+        public void setData(ProductWithTabDetails productWithTabDetails)
+        {
+
+            lblProductName.Content = productWithTabDetails.product_name;
+            string FormattedSoldPrice = FormatPrice(productWithTabDetails.SoldPrice.ToString());
+            lblProductCost.Content = FormattedSoldPrice;
+            string FormattedQuantity = FormatPrice((productWithTabDetails.quantity).ToString());
+            lblProductQuantity.Content= FormattedQuantity;
+            float TotalSum = productWithTabDetails.SoldPrice * productWithTabDetails.quantity;
+            string FormattedTotalPrice = FormatPrice((TotalSum).ToString());
+            lblProductTotalPrice.Content = FormattedTotalPrice;
+
+
         }
     }
 }

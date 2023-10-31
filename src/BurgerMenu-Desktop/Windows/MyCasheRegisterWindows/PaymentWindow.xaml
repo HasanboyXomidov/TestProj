@@ -188,7 +188,7 @@
                                         <Label HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                x:Name="lblTotalSumma"
-                                               Content="1 320 000"
+                                               Content="0"
                                                Foreground="Green"
                                                FontWeight="SemiBold"
                                                FontSize="16">

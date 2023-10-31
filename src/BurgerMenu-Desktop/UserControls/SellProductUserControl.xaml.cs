@@ -26,14 +26,17 @@ namespace BurgerMenu_Desktop.UserControls
         public delegate void RefreshPaymendWindowThirdWrapPanel();
         public RefreshPaymendWindowThirdWrapPanel? RefreshThirdWrapPanel { get; set; }
         public ProductWithTabDetails? productWithTabDetails;
+        private long KassaId { get; set; }
         public SellProductUserControl()
         {
             InitializeComponent();
         }
-        public void setData(ProductWithTabDetails product)
+        public void setData(ProductWithTabDetails product,long KassaId)
         {
             lblProduct.Text = product.product_name;
             this.productWithTabDetails = product;
+            productWithTabDetails.shopId = KassaId;
+            this.KassaId = KassaId;
         }
 
         private void brButton_MouseDown(object sender, MouseButtonEventArgs e)
@@ -41,30 +44,41 @@ namespace BurgerMenu_Desktop.UserControls
             var identity = IdentitySingleton.GetInstance();
             var sellProductList = identity.AddToCartList;
             int checkName = 0;
-            for(int i = 0; i < sellProductList.Count; i++)
+            int countIteration = 0;
+            bool isOldProduct = false;
+            for (int i = 0; i < sellProductList.Count; i++)
             {
-                if (sellProductList[i].product_name == productWithTabDetails?.product_name)
+                countIteration++;
+                if (sellProductList[i].product_name == productWithTabDetails?.product_name && sellProductList[i].shopId == KassaId)
                 {
-                    //sellProductList[i].SoldPrice += productWithTabDetails.SoldPrice;
                     checkName = i;
+                    isOldProduct  = true;
                     break;
-                }               
+                }                
             }
-            if( checkName > 0 && productWithTabDetails?.SoldPrice != null) 
+            if( isOldProduct == true  && productWithTabDetails?.SoldPrice != null) 
             {
-                sellProductList[checkName].SoldPrice += productWithTabDetails.SoldPrice;
-                sellProductList[checkName].quantity++;
-                MessageBox.Show("Добавлен +");
-                RefreshThirdWrapPanel?.Invoke();
+                if (sellProductList[checkName].productquantity > 0) /*> sellProductList[checkName].quantity)*/
+                {
+                    sellProductList[checkName].quantity++;
+                    sellProductList[checkName].productquantity--;
+                    RefreshThirdWrapPanel?.Invoke();
+                }
+                else MessageBox.Show("Товара не осталось");
             }
             else
             {
-                if (productWithTabDetails!=null)
+                if (isOldProduct == false && productWithTabDetails!=null)
                 {
-                    sellProductList.Add(productWithTabDetails);
-                    sellProductList[checkName].quantity++;
-                    MessageBox.Show("Добавлен новый +");
-                    RefreshThirdWrapPanel?.Invoke();
+                    if(productWithTabDetails.productquantity > 0)
+                    {
+                        sellProductList.Add(productWithTabDetails);
+                        sellProductList[countIteration].quantity++;
+                        sellProductList[countIteration].productquantity--;
+                        RefreshThirdWrapPanel?.Invoke();
+                    }
+                    else MessageBox.Show("Товара не осталось");
+
                 }
             }
 

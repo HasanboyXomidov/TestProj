@@ -10,7 +10,7 @@ public class ProductTab
 {
     public long id { get; set; }
     public string product_name { get; set; } = string.Empty;
-    public int quantity { get; set; }
+    public int ProductQuantity { get; set; }
     public float StartingPrice { get; set; }
     public float SoldPrice { get; set; }
     public long BarCode { get; set; }

@@ -11,7 +11,7 @@
     <Border Background="{DynamicResource TextTertiaryColor}"
             CornerRadius="8"
             BorderThickness="1"
-            BorderBrush="{DynamicResource RegisterBackgroudnColor}">
+            BorderBrush="{DynamicResource ThirdBackgroundColor}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -28,16 +28,16 @@
         </Label>
             <Grid Grid.Row="1" Margin="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="lblProductCost"
                        Grid.Column="0"
                        Foreground="{DynamicResource RegisterBackgroudnColor}"
-                       FontSize="9"
+                       FontSize="14"
                        Padding="0"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
@@ -46,25 +46,25 @@
                 <Label 
                        Grid.Column="1"
                        Foreground="{DynamicResource RegisterBackgroudnColor}"
-                       FontSize="9"
+                       FontSize="14"
                        Padding="0"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Content="X">
+                       Content="x">
                 </Label>
                 <Label x:Name="lblProductQuantity"
                        Grid.Column="2"
                        Foreground="{DynamicResource RegisterBackgroudnColor}"
-                       FontSize="9"
+                       FontSize="14"
                        Padding="0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       Content="4">
+                       Content=" 4">
                 </Label>
                 <Label 
                        Grid.Column="3"
                        Foreground="{DynamicResource RegisterBackgroudnColor}"
-                       FontSize="9"
+                       FontSize="14"
                        Padding="0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
@@ -73,7 +73,8 @@
                 <Label x:Name="lblProductTotalPrice"
                        Grid.Column="4"
                        Foreground="{DynamicResource RegisterBackgroudnColor}"
-                       FontSize="9"
+                        FontSize="14"
+
                        Padding="0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"

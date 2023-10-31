@@ -85,7 +85,7 @@ namespace BurgerMenu_Desktop.Windows.MyCasheRegisterWindows
                     {
                         id = selectedItem.id,
                         product_name = selectedItem.product_name,
-                        quantity = selectedItem.quantity,
+                        ProductQuantity  = selectedItem.quantity,
                         BarCode = selectedItem.BarCode,
                         StartingPrice = selectedItem.StartingPrice,
                         SoldPrice = selectedItem.SoldPrice,

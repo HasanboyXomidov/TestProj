@@ -19,8 +19,8 @@ public class SaleProductsRepository : BaseRepository , ISaleProductsRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "INSERT INTO `sale_products`( `product_name`, `StartingPrice`, `SoldPrice`, `BarCode`, `Category`, `Subcategory`, `tab_id`) " +
-                "VALUES (@product_name ,@StartingPrice, @SoldPrice ,@BarCode ,  @Category  , @Subcategory  , @tab_id)";
+            string query = "INSERT INTO `sale_products`( `product_name`, `product_quantity`, `StartingPrice`, `SoldPrice`, `BarCode`, `Category`, `Subcategory`, `tab_id`) " +
+                "VALUES (@product_name ,@ProductQuantity, @StartingPrice, @SoldPrice ,@BarCode ,  @Category  , @Subcategory  , @tab_id)";
             var result = await _connection.ExecuteAsync(query, productTab);
             return result;
         }
